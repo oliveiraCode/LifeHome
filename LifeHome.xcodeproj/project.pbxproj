@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		9C4B290D20B6E72C00EE8A1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B290C20B6E72C00EE8A1B /* AppDelegate.swift */; };
-		9C4B290F20B6E72D00EE8A1B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B290E20B6E72D00EE8A1B /* ViewController.swift */; };
 		9C4B291220B6E72D00EE8A1B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C4B291020B6E72D00EE8A1B /* Main.storyboard */; };
 		9C4B291420B6E72D00EE8A1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C4B291320B6E72D00EE8A1B /* Assets.xcassets */; };
 		9C4B291720B6E72D00EE8A1B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C4B291520B6E72D00EE8A1B /* LaunchScreen.storyboard */; };
 		9C4B292120B6E7D800EE8A1B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C4B292020B6E7D800EE8A1B /* GoogleService-Info.plist */; };
+		9C4B292720B714C700EE8A1B /* MapFindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B292620B714C700EE8A1B /* MapFindViewController.swift */; };
+		9C4B292920B71ACB00EE8A1B /* FindTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B292820B71ACB00EE8A1B /* FindTableViewController.swift */; };
 		E590A76DB15DAED5F8D10F08 /* Pods_LifeHome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E2E1E3FA39609F1998A203A /* Pods_LifeHome.framework */; };
 /* End PBXBuildFile section */
 
@@ -22,12 +23,13 @@
 		837495C06E71305CD57D74D2 /* Pods-LifeHome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeHome.release.xcconfig"; path = "Pods/Target Support Files/Pods-LifeHome/Pods-LifeHome.release.xcconfig"; sourceTree = "<group>"; };
 		9C4B290920B6E72C00EE8A1B /* LifeHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LifeHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C4B290C20B6E72C00EE8A1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9C4B290E20B6E72D00EE8A1B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9C4B291120B6E72D00EE8A1B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9C4B291320B6E72D00EE8A1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C4B291620B6E72D00EE8A1B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9C4B291820B6E72D00EE8A1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C4B292020B6E7D800EE8A1B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9C4B292620B714C700EE8A1B /* MapFindViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFindViewController.swift; sourceTree = "<group>"; };
+		9C4B292820B71ACB00EE8A1B /* FindTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,15 +74,48 @@
 		9C4B290B20B6E72C00EE8A1B /* LifeHome */ = {
 			isa = PBXGroup;
 			children = (
+				9C4B292520B703E900EE8A1B /* Controller */,
+				9C4B292420B703DE00EE8A1B /* Model */,
 				9C4B290C20B6E72C00EE8A1B /* AppDelegate.swift */,
-				9C4B290E20B6E72D00EE8A1B /* ViewController.swift */,
-				9C4B291020B6E72D00EE8A1B /* Main.storyboard */,
+				9C4B292320B7022800EE8A1B /* View */,
+				9C4B292220B7021900EE8A1B /* Plist */,
 				9C4B291320B6E72D00EE8A1B /* Assets.xcassets */,
-				9C4B291520B6E72D00EE8A1B /* LaunchScreen.storyboard */,
+			);
+			path = LifeHome;
+			sourceTree = "<group>";
+		};
+		9C4B292220B7021900EE8A1B /* Plist */ = {
+			isa = PBXGroup;
+			children = (
 				9C4B291820B6E72D00EE8A1B /* Info.plist */,
 				9C4B292020B6E7D800EE8A1B /* GoogleService-Info.plist */,
 			);
-			path = LifeHome;
+			path = Plist;
+			sourceTree = "<group>";
+		};
+		9C4B292320B7022800EE8A1B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9C4B291020B6E72D00EE8A1B /* Main.storyboard */,
+				9C4B291520B6E72D00EE8A1B /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9C4B292420B703DE00EE8A1B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9C4B292520B703E900EE8A1B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9C4B292620B714C700EE8A1B /* MapFindViewController.swift */,
+				9C4B292820B71ACB00EE8A1B /* FindTableViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		CB06E3A5390E9156FA67F599 /* Frameworks */ = {
@@ -210,8 +245,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C4B290F20B6E72D00EE8A1B /* ViewController.swift in Sources */,
+				9C4B292920B71ACB00EE8A1B /* FindTableViewController.swift in Sources */,
 				9C4B290D20B6E72C00EE8A1B /* AppDelegate.swift in Sources */,
+				9C4B292720B714C700EE8A1B /* MapFindViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,7 +394,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W37KBBDQBC;
-				INFOPLIST_FILE = LifeHome/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/LifeHome/Plist/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -377,7 +413,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W37KBBDQBC;
-				INFOPLIST_FILE = LifeHome/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/LifeHome/Plist/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
