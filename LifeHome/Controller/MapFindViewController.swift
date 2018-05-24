@@ -12,6 +12,7 @@ class MapFindViewController: UIViewController {
 
     @IBOutlet weak var constraintChanged: NSLayoutConstraint!
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
