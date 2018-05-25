@@ -10,8 +10,12 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var btnLogin: UIButton!
+    @IBOutlet weak var btnFacebook: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        cornerRadiusButton()
+        
         // Do any additional setup after loading the view.
     }
 
@@ -31,6 +35,15 @@ class LoginViewController: UIViewController {
     }
     */
 
+    
+    func cornerRadiusButton (){
+        btnLogin.layer.cornerRadius = 25
+        btnLogin.layer.masksToBounds = true
+        
+        btnFacebook.layer.cornerRadius = 25
+        btnFacebook.layer.masksToBounds = true
+    }
+    
 }
 
 

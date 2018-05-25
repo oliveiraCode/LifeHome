@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZgZ-z5-zG7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="D0o-oK-lMo">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -230,7 +230,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="83r-G4-MJt">
-                                        <rect key="frame" x="109" y="74" width="85" height="64"/>
+                                        <rect key="frame" x="109" y="59" width="85" height="85"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </imageView>
@@ -271,7 +271,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="phonePad" keyboardAppearance="alert" textContentType="tel"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="phonePad" keyboardAppearance="alert"/>
                                     </textField>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FY6-Lw-F8l">
                                         <rect key="frame" x="55" y="354" width="230" height="1"/>
@@ -318,10 +318,19 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MCR-bw-BCh"/>
                     </view>
+                    <connections>
+                        <outlet property="btnContinue" destination="pAR-Vh-syL" id="Bpu-BG-FgX"/>
+                        <outlet property="changeProfileButton" destination="l5o-wG-lLi" id="Rsh-ih-tij"/>
+                        <outlet property="emailField" destination="h7s-S1-oG9" id="urL-dH-tzn"/>
+                        <outlet property="fullNameField" destination="o1G-lX-jni" id="g5U-q8-cES"/>
+                        <outlet property="passwordField" destination="Lo9-SU-irp" id="M9f-uP-5GY"/>
+                        <outlet property="phoneField" destination="GW6-ls-vie" id="stX-cY-EYV"/>
+                        <outlet property="profileImageView" destination="83r-G4-MJt" id="TJC-kZ-sBS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lfA-zn-dIg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2050" y="-190"/>
+            <point key="canvasLocation" x="-2050.4000000000001" y="-190.25487256371815"/>
         </scene>
         <!--Settings-->
         <scene sceneID="8we-rV-t1O">
@@ -474,6 +483,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Svi-bL-50b"/>
                     </view>
+                    <connections>
+                        <outlet property="btnFacebook" destination="5hc-Nu-jO1" id="yfi-gh-55P"/>
+                        <outlet property="btnLogin" destination="SAy-uS-00N" id="04X-bS-LaQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ebj-Ce-MkC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

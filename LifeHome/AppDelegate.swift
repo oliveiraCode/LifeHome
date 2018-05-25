@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        FirebaseApp.configure()
+        // Override point for customization after application launch.
+        
         return true
     }
 
@@ -47,15 +52,6 @@ extension UIView {
     //to close the keyboard
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.endEditing(true)
-    }
-}
-
-
-extension UIButton {
-    open override func draw(_ rect: CGRect) {
-        //provide custom style for buttons
-        self.layer.cornerRadius = 25
-        self.layer.masksToBounds = true
     }
 }
 
