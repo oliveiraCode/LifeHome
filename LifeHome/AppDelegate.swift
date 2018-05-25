@@ -41,6 +41,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
 }
+
+extension UIView {
+    //to close the keyboard
+    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.endEditing(true)
+    }
+}
+
+
+extension UIButton {
+    open override func draw(_ rect: CGRect) {
+        //provide custom style for buttons
+        self.layer.cornerRadius = 25
+        self.layer.masksToBounds = true
+    }
+}
+
+
+
 

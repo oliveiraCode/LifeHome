@@ -1,5 +1,5 @@
 //
-//  LoginViewController.swift
+//  SignUpViewController.swift
 //  LifeHome
 //
 //  Created by Leandro Oliveira on 2018-05-25.
@@ -8,10 +8,11 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
-
+class SignUpViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
     }
 
@@ -32,5 +33,4 @@ class LoginViewController: UIViewController {
     */
 
 }
-
 

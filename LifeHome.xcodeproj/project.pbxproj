@@ -15,6 +15,7 @@
 		9C4B292720B714C700EE8A1B /* MapFindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B292620B714C700EE8A1B /* MapFindViewController.swift */; };
 		9C4B292920B71ACB00EE8A1B /* FindTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B292820B71ACB00EE8A1B /* FindTableViewController.swift */; };
 		9C4B292C20B856F900EE8A1B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B292B20B856F900EE8A1B /* LoginViewController.swift */; };
+		9C4B293020B8731100EE8A1B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B292F20B8731100EE8A1B /* SignUpViewController.swift */; };
 		E590A76DB15DAED5F8D10F08 /* Pods_LifeHome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E2E1E3FA39609F1998A203A /* Pods_LifeHome.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		9C4B292620B714C700EE8A1B /* MapFindViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFindViewController.swift; sourceTree = "<group>"; };
 		9C4B292820B71ACB00EE8A1B /* FindTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindTableViewController.swift; sourceTree = "<group>"; };
 		9C4B292B20B856F900EE8A1B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		9C4B292F20B8731100EE8A1B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,12 +78,12 @@
 		9C4B290B20B6E72C00EE8A1B /* LifeHome */ = {
 			isa = PBXGroup;
 			children = (
+				9C4B291320B6E72D00EE8A1B /* Assets.xcassets */,
 				9C4B292520B703E900EE8A1B /* Controller */,
 				9C4B292420B703DE00EE8A1B /* Model */,
 				9C4B290C20B6E72C00EE8A1B /* AppDelegate.swift */,
 				9C4B292320B7022800EE8A1B /* View */,
 				9C4B292220B7021900EE8A1B /* Plist */,
-				9C4B291320B6E72D00EE8A1B /* Assets.xcassets */,
 			);
 			path = LifeHome;
 			sourceTree = "<group>";
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				9C4B292B20B856F900EE8A1B /* LoginViewController.swift */,
+				9C4B292F20B8731100EE8A1B /* SignUpViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				9C4B292920B71ACB00EE8A1B /* FindTableViewController.swift in Sources */,
 				9C4B290D20B6E72C00EE8A1B /* AppDelegate.swift in Sources */,
 				9C4B292720B714C700EE8A1B /* MapFindViewController.swift in Sources */,
+				9C4B293020B8731100EE8A1B /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
