@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginViewController: UIViewController {
 
@@ -35,7 +36,7 @@ class LoginViewController: UIViewController {
     }
     */
 
-    
+
     func cornerRadiusButton (){
         btnLogin.layer.cornerRadius = 25
         btnLogin.layer.masksToBounds = true
@@ -44,6 +45,12 @@ class LoginViewController: UIViewController {
         btnFacebook.layer.masksToBounds = true
     }
     
+    @IBAction func btnContinueWithoutAnAccountPressed(_ sender: Any) {
+        
+        UserDefaults.standard.set(true, forKey: "ContinueWithoutAnAccount")
+        
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 
 

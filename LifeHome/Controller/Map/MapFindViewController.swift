@@ -7,18 +7,32 @@
 //
 
 import UIKit
+import Firebase
 
 class MapFindViewController: UIViewController {
 
     @IBOutlet weak var constraintChanged: NSLayoutConstraint!
-    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        Auth.auth().addStateDidChangeListener { auth, user in
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            if user == nil && !UserDefaults.standard.bool(forKey: "ContinueWithoutAnAccount") {
+                let controller = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+                self.appDelegate.window?.rootViewController = controller
+                self.appDelegate.window?.makeKeyAndVisible()
+            }
+            
+        }
+        
         // Do any additional setup after loading the view.
     }
 
+    
 
     @IBAction func segmentedPressed(_ sender: UISegmentedControl) {
         
