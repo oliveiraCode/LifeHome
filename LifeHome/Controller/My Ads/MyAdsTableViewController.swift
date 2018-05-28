@@ -1,14 +1,14 @@
 //
-//  FindTableViewController.swift
+//  MyAdsTableViewController.swift
 //  LifeHome
 //
-//  Created by Leandro Oliveira on 2018-05-24.
+//  Created by Leandro Oliveira on 2018-05-28.
 //  Copyright © 2018 Leandro Oliveira. All rights reserved.
 //
 
 import UIKit
 
-class FindTableViewController: UITableViewController {
+class MyAdsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +20,10 @@ class FindTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
 
     // MARK: - Table view data source
 
@@ -87,5 +91,9 @@ class FindTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func menuPressed(_ sender: Any) {
+        NotificationCenter.default.post(name: NSNotification.Name("toggleSideMenu"), object: nil)
+    }
 
 }

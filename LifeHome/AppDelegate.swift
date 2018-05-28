@@ -13,12 +13,19 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var menuSection:[String] = []
+    var selectedValue:String!
+    var menuAd:[String]=[]
+    var menuSearch:[String]=[]
+    var menuSettings:[String]=[]
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         FirebaseApp.configure()
+        loadDataMenu()
+        
         // Override point for customization after application launch.
 
         return true
@@ -45,8 +52,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func loadDataMenu(){
+        
+        self.menuSection.append("Ad")
+        self.menuAd.append("Post an Ad")
+        self.menuAd.append("My Ads")
+    
+        
+        self.menuSection.append("Search")
+        self.menuSearch.append("List")
+        self.menuSearch.append("Map")
+        self.menuSearch.append("Favorites")
+        
+        self.menuSection.append("Settings")
+        self.menuSettings.append("Alerts")
+        self.menuSettings.append("Language")
+     
+    }
 
 }
+
+
 
 extension UIView {
     //to close the keyboard

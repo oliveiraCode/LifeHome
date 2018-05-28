@@ -1,17 +1,15 @@
 //
-//  SettingsTableViewController.swift
+//  FindTableViewController.swift
 //  LifeHome
 //
-//  Created by Leandro Oliveira on 2018-05-25.
+//  Created by Leandro Oliveira on 2018-05-24.
 //  Copyright © 2018 Leandro Oliveira. All rights reserved.
 //
 
 import UIKit
 
-class SettingsTableViewController: UITableViewController {
+class ListTableViewController: UITableViewController {
 
-    let arraySection:[String] = ["Profile", ""]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,46 +20,28 @@ class SettingsTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        
-        switch section {
-        case 0:
-            return 2
-            
-        case 1:
-            return 3
-            
-        default:
-            return 0
-        }
-
+        return 0
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.arraySection[section].uppercased()
-    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CellSettings", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CellList", for: indexPath)
 
         // Configure the cell...
 
         return cell
     }
-    
+ 
 
     /*
     // Override to support conditional editing of the table view.

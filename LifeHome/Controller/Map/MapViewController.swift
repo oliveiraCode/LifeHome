@@ -9,14 +9,14 @@
 import UIKit
 import Firebase
 
-class MapFindViewController: UIViewController {
+class MapViewController: UIViewController {
 
-    @IBOutlet weak var constraintChanged: NSLayoutConstraint!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         Auth.auth().addStateDidChangeListener { auth, user in
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -32,29 +32,21 @@ class MapFindViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    
-
-    @IBAction func segmentedPressed(_ sender: UISegmentedControl) {
-        
-        if sender.selectedSegmentIndex == 0 {
-            constraintChanged.constant = 0
-        }
-        
-        if sender.selectedSegmentIndex == 1 {
-            constraintChanged.constant = -375
-        }
-        
-    }
-    
-
     /*
-    // MARK: - Navigation
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
+    
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func menuPressed(_ sender: Any) {
+        NotificationCenter.default.post(name: NSNotification.Name("toggleSideMenu"), object: nil)
     }
-    */
+
 
 }
