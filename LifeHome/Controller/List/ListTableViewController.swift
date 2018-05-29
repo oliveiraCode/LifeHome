@@ -89,6 +89,7 @@ class ListTableViewController: UITableViewController {
     */
     
     @IBAction func menuPressed(_ sender: Any) {
+        
         NotificationCenter.default.post(name: NSNotification.Name("toggleSideMenu"), object: nil)
     }
 

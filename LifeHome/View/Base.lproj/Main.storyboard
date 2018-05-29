@@ -32,7 +32,7 @@
                         <viewLayoutGuide key="safeArea" id="66T-kI-F0n"/>
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="cpd-oI-X64">
-                        <barButtonItem key="leftBarButtonItem" title="≡" id="kXR-sE-lh2">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="kXR-sE-lh2">
                             <connections>
                                 <action selector="menuPressed:" destination="eLU-Jw-9uO" id="zWq-3P-Qz5"/>
                             </connections>
@@ -84,7 +84,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Favorites" id="Cb6-gk-HW8">
-                        <barButtonItem key="leftBarButtonItem" title="≡" id="1ih-OW-oQT">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="1ih-OW-oQT">
                             <connections>
                                 <action selector="menuPressed:" destination="PBI-Wl-Frj" id="Xka-io-YXy"/>
                             </connections>
@@ -245,7 +245,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="Zd5-XQ-uf9">
-                        <barButtonItem key="leftBarButtonItem" title="≡" id="elG-Dg-o3O">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="elG-Dg-o3O">
                             <connections>
                                 <action selector="menuPressed:" destination="aX4-uw-n7v" id="7sn-Gr-UE4"/>
                             </connections>
@@ -280,7 +280,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Ads" id="8m4-nh-Par">
-                        <barButtonItem key="leftBarButtonItem" title="≡" id="msF-rt-Qs7">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="msF-rt-Qs7">
                             <connections>
                                 <action selector="menuPressed:" destination="JnN-hh-p5C" id="k80-Tw-Q1I"/>
                             </connections>
@@ -431,7 +431,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="List" id="1f2-Y0-Yge">
-                        <barButtonItem key="leftBarButtonItem" title="≡" id="XgM-ek-Lpc">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="XgM-ek-Lpc">
                             <connections>
                                 <action selector="menuPressed:" destination="Ske-kX-d2C" id="Ok6-bx-8wi"/>
                             </connections>
@@ -690,6 +690,7 @@
         <image name="email" width="20" height="20"/>
         <image name="facebook" width="20" height="39"/>
         <image name="logo" width="173" height="173"/>
+        <image name="menu" width="24" height="24"/>
         <image name="password" width="20" height="20"/>
         <image name="phone" width="20" height="20"/>
         <image name="user" width="50" height="50"/>

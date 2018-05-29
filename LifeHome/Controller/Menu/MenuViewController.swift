@@ -51,7 +51,7 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         if section == 1 {
             return self.delegate.menuSearch.count
         }
-        
+
         if section == 2 {
             return self.delegate.menuSettings.count
         }
@@ -62,7 +62,8 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        NotificationCenter.default.post(name: NSNotification.Name("toggleSideMenu"), object: nil)
+        print("teste")
+
     }
     
     
@@ -84,7 +85,7 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             cell.textLabel?.text = self.delegate.menuSettings[indexPath.row]
         }
 
-        
+ 
         return cell
     }
     /*
