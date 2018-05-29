@@ -19,8 +19,7 @@
 		9C4B292C20B856F900EE8A1B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B292B20B856F900EE8A1B /* LoginViewController.swift */; };
 		9C4B293020B8731100EE8A1B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B292F20B8731100EE8A1B /* SignUpViewController.swift */; };
 		9C4B293620B8B23E00EE8A1B /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B293520B8B23E00EE8A1B /* SettingsTableViewController.swift */; };
-		9C5EDB1520BC3EAE00DCD8D3 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5EDB1420BC3EAE00DCD8D3 /* ContainerViewController.swift */; };
-		9C5EDB1820BC438100DCD8D3 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5EDB1720BC438100DCD8D3 /* MenuViewController.swift */; };
+		9C5891E820BDEF2F0098235C /* NewAdTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5891E720BDEF2F0098235C /* NewAdTableViewController.swift */; };
 		E590A76DB15DAED5F8D10F08 /* Pods_LifeHome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E2E1E3FA39609F1998A203A /* Pods_LifeHome.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,8 +41,7 @@
 		9C4B292B20B856F900EE8A1B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9C4B292F20B8731100EE8A1B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		9C4B293520B8B23E00EE8A1B /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
-		9C5EDB1420BC3EAE00DCD8D3 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
-		9C5EDB1720BC438100DCD8D3 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		9C5891E720BDEF2F0098235C /* NewAdTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAdTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				9C19724520BC555100BE1FEB /* MyAdsTableViewController.swift */,
+				9C5891E720BDEF2F0098235C /* NewAdTableViewController.swift */,
 			);
 			path = "My Ads";
 			sourceTree = "<group>";
@@ -189,8 +188,6 @@
 		9C5EDB1620BC436900DCD8D3 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				9C5EDB1420BC3EAE00DCD8D3 /* ContainerViewController.swift */,
-				9C5EDB1720BC438100DCD8D3 /* MenuViewController.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -326,12 +323,11 @@
 				9C4B292920B71ACB00EE8A1B /* ListTableViewController.swift in Sources */,
 				9C4B293620B8B23E00EE8A1B /* SettingsTableViewController.swift in Sources */,
 				9C15102420BC519100C05516 /* FavoritesTableViewController.swift in Sources */,
-				9C5EDB1520BC3EAE00DCD8D3 /* ContainerViewController.swift in Sources */,
+				9C5891E820BDEF2F0098235C /* NewAdTableViewController.swift in Sources */,
 				9C4B290D20B6E72C00EE8A1B /* AppDelegate.swift in Sources */,
 				9C19724620BC555100BE1FEB /* MyAdsTableViewController.swift in Sources */,
 				9C4B292720B714C700EE8A1B /* MapViewController.swift in Sources */,
 				9C4B293020B8731100EE8A1B /* SignUpViewController.swift in Sources */,
-				9C5EDB1820BC438100DCD8D3 /* MenuViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

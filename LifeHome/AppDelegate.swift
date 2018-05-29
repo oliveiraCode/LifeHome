@@ -13,15 +13,12 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var menuLeft:[String] = []
-    var selectedValue:String!
     
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         FirebaseApp.configure()
-        loadDataMenu()
         
         // Override point for customization after application launch.
 
@@ -50,14 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    func loadDataMenu(){
-        
-        self.menuLeft.append("Alerts")
-        self.menuLeft.append("Language")
-        self.menuLeft.append("Help")
-        self.menuLeft.append("About")
-     
-    }
+
+
 
 }
 

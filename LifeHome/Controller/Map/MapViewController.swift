@@ -7,46 +7,89 @@
 //
 
 import UIKit
-import Firebase
+import MapKit
+import CoreLocation
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate {
 
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-
+    @IBOutlet weak var map: MKMapView!
+    var locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        changeTitleNavigatorBar()
+    }
 
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        callLocationServices()
         
-        Auth.auth().addStateDidChangeListener { auth, user in
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            
-            if user == nil && !UserDefaults.standard.bool(forKey: "ContinueWithoutAnAccount") {
-                let controller = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-                self.appDelegate.window?.rootViewController = controller
-                self.appDelegate.window?.makeKeyAndVisible()
-            }
-            
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let currentLocation = locations[0] as CLLocation
+        
+        //Radius in Meters
+        let regionRadius: CLLocationDistance = 7000
+        
+        //Define Region
+        let coordinateRegion: MKCoordinateRegion!
+        
+        //Create a Map region
+        coordinateRegion = MKCoordinateRegionMakeWithDistance(currentLocation.coordinate,regionRadius, regionRadius)
+        
+        
+        //set mapView to the region specified
+        map.setRegion(coordinateRegion, animated: true)
+        self.map.showsUserLocation = true
+        self.locationManager.stopUpdatingLocation() //para a atualizacao da localizacao atual
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .notDetermined:
+            print("notDetermined")
+            break
+        case .authorizedWhenInUse:
+            print("authorizedWhenInUse")
+            break
+        case .authorizedAlways:
+            print("authorizedAlways")
+            break
+        case .restricted:
+            print("restricted")
+            break
+        case .denied:
+            print("denied")
+            break
+        }
+    }
+    
+    func callLocationServices(){
+        //setting this view controller to be responsible of Managing the locations
+        self.locationManager.delegate = self
+        
+        //we want the best accurancy
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        //we want location service to on all the time
+        self.locationManager.requestAlwaysAuthorization()
+        
+        //Check if user authorized the use of location services
+        if CLLocationManager.locationServicesEnabled() {
+            self.locationManager.startUpdatingLocation()
         }
         
-        // Do any additional setup after loading the view.
     }
-
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
-    
-
-    @IBAction func menuPressed(_ sender: Any) {
-        NotificationCenter.default.post(name: NSNotification.Name("toggleSideMenu"), object: nil)
+    func changeTitleNavigatorBar(){
+        let logo = UIImage(named: "logoTitle")
+        let imageView = UIImageView(image:logo)
+        self.navigationItem.titleView = imageView
     }
+    
 
 
 }

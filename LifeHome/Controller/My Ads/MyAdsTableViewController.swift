@@ -12,6 +12,7 @@ class MyAdsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        changeTitleNavigatorBar()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -92,8 +93,11 @@ class MyAdsTableViewController: UITableViewController {
     }
     */
     
-    @IBAction func menuPressed(_ sender: Any) {
-        NotificationCenter.default.post(name: NSNotification.Name("toggleSideMenu"), object: nil)
+    func changeTitleNavigatorBar(){
+        let logo = UIImage(named: "logoTitle")
+        let imageView = UIImageView(image:logo)
+        self.navigationItem.titleView = imageView
     }
+
 
 }

@@ -1,71 +1,80 @@
 //
-//  FindTableViewController.swift
+//  NewAdTableViewController.swift
 //  LifeHome
 //
-//  Created by Leandro Oliveira on 2018-05-24.
+//  Created by Leandro Oliveira on 2018-05-29.
 //  Copyright © 2018 Leandro Oliveira. All rights reserved.
 //
 
 import UIKit
-import Firebase
 
-class ListTableViewController: UITableViewController {
+class NewAdTableViewController: UITableViewController {
 
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         changeTitleNavigatorBar()
-        
-        
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-
-        
-        
-        Auth.auth().addStateDidChangeListener { auth, user in
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            
-            if user == nil && !UserDefaults.standard.bool(forKey: "ContinueWithoutAnAccount") {
-                let controller = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-                self.appDelegate.window?.rootViewController = controller
-                self.appDelegate.window?.makeKeyAndVisible()
-            }
-            
-        }
-        
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(search))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(saveAd))
     }
 
-
-    @objc func search(){
+    @objc func saveAd(){
         
         
     }
     
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 7
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        
+        if section == 0 {
+            return 1
+        }
+        if section == 1 {
+            return 1
+        }
+        if section == 2 {
+            return 1
+        }
+        if section == 3 {
+            return 3
+        }
+        if section == 4 {
+            return 1
+        }
+        if section == 5 {
+            return 1
+        }
+        if section == 6 {
+            return 5
+        }
+        
         return 0
     }
 
-    
+        /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CellList", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
         // Configure the cell...
 
         return cell
     }
- 
+ */
 
     /*
     // Override to support conditional editing of the table view.
@@ -117,6 +126,5 @@ class ListTableViewController: UITableViewController {
         let imageView = UIImageView(image:logo)
         self.navigationItem.titleView = imageView
     }
-
 
 }
