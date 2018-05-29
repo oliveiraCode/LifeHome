@@ -13,11 +13,8 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var menuSection:[String] = []
+    var menuLeft:[String] = []
     var selectedValue:String!
-    var menuAd:[String]=[]
-    var menuSearch:[String]=[]
-    var menuSettings:[String]=[]
     
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -55,19 +52,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func loadDataMenu(){
         
-        self.menuSection.append("Ad")
-        self.menuAd.append("Post an Ad")
-        self.menuAd.append("My Ads")
-    
-        
-        self.menuSection.append("Search")
-        self.menuSearch.append("List")
-        self.menuSearch.append("Map")
-        self.menuSearch.append("Favorites")
-        
-        self.menuSection.append("Settings")
-        self.menuSettings.append("Alerts")
-        self.menuSettings.append("Language")
+        self.menuLeft.append("Alerts")
+        self.menuLeft.append("Language")
+        self.menuLeft.append("Help")
+        self.menuLeft.append("About")
      
     }
 

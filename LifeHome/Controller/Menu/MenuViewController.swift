@@ -35,27 +35,14 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return self.delegate.menuSection.count
+        return 1
     }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.delegate.menuSection[section].uppercased()
-    }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        if section == 0 {
-            return self.delegate.menuAd.count
-        }
-        if section == 1 {
-            return self.delegate.menuSearch.count
-        }
-
-        if section == 2 {
-            return self.delegate.menuSettings.count
-        }
-        return 0
+        return self.delegate.menuLeft.count
         
     }
     
@@ -73,19 +60,11 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         
         
-        if indexPath.section == 0 {
-            cell.textLabel?.text = self.delegate.menuAd[indexPath.row]
-        }
-        
-        if indexPath.section == 1 {
-            cell.textLabel?.text = self.delegate.menuSearch[indexPath.row]
-        }
-        
-        if indexPath.section == 2 {
-            cell.textLabel?.text = self.delegate.menuSettings[indexPath.row]
-        }
 
- 
+            cell.textLabel?.text = self.delegate.menuLeft[indexPath.row]
+        
+        
+
         return cell
     }
     /*
