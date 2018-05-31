@@ -43,7 +43,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-     return self.appDelegate.arraySettings.count
+     return self.appDelegate.nameSettings.count
         
     }
 
@@ -51,7 +51,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellSettings", for: indexPath)
         
-        cell.textLabel?.text = self.appDelegate.arraySettings[indexPath.row]
+        let imgSettings = cell.contentView.viewWithTag(100) as! UIImageView
+        let nameSettings = cell.contentView.viewWithTag(101) as! UILabel
+        
+        
+        imgSettings.image = UIImage(named:self.appDelegate.imgSettings[indexPath.row])
+        nameSettings.text = self.appDelegate.nameSettings[indexPath.row]
         
         return cell
     }
@@ -67,7 +72,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
      }
  
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("test")
+
     }
     
     

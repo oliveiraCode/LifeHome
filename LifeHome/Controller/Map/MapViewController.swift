@@ -18,6 +18,7 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDel
     override func viewDidLoad() {
         super.viewDidLoad()
         changeTitleNavigatorBar()
+
     }
 
     

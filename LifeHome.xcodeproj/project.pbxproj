@@ -143,7 +143,6 @@
 			children = (
 				9C19724420BC553D00BE1FEB /* My Ads */,
 				9C15102220BC515500C05516 /* Favorites */,
-				9C5EDB1620BC436900DCD8D3 /* Menu */,
 				9C4B293420B8B22100EE8A1B /* Settings */,
 				9C4B292E20B8571600EE8A1B /* List */,
 				9C4B292D20B8570B00EE8A1B /* Map */,
@@ -183,13 +182,6 @@
 				9C3C5EE020C0412600070F9A /* SettingsViewController.swift */,
 			);
 			path = Settings;
-			sourceTree = "<group>";
-		};
-		9C5EDB1620BC436900DCD8D3 /* Menu */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Menu;
 			sourceTree = "<group>";
 		};
 		CB06E3A5390E9156FA67F599 /* Frameworks */ = {

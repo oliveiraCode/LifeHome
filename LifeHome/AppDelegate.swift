@@ -13,7 +13,8 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let arraySettings:[String] = ["Settings","Help","About"]
+    let nameSettings:[String] = ["Settings","Help","About"]
+    let imgSettings:[String] = ["settings","help","about"]
     
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
