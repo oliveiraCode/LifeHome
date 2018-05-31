@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9C15102420BC519100C05516 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C15102320BC519100C05516 /* FavoritesTableViewController.swift */; };
 		9C19724620BC555100BE1FEB /* MyAdsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C19724520BC555100BE1FEB /* MyAdsTableViewController.swift */; };
+		9C3C5EE120C0412600070F9A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3C5EE020C0412600070F9A /* SettingsViewController.swift */; };
 		9C4B290D20B6E72C00EE8A1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B290C20B6E72C00EE8A1B /* AppDelegate.swift */; };
 		9C4B291220B6E72D00EE8A1B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C4B291020B6E72D00EE8A1B /* Main.storyboard */; };
 		9C4B291420B6E72D00EE8A1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C4B291320B6E72D00EE8A1B /* Assets.xcassets */; };
@@ -18,7 +19,6 @@
 		9C4B292920B71ACB00EE8A1B /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B292820B71ACB00EE8A1B /* ListTableViewController.swift */; };
 		9C4B292C20B856F900EE8A1B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B292B20B856F900EE8A1B /* LoginViewController.swift */; };
 		9C4B293020B8731100EE8A1B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B292F20B8731100EE8A1B /* SignUpViewController.swift */; };
-		9C4B293620B8B23E00EE8A1B /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B293520B8B23E00EE8A1B /* SettingsTableViewController.swift */; };
 		9C5891E820BDEF2F0098235C /* NewAdTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5891E720BDEF2F0098235C /* NewAdTableViewController.swift */; };
 		E590A76DB15DAED5F8D10F08 /* Pods_LifeHome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E2E1E3FA39609F1998A203A /* Pods_LifeHome.framework */; };
 /* End PBXBuildFile section */
@@ -29,6 +29,7 @@
 		837495C06E71305CD57D74D2 /* Pods-LifeHome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeHome.release.xcconfig"; path = "Pods/Target Support Files/Pods-LifeHome/Pods-LifeHome.release.xcconfig"; sourceTree = "<group>"; };
 		9C15102320BC519100C05516 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
 		9C19724520BC555100BE1FEB /* MyAdsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAdsTableViewController.swift; sourceTree = "<group>"; };
+		9C3C5EE020C0412600070F9A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9C4B290920B6E72C00EE8A1B /* LifeHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LifeHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C4B290C20B6E72C00EE8A1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9C4B291120B6E72D00EE8A1B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -40,7 +41,6 @@
 		9C4B292820B71ACB00EE8A1B /* ListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
 		9C4B292B20B856F900EE8A1B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9C4B292F20B8731100EE8A1B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		9C4B293520B8B23E00EE8A1B /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		9C5891E720BDEF2F0098235C /* NewAdTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAdTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -180,7 +180,7 @@
 		9C4B293420B8B22100EE8A1B /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				9C4B293520B8B23E00EE8A1B /* SettingsTableViewController.swift */,
+				9C3C5EE020C0412600070F9A /* SettingsViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -321,7 +321,7 @@
 			files = (
 				9C4B292C20B856F900EE8A1B /* LoginViewController.swift in Sources */,
 				9C4B292920B71ACB00EE8A1B /* ListTableViewController.swift in Sources */,
-				9C4B293620B8B23E00EE8A1B /* SettingsTableViewController.swift in Sources */,
+				9C3C5EE120C0412600070F9A /* SettingsViewController.swift in Sources */,
 				9C15102420BC519100C05516 /* FavoritesTableViewController.swift in Sources */,
 				9C5891E820BDEF2F0098235C /* NewAdTableViewController.swift in Sources */,
 				9C4B290D20B6E72C00EE8A1B /* AppDelegate.swift in Sources */,

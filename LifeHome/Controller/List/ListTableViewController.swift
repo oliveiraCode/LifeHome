@@ -36,15 +36,10 @@ class ListTableViewController: UITableViewController {
             
         }
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(search))
     }
 
 
-    @objc func search(){
-        
-        
-    }
-    
+
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
