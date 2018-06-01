@@ -146,7 +146,14 @@ class SignUpViewController: UIViewController {
                                 self.saveProfile(username: username,phone: phone, profileImageURL: url!) { success in
                                     if success {
                                         UserDefaults.standard.set(false, forKey: "ContinueWithoutAnAccount")
-                                        self.dismiss(animated: true, completion: nil) //alterar esse codigo
+                                        
+                                        let alert = UIAlertController(title: "Congratulations!", message: "Your account has been created successfully.", preferredStyle: UIAlertControllerStyle.alert)
+                                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                                            self.dismiss(animated: true, completion: nil)
+                                        }))
+                                        
+                                        self.present(alert, animated: true, completion: nil)
+                                        
                                     } else {
                                         self.resetForm()
                                     }
@@ -170,9 +177,13 @@ class SignUpViewController: UIViewController {
         }
     }
         
-    
+
     
     func resetForm() {
+        
+        //There are several ways of handling error in the Firebase site.
+        //https://firebase.google.com/docs/auth/ios/errors
+        
         let alert = UIAlertController(title: "Error signing up", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
@@ -203,7 +214,10 @@ class SignUpViewController: UIViewController {
     }
 
 
-        
+    @IBAction func btnCancel(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     
 }
 

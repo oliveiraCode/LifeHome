@@ -11,7 +11,7 @@ import Firebase
 
 class LoginViewController: UIViewController {
 
-    @IBOutlet weak var btnLogin: UIButton!
+    @IBOutlet weak var btnSignIn: UIButton!
     @IBOutlet weak var btnFacebook: UIButton!
     @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var tfPassword: UITextField!
@@ -44,7 +44,7 @@ class LoginViewController: UIViewController {
         self.view.endEditing(true)
     }
 
-    @IBAction func btnLogin(_ sender: Any) {
+    @IBAction func btnSignIn(_ sender: Any) {
         guard let email = tfEmail.text else {return}
         guard let password = tfPassword.text else {return}
         
@@ -60,9 +60,13 @@ class LoginViewController: UIViewController {
         
     }
     
+    @IBAction func btnSignUp(_ sender: Any) {
+        performSegue(withIdentifier: "showSignUpVC", sender: nil)
+    }
+    
     func cornerRadiusButton (){
-        btnLogin.layer.cornerRadius = 25
-        btnLogin.layer.masksToBounds = true
+        btnSignIn.layer.cornerRadius = 25
+        btnSignIn.layer.masksToBounds = true
         
         btnFacebook.layer.cornerRadius = 25
         btnFacebook.layer.masksToBounds = true

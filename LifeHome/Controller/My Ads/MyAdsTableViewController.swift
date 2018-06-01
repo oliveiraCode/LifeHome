@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class MyAdsTableViewController: UITableViewController {
 
@@ -94,9 +95,23 @@ class MyAdsTableViewController: UITableViewController {
     */
     
     @IBAction func btnNewAd(_ sender: Any) {
-        performSegue(withIdentifier: "showNewAdVC", sender: nil)
+        
+        //Check if the user is logged before to show a new ad view controller
+        if Auth.auth().currentUser?.uid == nil {
+            let alert = UIAlertController(title: "Sign In", message: "You must sign in to create a new ad.", preferredStyle: UIAlertControllerStyle.actionSheet)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            
+            alert.addAction(UIAlertAction(title: "Sign In", style: .default, handler: { action in
+            self.performSegue(withIdentifier: "showLoginVC", sender: nil)
+            }))
+            
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            performSegue(withIdentifier: "showNewAdVC", sender: nil)
+        }
     }
     
+    // put the logo into navigationBar
     func changeTitleNavigatorBar(){
         let logo = UIImage(named: "logoTitle")
         let imageView = UIImageView(image:logo)
