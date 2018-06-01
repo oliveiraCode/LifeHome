@@ -21,19 +21,19 @@ class ListTableViewController: UITableViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-
         
+        if UserDefaults.standard.bool(forKey: "ContinueWithoutAnAccount") {
+            return
+        }
         
-        Auth.auth().addStateDidChangeListener { auth, user in
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            
-            if user == nil && !UserDefaults.standard.bool(forKey: "ContinueWithoutAnAccount") {
-                let controller = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-                self.appDelegate.window?.rootViewController = controller
-                self.appDelegate.window?.makeKeyAndVisible()
-            }
-            
+        if ((Auth.auth().currentUser?.uid) == nil){
+            let offset = 0.1
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(offset * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
+                let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+                let loginView = storyBoard.instantiateViewController(withIdentifier: "LoginViewController")
+                self.tabBarController?.present(loginView, animated: true, completion: nil)
+                
+            })
         }
         
     }

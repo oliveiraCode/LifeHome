@@ -13,10 +13,14 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var btnFacebook: UIButton!
+    @IBOutlet weak var tfEmail: UITextField!
+    @IBOutlet weak var tfPassword: UITextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         cornerRadiusButton()
-        
+
         // Do any additional setup after loading the view.
     }
 
@@ -35,8 +39,27 @@ class LoginViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 
+    @IBAction func btnLogin(_ sender: Any) {
+        guard let email = tfEmail.text else {return}
+        guard let password = tfPassword.text else {return}
+        
+        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+            
+            if error == nil && user != nil {
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                 print("Error: \(error!.localizedDescription)")
+            }
 
+        }
+        
+    }
+    
     func cornerRadiusButton (){
         btnLogin.layer.cornerRadius = 25
         btnLogin.layer.masksToBounds = true

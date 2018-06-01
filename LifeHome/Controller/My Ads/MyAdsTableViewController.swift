@@ -93,6 +93,10 @@ class MyAdsTableViewController: UITableViewController {
     }
     */
     
+    @IBAction func btnNewAd(_ sender: Any) {
+        performSegue(withIdentifier: "showNewAdVC", sender: nil)
+    }
+    
     func changeTitleNavigatorBar(){
         let logo = UIImage(named: "logoTitle")
         let imageView = UIImageView(image:logo)

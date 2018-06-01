@@ -50,6 +50,10 @@ class SignUpViewController: UIViewController {
         self.present(imagePicker, animated: true, completion: nil)
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -90,7 +94,7 @@ class SignUpViewController: UIViewController {
     
     func uploadProfileImage(_ image:UIImage, completion: @escaping ((_ url:URL?)->())) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        let storageRef = Storage.storage().reference().child("ImageProfile/\(uid)")
+        let storageRef = Storage.storage().reference().child("ImageUsers/\(uid)")
         
         guard let imageData = UIImageJPEGRepresentation(image, 0.75) else { return }
         
@@ -117,6 +121,7 @@ class SignUpViewController: UIViewController {
     @objc func handleSignUp() {
         guard let username = fullNameField.text else { return }
         guard let email = emailField.text else { return }
+        guard let phone = phoneField.text else { return }
         guard let pass = passwordField.text else { return }
         guard let image = profileImageView.image else { return }
     
@@ -138,9 +143,10 @@ class SignUpViewController: UIViewController {
                             if error == nil {
                                 print("User display name changed!")
                                 
-                                self.saveProfile(username: username, profileImageURL: url!) { success in
+                                self.saveProfile(username: username,phone: phone, profileImageURL: url!) { success in
                                     if success {
-                                        self.dismiss(animated: true, completion: nil)
+                                        UserDefaults.standard.set(false, forKey: "ContinueWithoutAnAccount")
+                                        self.dismiss(animated: true, completion: nil) //alterar esse codigo
                                     } else {
                                         self.resetForm()
                                     }
@@ -174,13 +180,14 @@ class SignUpViewController: UIViewController {
     
     
     
-    func saveProfile(username:String, profileImageURL:URL, completion: @escaping ((_ success:Bool)->())) {
+    func saveProfile(username:String, phone:String, profileImageURL:URL, completion: @escaping ((_ success:Bool)->())) {
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        let databaseRef = Database.database().reference().child("users/profiles/\(uid)")
+        let databaseRef = Database.database().reference().child("users/\(uid)")
         
         let userObject = [
             "fullName": username,
+            "Phone": phone,
             "photoURL": profileImageURL.absoluteString
             ] as [String:Any]
         

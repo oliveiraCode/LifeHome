@@ -7,9 +7,16 @@
 //
 
 import UIKit
+import Firebase
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
+    
+    @IBOutlet weak var btnSignInOut: UIButton!
+    @IBOutlet weak var lbName: UILabel!
+    @IBOutlet weak var lbEmail: UILabel!
+    @IBOutlet weak var imgProfile: UIImageView!
+    
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     @IBOutlet weak var tableView: UITableView!
@@ -17,6 +24,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         changeTitleNavigatorBar()
+        cornerRadiusButton()
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -31,6 +39,11 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+           isLogged()
     }
     
     // MARK: - Table view data source
@@ -118,6 +131,52 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let logo = UIImage(named: "logoTitle")
         let imageView = UIImageView(image:logo)
         self.navigationItem.titleView = imageView
+    }
+    
+    
+    @IBAction func btnSignInOut(_ sender: Any) {
+        
+        isLogged()
+        
+    }
+    
+    func isLogged(){
+        
+        if ((Auth.auth().currentUser?.uid) == nil) && (btnSignInOut.titleLabel?.text == "Sign In"){
+            performSegue(withIdentifier: "showLoginVC", sender: nil)
+            return
+        }
+        
+        
+        if ((Auth.auth().currentUser?.uid) != nil) && !(btnSignInOut.titleLabel?.text == "Sign Out"){
+            btnSignInOut.backgroundColor = UIColor.red
+            btnSignInOut.setTitle("Sign Out", for: .normal)
+            lbName.text = Auth.auth().currentUser?.displayName
+            lbEmail.text = Auth.auth().currentUser?.email
+        } else {
+            
+            do {
+                try Auth.auth().signOut()
+            } catch let signOutError as NSError {
+                print ("Error signing out: %@", signOutError)
+            }
+            
+            btnSignInOut.backgroundColor = UIColor.blue
+            btnSignInOut.setTitle("Sign In", for: .normal)
+            lbName.text = "Your name"
+            lbEmail.text = "Your email"
+            imgProfile.image = UIImage(named: "user")
+        }
+        
+        
+        
+        
+    }
+    
+    
+    func cornerRadiusButton (){
+        btnSignInOut.layer.cornerRadius = 15
+        btnSignInOut.layer.masksToBounds = true
     }
 
 }
