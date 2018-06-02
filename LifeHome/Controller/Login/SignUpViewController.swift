@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 import Photos
 
+//A lot of code from this page was inspired from YouTube Channel Replicode https://www.youtube.com/watch?v=UPKCULKi0-A&t=7s
+
 class SignUpViewController: UIViewController {
     
     @IBOutlet weak var fullNameField: UITextField!

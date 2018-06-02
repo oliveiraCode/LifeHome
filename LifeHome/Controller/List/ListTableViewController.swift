@@ -21,12 +21,14 @@ class ListTableViewController: UITableViewController {
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        let nibName = UINib(nibName: "MyCustomCell", bundle: nil)
+        tableView.register(nibName, forCellReuseIdentifier: "myCell")
         
         if UserDefaults.standard.bool(forKey: "ContinueWithoutAnAccount") {
             return
         }
         
+        //this code was inspired from Hakim
         if ((Auth.auth().currentUser?.uid) == nil){
             let offset = 0.1
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(offset * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
@@ -45,18 +47,22 @@ class ListTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 3
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CellList", for: indexPath)
-    
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyCustomCell
+        
+        
+        cell.commonInit(imgFavorite: "favorite_unsaved", imgAd: "house", lbPrice: "900,00", lbTypeOfProperty: "Triplex", lbAddress: "9580, rue Berri, App 5", lbCity: "Montreal", lbDistance: "4.30 km", lbBathroom: "2", lbBedroom: "4", lbFloor: "15")
+        
+  
         
         // Configure the cell...
 

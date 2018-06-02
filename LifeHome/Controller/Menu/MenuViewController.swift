@@ -179,7 +179,7 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func cornerRadiusButton (){
-        btnSignInOut.layer.cornerRadius = 15
+        btnSignInOut.layer.cornerRadius = 10
         btnSignInOut.layer.masksToBounds = true
     }
     
