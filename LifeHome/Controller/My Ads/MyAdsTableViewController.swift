@@ -11,9 +11,12 @@ import FirebaseAuth
 
 class MyAdsTableViewController: UITableViewController {
 
+    @IBOutlet weak var btnMenu: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         changeTitleNavigatorBar()
+        sideMenus()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -116,6 +119,19 @@ class MyAdsTableViewController: UITableViewController {
         let logo = UIImage(named: "logoTitle")
         let imageView = UIImageView(image:logo)
         self.navigationItem.titleView = imageView
+    }
+    
+    func sideMenus() {
+        
+        if revealViewController() != nil {
+            
+            self.btnMenu.target = revealViewController()
+            self.btnMenu.action = #selector(SWRevealViewController.revealToggle(_:))
+            revealViewController().rearViewRevealWidth = 275
+            
+            view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
+        
     }
 
 

@@ -1,5 +1,5 @@
 //
-//  SettingsViewController.swift
+//  MenuViewController.swift
 //  LifeHome
 //
 //  Created by Leandro Oliveira on 2018-05-31.
@@ -9,8 +9,8 @@
 import UIKit
 import Firebase
 
-class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
-
+class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+    
     
     @IBOutlet weak var btnSignInOut: UIButton!
     @IBOutlet weak var lbName: UILabel!
@@ -41,28 +41,23 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-           isLogged()
-    }
-    
     // MARK: - Table view data source
     
-     func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
-     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-     return self.appDelegate.nameSettings.count
+        return self.appDelegate.nameSettings.count
         
     }
-
     
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CellSettings", for: indexPath)
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellMenu", for: indexPath)
         
         let imgSettings = cell.contentView.viewWithTag(100) as! UIImageView
         let nameSettings = cell.contentView.viewWithTag(101) as! UILabel
@@ -76,16 +71,28 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     
-     // Override to support conditional editing of the table view.
+    // Override to support conditional editing of the table view.
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
+        // Return false if you do not want the specified item to be editable.
         
-     return true
+        return true
         
-     }
- 
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        
+        if indexPath.row == 0  {
+            //   performSegue(withIdentifier: "segueSettingsVC", sender: nil)
+        }
+        
+        if indexPath.row == 1  {
+            //     performSegue(withIdentifier: "segueHelpVC", sender: nil)
+        }
+        
+        if indexPath.row == 2  {
+            //   performSegue(withIdentifier: "segueAboutVC", sender: nil)
+        }
+        
     }
     
     
@@ -136,24 +143,11 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func btnSignInOut(_ sender: Any) {
         
-        isLogged()
-        
-    }
-    
-    func isLogged(){
-        
-        if ((Auth.auth().currentUser?.uid) == nil) && (btnSignInOut.titleLabel?.text == "Sign In"){
+        if ((Auth.auth().currentUser?.uid) == nil){
             performSegue(withIdentifier: "showLoginVC", sender: nil)
-            return
         }
         
-        
-        if ((Auth.auth().currentUser?.uid) != nil) && !(btnSignInOut.titleLabel?.text == "Sign Out"){
-            btnSignInOut.backgroundColor = UIColor.red
-            btnSignInOut.setTitle("Sign Out", for: .normal)
-            lbName.text = Auth.auth().currentUser?.displayName
-            lbEmail.text = Auth.auth().currentUser?.email
-        } else {
+        if btnSignInOut.titleLabel?.text == "Sign Out" {
             
             do {
                 try Auth.auth().signOut()
@@ -166,17 +160,27 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             lbName.text = "Your name"
             lbEmail.text = "Your email"
             imgProfile.image = UIImage(named: "user")
+            
         }
-        
-        
         
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if ((Auth.auth().currentUser?.uid) != nil ){
+            btnSignInOut.backgroundColor = UIColor.red
+            btnSignInOut.setTitle("Sign Out", for: .normal)
+            lbName.text = Auth.auth().currentUser?.displayName
+            lbEmail.text = Auth.auth().currentUser?.email
+        }
+        
+    }
     
     func cornerRadiusButton (){
         btnSignInOut.layer.cornerRadius = 15
         btnSignInOut.layer.masksToBounds = true
     }
-
+    
 }

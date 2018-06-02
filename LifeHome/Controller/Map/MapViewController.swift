@@ -13,11 +13,14 @@ import CoreLocation
 class MapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate {
 
     @IBOutlet weak var map: MKMapView!
+    @IBOutlet weak var btnMenu: UIBarButtonItem!
+    
     var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         changeTitleNavigatorBar()
+        sideMenus()
 
     }
 
@@ -89,6 +92,19 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDel
         let logo = UIImage(named: "logoTitle")
         let imageView = UIImageView(image:logo)
         self.navigationItem.titleView = imageView
+    }
+    
+    func sideMenus() {
+        
+        if revealViewController() != nil {
+            
+            self.btnMenu.target = revealViewController()
+            self.btnMenu.action = #selector(SWRevealViewController.revealToggle(_:))
+            revealViewController().rearViewRevealWidth = 275
+            
+            view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
+        
     }
     
 

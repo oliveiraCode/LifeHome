@@ -11,12 +11,13 @@ import Firebase
 
 class ListTableViewController: UITableViewController {
 
+    @IBOutlet weak var btnMenu: UIBarButtonItem!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
         changeTitleNavigatorBar()
-        
+        sideMenus()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -113,6 +114,19 @@ class ListTableViewController: UITableViewController {
         let imageView = UIImageView(image:logo)
         self.navigationItem.titleView = imageView
     }
-
+    
+    
+    func sideMenus() {
+        
+        if revealViewController() != nil {
+            
+            self.btnMenu.target = revealViewController()
+            self.btnMenu.action = #selector(SWRevealViewController.revealToggle(_:))
+            revealViewController().rearViewRevealWidth = 275
+            
+            view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
+        
+    }
 
 }
