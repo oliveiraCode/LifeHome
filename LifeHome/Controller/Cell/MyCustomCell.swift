@@ -11,7 +11,7 @@ import UIKit
 //This code was inspired from https://www.youtube.com/watch?v=owwLP7GMDf8
 class MyCustomCell: UITableViewCell {
 
-    @IBOutlet weak var imgFavorite: UIImageView!
+    
     @IBOutlet weak var imgAd: UIImageView!
     @IBOutlet weak var lbPrice: UILabel!
     @IBOutlet weak var lbTypeOfProperty: UILabel!
@@ -27,6 +27,9 @@ class MyCustomCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+
+       
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -35,8 +38,7 @@ class MyCustomCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func commonInit(imgFavorite:String, imgAd:String, lbPrice:String, lbTypeOfProperty:String, lbAddress:String, lbCity:String, lbDistance:String, lbBathroom:String, lbBedroom:String, lbFloor:String){
-        self.imgFavorite.image = UIImage(named: imgFavorite)
+    func commonInit(imgAd:String, lbPrice:String, lbTypeOfProperty:String, lbAddress:String, lbCity:String, lbDistance:String, lbBathroom:String, lbBedroom:String, lbFloor:String){
         self.imgAd.image = UIImage(named: imgAd)
         self.lbPrice.text = lbPrice
         self.lbTypeOfProperty.text = lbTypeOfProperty
@@ -47,5 +49,6 @@ class MyCustomCell: UITableViewCell {
         self.lbBedroom.text = lbBedroom
         self.lbFloor.text = lbFloor
     }
+    
     
 }

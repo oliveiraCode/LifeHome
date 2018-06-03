@@ -52,7 +52,7 @@ class ListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return 40
     }
 
     
@@ -60,7 +60,7 @@ class ListTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyCustomCell
         
         
-        cell.commonInit(imgFavorite: "favorite_unsaved", imgAd: "house", lbPrice: "900,00", lbTypeOfProperty: "Triplex", lbAddress: "9580, rue Berri, App 5", lbCity: "Montreal", lbDistance: "4.30 km", lbBathroom: "2", lbBedroom: "4", lbFloor: "15")
+        cell.commonInit(imgAd: "house", lbPrice: "900,00 $", lbTypeOfProperty: "Triplex", lbAddress: "9580, rue Berri, App 5", lbCity: "Montreal", lbDistance: "4.30 km", lbBathroom: "2", lbBedroom: "4", lbFloor: "15")
         
   
         

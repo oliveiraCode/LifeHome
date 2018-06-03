@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import Photos
+import KRActivityIndicatorView
 
 //A lot of code from this page was inspired from YouTube Channel Replicode https://www.youtube.com/watch?v=UPKCULKi0-A&t=7s
 
@@ -19,15 +20,17 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var phoneField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var btnContinue: UIButton!
+    @IBOutlet weak var btnCreateAccount: UIButton!
     @IBOutlet weak var changeProfileButton: UIButton!
     
     var imagePicker:UIImagePickerController!
+    let activityIndicator = KRActivityIndicatorView()
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         cornerRadiusButton()
         
         let imageTap = UITapGestureRecognizer(target: self, action: #selector(openImagePicker))
@@ -41,9 +44,7 @@ class SignUpViewController: UIViewController {
         imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
         imagePicker.delegate = self
         changeProfileButton.addTarget(self, action: #selector(openImagePicker), for: .touchUpInside)
-        
-        btnContinue.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
-        
+
         // Do any additional setup after loading the view.
     }
 
@@ -61,7 +62,16 @@ class SignUpViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func btnCreateAccountPressed(_ sender: Any) {
+        
+        //add an activity indicator from the KRActivityIndicator framework to this view
+        addKRActivityIndicatior()
+        
+        view.isUserInteractionEnabled = false
+        handleSignUp()
+    }
 
+    
     /*
     // MARK: - Navigation
 
@@ -121,6 +131,7 @@ class SignUpViewController: UIViewController {
     
     
     @objc func handleSignUp() {
+        
         guard let username = fullNameField.text else { return }
         guard let email = emailField.text else { return }
         guard let phone = phoneField.text else { return }
@@ -148,6 +159,9 @@ class SignUpViewController: UIViewController {
                                 self.saveProfile(username: username,phone: phone, profileImageURL: url!) { success in
                                     if success {
                                         UserDefaults.standard.set(false, forKey: "ContinueWithoutAnAccount")
+            
+                                        self.activityIndicator.stopAnimating()
+                                        self.view.isUserInteractionEnabled = true
                                         
                                         let alert = UIAlertController(title: "Congratulations!", message: "Your account has been created successfully.", preferredStyle: UIAlertControllerStyle.alert)
                                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
@@ -211,13 +225,22 @@ class SignUpViewController: UIViewController {
     
     
     func cornerRadiusButton (){
-        btnContinue.layer.cornerRadius = 25
-        btnContinue.layer.masksToBounds = true
+        btnCreateAccount.layer.cornerRadius = 25
+        btnCreateAccount.layer.masksToBounds = true
     }
 
 
     @IBAction func btnCancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    //function to add custom activity indicator when the user click into create account
+    func addKRActivityIndicatior(){
+        activityIndicator.style = .color(.blue)
+        activityIndicator.isLarge = true
+        activityIndicator.frame = CGRect(x: UIScreen.main.bounds.width/2, y: (UIScreen.main.bounds.height/2) - 170, width: 0, height: 0)
+        
+        view.addSubview(activityIndicator)
     }
     
     

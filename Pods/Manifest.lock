@@ -43,6 +43,7 @@ PODS:
     - "GoogleToolboxForMac/NSString+URLArguments (= 2.1.3)"
   - "GoogleToolboxForMac/NSString+URLArguments (2.1.3)"
   - GTMSessionFetcher/Core (1.1.13)
+  - KRActivityIndicatorView (2.1.1)
   - leveldb-library (1.20)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
@@ -55,6 +56,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
+  - KRActivityIndicatorView
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -67,6 +69,7 @@ SPEC REPOS:
     - FirebaseStorage
     - GoogleToolboxForMac
     - GTMSessionFetcher
+    - KRActivityIndicatorView
     - leveldb-library
     - nanopb
 
@@ -80,9 +83,10 @@ SPEC CHECKSUMS:
   FirebaseStorage: 181bb543d39ee3c53e0558de7ba86b1286a0427f
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   GTMSessionFetcher: 5bb1eae636127de695590f50e7d248483eb891e6
+  KRActivityIndicatorView: fa5df9f4cf039651ad8b0f9c11c3159d1e19299f
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
 
-PODFILE CHECKSUM: 3e8e219dee56533a1d7e258a2dca39b5dbd0940b
+PODFILE CHECKSUM: a2dca96efecc1dc7e8d2f765e01cbfb3c7eb6757
 
 COCOAPODS: 1.5.3

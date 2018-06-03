@@ -22,6 +22,9 @@ class FavoritesTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        let nibName = UINib(nibName: "MyCustomCell", bundle: nil)
+        tableView.register(nibName, forCellReuseIdentifier: "myCell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,25 +34,34 @@ class FavoritesTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
+    //Hide header
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return section == 0 ? 1.0 : 32
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 2
     }
-
-    /*
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyCustomCell
+        
+        
+        cell.commonInit(imgAd: "house", lbPrice: "900,00 $", lbTypeOfProperty: "Triplex", lbAddress: "9580, rue Berri, App 5", lbCity: "Montreal", lbDistance: "4.30 km", lbBathroom: "2", lbBedroom: "4", lbFloor: "15")
+        
+        
+        
         // Configure the cell...
-
+        
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

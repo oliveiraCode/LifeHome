@@ -11,4 +11,6 @@ target 'LifeHome' do
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
 
+  pod 'KRActivityIndicatorView'
+
 end
