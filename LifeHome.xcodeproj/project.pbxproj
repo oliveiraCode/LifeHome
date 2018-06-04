@@ -12,6 +12,7 @@
 		9C3DB9A320C584B600044563 /* MyNewAdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3DB9A120C584B600044563 /* MyNewAdCell.swift */; };
 		9C3DB9A420C584B600044563 /* MyNewAdCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C3DB9A220C584B600044563 /* MyNewAdCell.xib */; };
 		9C3DB9A620C5959A00044563 /* TypeOfPropertyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3DB9A520C5959A00044563 /* TypeOfPropertyTableViewController.swift */; };
+		9C3DB9AA20C5BA2E00044563 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3DB9A920C5BA2E00044563 /* SettingsViewController.swift */; };
 		9C4B290D20B6E72C00EE8A1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B290C20B6E72C00EE8A1B /* AppDelegate.swift */; };
 		9C4B291220B6E72D00EE8A1B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C4B291020B6E72D00EE8A1B /* Main.storyboard */; };
 		9C4B291420B6E72D00EE8A1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C4B291320B6E72D00EE8A1B /* Assets.xcassets */; };
@@ -22,6 +23,8 @@
 		9C4B292C20B856F900EE8A1B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B292B20B856F900EE8A1B /* LoginViewController.swift */; };
 		9C4B293020B8731100EE8A1B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B292F20B8731100EE8A1B /* SignUpViewController.swift */; };
 		9C5891E820BDEF2F0098235C /* NewAdTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5891E720BDEF2F0098235C /* NewAdTableViewController.swift */; };
+		9C910DED20C5C9E500506B3F /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C910DEC20C5C9E500506B3F /* AboutViewController.swift */; };
+		9C910DEF20C5C9F400506B3F /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C910DEE20C5C9F400506B3F /* HelpViewController.swift */; };
 		9CE4CCC120C18ABC00CC7007 /* MyCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE4CCBF20C18ABC00CC7007 /* MyCustomCell.swift */; };
 		9CE4CCC220C18ABC00CC7007 /* MyCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CE4CCC020C18ABC00CC7007 /* MyCustomCell.xib */; };
 		9CE4CCCB20C2087400CC7007 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE4CCCA20C2087400CC7007 /* MenuViewController.swift */; };
@@ -37,6 +40,7 @@
 		9C3DB9A120C584B600044563 /* MyNewAdCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNewAdCell.swift; sourceTree = "<group>"; };
 		9C3DB9A220C584B600044563 /* MyNewAdCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyNewAdCell.xib; sourceTree = "<group>"; };
 		9C3DB9A520C5959A00044563 /* TypeOfPropertyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeOfPropertyTableViewController.swift; sourceTree = "<group>"; };
+		9C3DB9A920C5BA2E00044563 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9C4B290920B6E72C00EE8A1B /* LifeHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LifeHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C4B290C20B6E72C00EE8A1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9C4B291120B6E72D00EE8A1B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -49,6 +53,8 @@
 		9C4B292B20B856F900EE8A1B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9C4B292F20B8731100EE8A1B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		9C5891E720BDEF2F0098235C /* NewAdTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAdTableViewController.swift; sourceTree = "<group>"; };
+		9C910DEC20C5C9E500506B3F /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		9C910DEE20C5C9F400506B3F /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		9CE4CCBF20C18ABC00CC7007 /* MyCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomCell.swift; sourceTree = "<group>"; };
 		9CE4CCC020C18ABC00CC7007 /* MyCustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCustomCell.xib; sourceTree = "<group>"; };
 		9CE4CCC320C1E91A00CC7007 /* LifeHome-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LifeHome-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -158,7 +164,6 @@
 				9CE4CCB620C1870800CC7007 /* Cells */,
 				9C19724420BC553D00BE1FEB /* My Ads */,
 				9C15102220BC515500C05516 /* Favorites */,
-				9C4B293420B8B22100EE8A1B /* Settings */,
 				9C4B292E20B8571600EE8A1B /* List */,
 				9C4B292D20B8570B00EE8A1B /* Map */,
 				9C4B292A20B856D200EE8A1B /* Login */,
@@ -194,8 +199,25 @@
 		9C4B293420B8B22100EE8A1B /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				9C3DB9A920C5BA2E00044563 /* SettingsViewController.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		9C910DEA20C5C9C700506B3F /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				9C910DEE20C5C9F400506B3F /* HelpViewController.swift */,
+			);
+			path = Help;
+			sourceTree = "<group>";
+		};
+		9C910DEB20C5C9D200506B3F /* About */ = {
+			isa = PBXGroup;
+			children = (
+				9C910DEC20C5C9E500506B3F /* AboutViewController.swift */,
+			);
+			path = About;
 			sourceTree = "<group>";
 		};
 		9CE4CCB620C1870800CC7007 /* Cells */ = {
@@ -213,6 +235,9 @@
 			isa = PBXGroup;
 			children = (
 				9CE4CCCA20C2087400CC7007 /* MenuViewController.swift */,
+				9C910DEA20C5C9C700506B3F /* Help */,
+				9C910DEB20C5C9D200506B3F /* About */,
+				9C4B293420B8B22100EE8A1B /* Settings */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -355,12 +380,15 @@
 				9C4B292920B71ACB00EE8A1B /* ListTableViewController.swift in Sources */,
 				9CE4CCC120C18ABC00CC7007 /* MyCustomCell.swift in Sources */,
 				9C15102420BC519100C05516 /* FavoritesTableViewController.swift in Sources */,
+				9C910DEF20C5C9F400506B3F /* HelpViewController.swift in Sources */,
 				9C5891E820BDEF2F0098235C /* NewAdTableViewController.swift in Sources */,
 				9C3DB9A320C584B600044563 /* MyNewAdCell.swift in Sources */,
 				9C4B290D20B6E72C00EE8A1B /* AppDelegate.swift in Sources */,
 				9CE4CCCB20C2087400CC7007 /* MenuViewController.swift in Sources */,
 				9C19724620BC555100BE1FEB /* MyAdsTableViewController.swift in Sources */,
 				9C3DB9A620C5959A00044563 /* TypeOfPropertyTableViewController.swift in Sources */,
+				9C910DED20C5C9E500506B3F /* AboutViewController.swift in Sources */,
+				9C3DB9AA20C5BA2E00044563 /* SettingsViewController.swift in Sources */,
 				9C4B292720B714C700EE8A1B /* MapViewController.swift in Sources */,
 				9C4B293020B8731100EE8A1B /* SignUpViewController.swift in Sources */,
 			);

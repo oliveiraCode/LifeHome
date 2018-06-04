@@ -12,6 +12,7 @@ import SWRevealViewController
 
 class MyAdsTableViewController: UITableViewController {
 
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     @IBOutlet weak var btnMenu: UIBarButtonItem!
     
     override func viewDidLoad() {
@@ -124,6 +125,7 @@ class MyAdsTableViewController: UITableViewController {
             
             self.present(alert, animated: true, completion: nil)
         } else {
+            appDelegate.selectedRow = 0 //to reset the type of property button
             performSegue(withIdentifier: "showNewAdVC", sender: nil)
         }
     }

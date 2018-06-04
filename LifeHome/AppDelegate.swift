@@ -13,10 +13,9 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let nameSettings:[String] = ["Settings","Help","About"]
-    let imgSettings:[String] = ["settings","help","about"]
+    var selectedRow : Int = 0
+    let arrayTypeOfProperty:[String] = ["All property types", "Single family home", "Condo / Loft", "Duplex"]
     
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         

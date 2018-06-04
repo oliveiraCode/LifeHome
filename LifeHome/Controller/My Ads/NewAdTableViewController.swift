@@ -9,7 +9,9 @@
 import UIKit
 
 class NewAdTableViewController: UITableViewController {
-
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         changeTitleNavigatorBar()
@@ -30,6 +32,8 @@ class NewAdTableViewController: UITableViewController {
         //to call the TableViewController TypeOfProperty
         // Register to receive notification
         NotificationCenter.default.addObserver(self, selector: #selector(openTypeOfPropertyVC), name: NSNotification.Name(rawValue: "openTypeOfPropertyVC"), object: nil)
+        
+        tableView.reloadData()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -73,7 +77,9 @@ class NewAdTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myNewAdCell", for: indexPath) as! MyNewAdCell
 
-        // Configure the cell...
+
+          cell.btnTypeOfProperty.setTitle(appDelegate.arrayTypeOfProperty[appDelegate.selectedRow], for: .normal)
+
 
         return cell
         

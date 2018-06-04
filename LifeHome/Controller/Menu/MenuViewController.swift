@@ -17,7 +17,10 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var lbEmail: UILabel!
     @IBOutlet weak var imgProfile: UIImageView!
     
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let ref = Database.database().reference()
+    
+    let nameMenu:[String] = ["Home","Settings","Help","About"]
+    let imgMenu:[String] = ["home","settings","help","about"]
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -26,8 +29,12 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
         changeTitleNavigatorBar()
         cornerRadiusButton()
         
+        imgProfile.layer.cornerRadius = imgProfile.bounds.height / 2
+        imgProfile.clipsToBounds = true
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -51,7 +58,7 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        return self.appDelegate.nameSettings.count
+        return self.nameMenu.count
         
     }
     
@@ -59,12 +66,12 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellMenu", for: indexPath)
         
-        let imgSettings = cell.contentView.viewWithTag(100) as! UIImageView
-        let nameSettings = cell.contentView.viewWithTag(101) as! UILabel
+        let imgMenu = cell.contentView.viewWithTag(100) as! UIImageView
+        let nameMenu = cell.contentView.viewWithTag(101) as! UILabel
         
         
-        imgSettings.image = UIImage(named:self.appDelegate.imgSettings[indexPath.row])
-        nameSettings.text = self.appDelegate.nameSettings[indexPath.row]
+        imgMenu.image = UIImage(named:self.imgMenu[indexPath.row])
+        nameMenu.text = self.nameMenu[indexPath.row]
         
         return cell
     }
@@ -82,15 +89,19 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.row == 0  {
-            //   performSegue(withIdentifier: "segueSettingsVC", sender: nil)
+              performSegue(withIdentifier: "showHomeVC", sender: nil)
         }
         
         if indexPath.row == 1  {
-            //     performSegue(withIdentifier: "segueHelpVC", sender: nil)
+                performSegue(withIdentifier: "showSettingsVC", sender: nil)
         }
         
         if indexPath.row == 2  {
-            //   performSegue(withIdentifier: "segueAboutVC", sender: nil)
+               performSegue(withIdentifier: "showHelpVC", sender: nil)
+        }
+        
+        if indexPath.row == 3  {
+            performSegue(withIdentifier: "showAboutVC", sender: nil)
         }
         
     }
@@ -143,7 +154,7 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func btnSignInOut(_ sender: Any) {
         
-        if ((Auth.auth().currentUser?.uid) == nil){
+        if Auth.auth().currentUser?.uid == nil{
             performSegue(withIdentifier: "showLoginVC", sender: nil)
         }
         
@@ -169,13 +180,43 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if ((Auth.auth().currentUser?.uid) != nil ){
+        if Auth.auth().currentUser?.uid != nil {
             btnSignInOut.backgroundColor = UIColor.red
             btnSignInOut.setTitle("Sign Out", for: .normal)
             lbName.text = Auth.auth().currentUser?.displayName
             lbEmail.text = Auth.auth().currentUser?.email
+            getPhotoFromProfile()
         }
         
+    }
+    
+    func getPhotoFromProfile (){
+        
+        //this code was inspired from https://stackoverflow.com/questions/39398282/retrieving-image-from-firebase-storage-using-swift
+        
+        let usersRef = ref.child("users").child((Auth.auth().currentUser?.uid)!)
+        
+        // only need to fetch once so use single event
+        usersRef.observeSingleEvent(of: .value, with: { snapshot in
+            
+            if !snapshot.exists() { return }
+            
+            let userInfo = snapshot.value as! NSDictionary
+            let photoURL = userInfo["photoURL"] as! String //Here we can get the picture's url from Firebase
+            
+            let storageRef = Storage.storage().reference(forURL: photoURL)
+            storageRef.downloadURL(completion: { (url, error) in
+                
+                do {
+                    let data = try Data(contentsOf: url!)
+                    self.imgProfile.image = UIImage(data: data as Data)
+                    
+                } catch {
+                    print("error")
+                }
+                
+            })
+        } )
     }
     
     func cornerRadiusButton (){

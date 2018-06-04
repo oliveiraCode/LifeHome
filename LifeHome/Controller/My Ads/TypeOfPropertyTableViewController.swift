@@ -10,9 +10,8 @@ import UIKit
 
 class TypeOfPropertyTableViewController: UITableViewController {
 
-    let arrayTypeOfProperty:[String] = ["All property types", "Single family home", "Condo / Loft", "Duplex"]
-    var selectedRow : Int!
-    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var indexPathSelected:Int!
     override func viewDidLoad() {
         super.viewDidLoad()
         changeTitleNavigatorBar()
@@ -28,6 +27,11 @@ class TypeOfPropertyTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        indexPathSelected = appDelegate.selectedRow
+    }
 
     // MARK: - Table view data source
 
@@ -38,7 +42,7 @@ class TypeOfPropertyTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.arrayTypeOfProperty.count
+        return self.appDelegate.arrayTypeOfProperty.count
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -50,7 +54,7 @@ class TypeOfPropertyTableViewController: UITableViewController {
 
         cell.selectionStyle = .none
         
-        if (selectedRow != nil && selectedRow == indexPath.row){
+        if (indexPathSelected != nil && indexPathSelected == indexPath.row){
             cell.accessoryType = .checkmark
         }
         else{
@@ -59,14 +63,14 @@ class TypeOfPropertyTableViewController: UITableViewController {
         
         
         // Configure the cell...
-        cell.textLabel?.text = self.arrayTypeOfProperty[indexPath.row]
+        cell.textLabel?.text = self.appDelegate.arrayTypeOfProperty[indexPath.row]
 
         return cell
     }
  
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedRow = indexPath.row
+        indexPathSelected = indexPath.row
         tableView.reloadData()
     }
     
@@ -106,19 +110,28 @@ class TypeOfPropertyTableViewController: UITableViewController {
     }
     */
 
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+ 
     
     @IBAction func btnCancelPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    
+    @IBAction func btnSavePressed(_ sender: Any) {
+        appDelegate.selectedRow = indexPathSelected
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     
     func changeTitleNavigatorBar(){
         let logo = UIImage(named: "logoTitle")
