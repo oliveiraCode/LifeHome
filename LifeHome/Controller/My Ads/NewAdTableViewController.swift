@@ -17,9 +17,33 @@ class NewAdTableViewController: UITableViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
+        let nibName = UINib(nibName: "MyNewAdCell", bundle: nil)
+        tableView.register(nibName, forCellReuseIdentifier: "myNewAdCell")
+        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(saveAd))
+
     }
 
+    //NotificationCenter was inspired from https://stackoverflow.com/questions/38204703/notificationcenter-issue-on-swift-3
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //to call the TableViewController TypeOfProperty
+        // Register to receive notification
+        NotificationCenter.default.addObserver(self, selector: #selector(openTypeOfPropertyVC), name: NSNotification.Name(rawValue: "openTypeOfPropertyVC"), object: nil)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        // Stop listening notification
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "openTypeOfPropertyVC"), object: nil)
+    }
+    
+    //to call the TableViewController TypeOfProperty
+    @objc func openTypeOfPropertyVC(){
+        self.performSegue(withIdentifier: "showTypeOfPropertyVC", sender: nil)
+    }
+    
+    
     @objc func saveAd(){
         
         
@@ -35,46 +59,28 @@ class NewAdTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 7
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        if section == 0 {
-            return 1
-        }
-        if section == 1 {
-            return 1
-        }
-        if section == 2 {
-            return 1
-        }
-        if section == 3 {
-            return 3
-        }
-        if section == 4 {
-            return 1
-        }
-        if section == 5 {
-            return 1
-        }
-        if section == 6 {
-            return 5
-        }
-        
-        return 0
+        return 1
     }
 
-        /*
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myNewAdCell", for: indexPath) as! MyNewAdCell
 
         // Configure the cell...
 
         return cell
+        
     }
- */
+    
+ 
+ 
 
     /*
     // Override to support conditional editing of the table view.

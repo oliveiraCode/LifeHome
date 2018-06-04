@@ -1,48 +1,33 @@
 //
-//  FindTableViewController.swift
+//  TypeOfPropertyTableViewController.swift
 //  LifeHome
 //
-//  Created by Leandro Oliveira on 2018-05-24.
+//  Created by Leandro Oliveira on 2018-06-04.
 //  Copyright © 2018 Leandro Oliveira. All rights reserved.
 //
 
 import UIKit
-import Firebase
-import SWRevealViewController
 
-class ListTableViewController: UITableViewController {
+class TypeOfPropertyTableViewController: UITableViewController {
 
-    @IBOutlet weak var btnMenu: UIBarButtonItem!
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let arrayTypeOfProperty:[String] = ["All property types", "Single family home", "Condo / Loft", "Duplex"]
+    var selectedRow : Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         changeTitleNavigatorBar()
-        sideMenus()
-        
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-        let nibName = UINib(nibName: "MyCustomCell", bundle: nil)
-        tableView.register(nibName, forCellReuseIdentifier: "myCell")
-        
-        if UserDefaults.standard.bool(forKey: "ContinueWithoutAnAccount") {
-            return
-        }
-        
-        //this code was inspired from Hakim
-        if ((Auth.auth().currentUser?.uid) == nil){
-            let offset = 0.1
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(offset * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
-                let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-                let loginView = storyBoard.instantiateViewController(withIdentifier: "LoginViewController")
-                self.tabBarController?.present(loginView, animated: true, completion: nil)
-                
-            })
-        }
-        
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
-
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
 
     // MARK: - Table view data source
 
@@ -53,25 +38,39 @@ class ListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 40
+        return self.arrayTypeOfProperty.count
     }
 
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Type of Property"
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyCustomCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellTypeOfProperty", for: indexPath)
+
+        cell.selectionStyle = .none
         
+        if (selectedRow != nil && selectedRow == indexPath.row){
+            cell.accessoryType = .checkmark
+        }
+        else{
+            cell.accessoryType = .none
+        }
         
-        cell.commonInit(imgAd: "house", lbPrice: "900,00 $", lbTypeOfProperty: "Triplex", lbAddress: "9580, rue Berri, App 5", lbCity: "Montreal", lbDistance: "4.30 km", lbBathroom: "2", lbBedroom: "4", lbFloor: "15")
-        
-        
-  
         
         // Configure the cell...
+        cell.textLabel?.text = self.arrayTypeOfProperty[indexPath.row]
 
         return cell
     }
  
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedRow = indexPath.row
+        tableView.reloadData()
+    }
+    
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -117,24 +116,15 @@ class ListTableViewController: UITableViewController {
     }
     */
     
+    @IBAction func btnCancelPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     func changeTitleNavigatorBar(){
         let logo = UIImage(named: "logoTitle")
         let imageView = UIImageView(image:logo)
         self.navigationItem.titleView = imageView
     }
     
-    
-    func sideMenus() {
-        
-        if revealViewController() != nil {
-            
-            self.btnMenu.target = revealViewController()
-            self.btnMenu.action = #selector(SWRevealViewController.revealToggle(_:))
-            revealViewController().rearViewRevealWidth = 275
-            
-            view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        }
-        
-    }
 
 }

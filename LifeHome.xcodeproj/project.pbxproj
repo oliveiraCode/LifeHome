@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		9C15102420BC519100C05516 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C15102320BC519100C05516 /* FavoritesTableViewController.swift */; };
 		9C19724620BC555100BE1FEB /* MyAdsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C19724520BC555100BE1FEB /* MyAdsTableViewController.swift */; };
+		9C3DB9A320C584B600044563 /* MyNewAdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3DB9A120C584B600044563 /* MyNewAdCell.swift */; };
+		9C3DB9A420C584B600044563 /* MyNewAdCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C3DB9A220C584B600044563 /* MyNewAdCell.xib */; };
+		9C3DB9A620C5959A00044563 /* TypeOfPropertyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3DB9A520C5959A00044563 /* TypeOfPropertyTableViewController.swift */; };
 		9C4B290D20B6E72C00EE8A1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B290C20B6E72C00EE8A1B /* AppDelegate.swift */; };
 		9C4B291220B6E72D00EE8A1B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C4B291020B6E72D00EE8A1B /* Main.storyboard */; };
 		9C4B291420B6E72D00EE8A1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C4B291320B6E72D00EE8A1B /* Assets.xcassets */; };
@@ -31,6 +34,9 @@
 		837495C06E71305CD57D74D2 /* Pods-LifeHome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeHome.release.xcconfig"; path = "Pods/Target Support Files/Pods-LifeHome/Pods-LifeHome.release.xcconfig"; sourceTree = "<group>"; };
 		9C15102320BC519100C05516 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
 		9C19724520BC555100BE1FEB /* MyAdsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAdsTableViewController.swift; sourceTree = "<group>"; };
+		9C3DB9A120C584B600044563 /* MyNewAdCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNewAdCell.swift; sourceTree = "<group>"; };
+		9C3DB9A220C584B600044563 /* MyNewAdCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyNewAdCell.xib; sourceTree = "<group>"; };
+		9C3DB9A520C5959A00044563 /* TypeOfPropertyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeOfPropertyTableViewController.swift; sourceTree = "<group>"; };
 		9C4B290920B6E72C00EE8A1B /* LifeHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LifeHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C4B290C20B6E72C00EE8A1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9C4B291120B6E72D00EE8A1B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -83,6 +89,7 @@
 			children = (
 				9C19724520BC555100BE1FEB /* MyAdsTableViewController.swift */,
 				9C5891E720BDEF2F0098235C /* NewAdTableViewController.swift */,
+				9C3DB9A520C5959A00044563 /* TypeOfPropertyTableViewController.swift */,
 			);
 			path = "My Ads";
 			sourceTree = "<group>";
@@ -108,13 +115,13 @@
 		9C4B290B20B6E72C00EE8A1B /* LifeHome */ = {
 			isa = PBXGroup;
 			children = (
+				9CE4CCC320C1E91A00CC7007 /* LifeHome-Bridging-Header.h */,
 				9C4B291320B6E72D00EE8A1B /* Assets.xcassets */,
 				9C4B292520B703E900EE8A1B /* Controller */,
 				9C4B292420B703DE00EE8A1B /* Model */,
 				9C4B290C20B6E72C00EE8A1B /* AppDelegate.swift */,
 				9C4B292320B7022800EE8A1B /* View */,
 				9C4B292220B7021900EE8A1B /* Plist */,
-				9CE4CCC320C1E91A00CC7007 /* LifeHome-Bridging-Header.h */,
 			);
 			path = LifeHome;
 			sourceTree = "<group>";
@@ -148,7 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				9CE4CCC720C204EC00CC7007 /* Menu */,
-				9CE4CCB620C1870800CC7007 /* Cell */,
+				9CE4CCB620C1870800CC7007 /* Cells */,
 				9C19724420BC553D00BE1FEB /* My Ads */,
 				9C15102220BC515500C05516 /* Favorites */,
 				9C4B293420B8B22100EE8A1B /* Settings */,
@@ -191,29 +198,23 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		9CE4CCB620C1870800CC7007 /* Cell */ = {
+		9CE4CCB620C1870800CC7007 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				9CE4CCBF20C18ABC00CC7007 /* MyCustomCell.swift */,
 				9CE4CCC020C18ABC00CC7007 /* MyCustomCell.xib */,
+				9C3DB9A120C584B600044563 /* MyNewAdCell.swift */,
+				9C3DB9A220C584B600044563 /* MyNewAdCell.xib */,
 			);
-			path = Cell;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		9CE4CCC720C204EC00CC7007 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				9CE4CCCC20C2095000CC7007 /* Framework */,
 				9CE4CCCA20C2087400CC7007 /* MenuViewController.swift */,
 			);
 			path = Menu;
-			sourceTree = "<group>";
-		};
-		9CE4CCCC20C2095000CC7007 /* Framework */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Framework;
 			sourceTree = "<group>";
 		};
 		CB06E3A5390E9156FA67F599 /* Frameworks */ = {
@@ -290,6 +291,7 @@
 				9C4B291420B6E72D00EE8A1B /* Assets.xcassets in Resources */,
 				9CE4CCC220C18ABC00CC7007 /* MyCustomCell.xib in Resources */,
 				9C4B291220B6E72D00EE8A1B /* Main.storyboard in Resources */,
+				9C3DB9A420C584B600044563 /* MyNewAdCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,9 +356,11 @@
 				9CE4CCC120C18ABC00CC7007 /* MyCustomCell.swift in Sources */,
 				9C15102420BC519100C05516 /* FavoritesTableViewController.swift in Sources */,
 				9C5891E820BDEF2F0098235C /* NewAdTableViewController.swift in Sources */,
+				9C3DB9A320C584B600044563 /* MyNewAdCell.swift in Sources */,
 				9C4B290D20B6E72C00EE8A1B /* AppDelegate.swift in Sources */,
 				9CE4CCCB20C2087400CC7007 /* MenuViewController.swift in Sources */,
 				9C19724620BC555100BE1FEB /* MyAdsTableViewController.swift in Sources */,
+				9C3DB9A620C5959A00044563 /* TypeOfPropertyTableViewController.swift in Sources */,
 				9C4B292720B714C700EE8A1B /* MapViewController.swift in Sources */,
 				9C4B293020B8731100EE8A1B /* SignUpViewController.swift in Sources */,
 			);

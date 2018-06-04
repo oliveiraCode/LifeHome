@@ -203,6 +203,9 @@ class SignUpViewController: UIViewController {
         let alert = UIAlertController(title: "Error signing up", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+        
+        self.activityIndicator.stopAnimating()
+        self.view.isUserInteractionEnabled = true
     }
     
     
