@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import SWRevealViewController
 
 class MapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate {
 

@@ -21,7 +21,6 @@
 		9C5891E820BDEF2F0098235C /* NewAdTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5891E720BDEF2F0098235C /* NewAdTableViewController.swift */; };
 		9CE4CCC120C18ABC00CC7007 /* MyCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE4CCBF20C18ABC00CC7007 /* MyCustomCell.swift */; };
 		9CE4CCC220C18ABC00CC7007 /* MyCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CE4CCC020C18ABC00CC7007 /* MyCustomCell.xib */; };
-		9CE4CCC620C1E91C00CC7007 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE4CCC520C1E91C00CC7007 /* SWRevealViewController.m */; };
 		9CE4CCCB20C2087400CC7007 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE4CCCA20C2087400CC7007 /* MenuViewController.swift */; };
 		E590A76DB15DAED5F8D10F08 /* Pods_LifeHome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E2E1E3FA39609F1998A203A /* Pods_LifeHome.framework */; };
 /* End PBXBuildFile section */
@@ -47,8 +46,6 @@
 		9CE4CCBF20C18ABC00CC7007 /* MyCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomCell.swift; sourceTree = "<group>"; };
 		9CE4CCC020C18ABC00CC7007 /* MyCustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCustomCell.xib; sourceTree = "<group>"; };
 		9CE4CCC320C1E91A00CC7007 /* LifeHome-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LifeHome-Bridging-Header.h"; sourceTree = "<group>"; };
-		9CE4CCC420C1E91B00CC7007 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
-		9CE4CCC520C1E91C00CC7007 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		9CE4CCCA20C2087400CC7007 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -215,8 +212,6 @@
 		9CE4CCCC20C2095000CC7007 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
-				9CE4CCC420C1E91B00CC7007 /* SWRevealViewController.h */,
-				9CE4CCC520C1E91C00CC7007 /* SWRevealViewController.m */,
 			);
 			path = Framework;
 			sourceTree = "<group>";
@@ -311,6 +306,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/KRActivityIndicatorView/KRActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/SWRevealViewController/SWRevealViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -319,6 +315,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KRActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWRevealViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -360,7 +357,6 @@
 				9C4B290D20B6E72C00EE8A1B /* AppDelegate.swift in Sources */,
 				9CE4CCCB20C2087400CC7007 /* MenuViewController.swift in Sources */,
 				9C19724620BC555100BE1FEB /* MyAdsTableViewController.swift in Sources */,
-				9CE4CCC620C1E91C00CC7007 /* SWRevealViewController.m in Sources */,
 				9C4B292720B714C700EE8A1B /* MapViewController.swift in Sources */,
 				9C4B293020B8731100EE8A1B /* SignUpViewController.swift in Sources */,
 			);

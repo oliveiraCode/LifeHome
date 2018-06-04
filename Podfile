@@ -13,4 +13,6 @@ target 'LifeHome' do
 
   pod 'KRActivityIndicatorView'
 
+  pod 'SWRevealViewController'
+
 end
