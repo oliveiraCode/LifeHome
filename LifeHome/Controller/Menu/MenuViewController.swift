@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import KRProgressHUD
 
 class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
@@ -41,6 +42,7 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -93,7 +95,17 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         if indexPath.row == 1  {
-         //   performSegue(withIdentifier: "showProfileVC", sender: nil)
+            
+            if Auth.auth().currentUser?.uid == nil {
+                KRProgressHUD.showError(withMessage: "You must to be logged in to access it.")
+                
+                DispatchQueue.main.asyncAfter(deadline: .now()+10) {
+                    KRProgressHUD.dismiss()
+                }
+            } else {
+                //   performSegue(withIdentifier: "showProfileVC", sender: nil)
+            }
+         
         }
         
         if indexPath.row == 2  {

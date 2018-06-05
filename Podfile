@@ -15,4 +15,6 @@ target 'LifeHome' do
 
   pod 'SWRevealViewController'
 
+  pod "KRProgressHUD"
+
 end
