@@ -19,8 +19,8 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     let ref = Database.database().reference()
     
-    let nameMenu:[String] = ["Home","Settings","Help","About"]
-    let imgMenu:[String] = ["home","settings","help","about"]
+    let nameMenu:[String] = ["Home","Profile","Settings","Help","About"]
+    let imgMenu:[String] = ["home","profile","settings","help","about"]
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -93,14 +93,18 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         if indexPath.row == 1  {
-                performSegue(withIdentifier: "showSettingsVC", sender: nil)
+         //   performSegue(withIdentifier: "showProfileVC", sender: nil)
         }
         
         if indexPath.row == 2  {
-               performSegue(withIdentifier: "showHelpVC", sender: nil)
+                performSegue(withIdentifier: "showSettingsVC", sender: nil)
         }
         
         if indexPath.row == 3  {
+               performSegue(withIdentifier: "showHelpVC", sender: nil)
+        }
+        
+        if indexPath.row == 4  {
             performSegue(withIdentifier: "showAboutVC", sender: nil)
         }
         
