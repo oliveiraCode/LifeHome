@@ -132,12 +132,12 @@ class SignUpViewController: UIViewController {
     
     @objc func handleSignUp() {
         
+      
         guard let username = fullNameField.text else { return }
         guard let email = emailField.text else { return }
         guard let phone = phoneField.text else { return }
         guard let pass = passwordField.text else { return }
         guard let image = profileImageView.image else { return }
-    
         
         Auth.auth().createUser(withEmail: email, password: pass) { user, error in
             if error == nil && user != nil {
@@ -214,6 +214,7 @@ class SignUpViewController: UIViewController {
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let databaseRef = Database.database().reference().child("users/\(uid)")
+        
         
         let userObject = [
             "fullName": username,

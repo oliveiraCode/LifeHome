@@ -7,10 +7,15 @@
 //
 
 import UIKit
+import Photos
 
-class NewAdTableViewController: UITableViewController {
+
+class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let adObj = Ad()
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +28,11 @@ class NewAdTableViewController: UITableViewController {
         tableView.register(nibName, forCellReuseIdentifier: "myNewAdCell")
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(saveAd))
+        
+
 
     }
+    
 
     //NotificationCenter was inspired from https://stackoverflow.com/questions/38204703/notificationcenter-issue-on-swift-3
     override func viewWillAppear(_ animated: Bool) {
@@ -49,7 +57,45 @@ class NewAdTableViewController: UITableViewController {
     
     
     @objc func saveAd(){
+  
+     let indexPath : NSIndexPath = NSIndexPath(row: 0, section: 0) //Create the indexpath to get the cell
+     let cell : MyNewAdCell = self.tableView.cellForRow(at: indexPath as IndexPath) as! MyNewAdCell
+            
+     
+   //  print(cell.tfStreet.text!)
+   //  print(cell.tfCity.text!)
+
         
+      //  adObj.imageURL = cell.imgAd.image
+        
+        if cell.segTypeOfAd.selectedSegmentIndex == 0 {
+            adObj.typeOfAd = TypeOfAd.Rent
+        } else {
+            adObj.typeOfAd = TypeOfAd.Sell
+        }
+        
+        adObj.typeOfProperty = cell.btnTypeOfProperty.titleLabel?.text
+        
+        
+        adObj.bedroom = NSString(string: cell.lbBedroom.text!).integerValue
+        adObj.bathroom = NSString(string: cell.lbBathroom.text!).integerValue
+        adObj.garage = NSString(string: cell.lbGarage.text!).integerValue
+        adObj.price = NSString(string: cell.tfPrice.text!).floatValue
+        
+        
+        
+        adObj.description = cell.tvDescription.text
+        
+        let addressObj = Address()
+        addressObj.street = cell.tfStreet.text!
+        addressObj.province = cell.tfProvince.text!
+        addressObj.city = cell.tfCity.text!
+        addressObj.postalCode = cell.tfPostalCode.text!
+        
+        adObj.address = addressObj
+        
+        print(adObj.bedroom!)
+        print(addressObj.province!)
         
     }
     
@@ -77,24 +123,32 @@ class NewAdTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myNewAdCell", for: indexPath) as! MyNewAdCell
 
-
           cell.btnTypeOfProperty.setTitle(appDelegate.arrayTypeOfProperty[appDelegate.selectedRow], for: .normal)
 
-
+        cell.delegate = self
+        
         return cell
         
     }
     
- 
- 
+    func pickImage() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = true
+        
+       
+        imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        imagePicker.delegate = self
+        self.present(imagePicker, animated: true, completion: nil)
+        
+    }
+    
 
-    /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
+ 
 
     /*
     // Override to support editing the table view.
@@ -138,5 +192,26 @@ class NewAdTableViewController: UITableViewController {
         let imageView = UIImageView(image:logo)
         self.navigationItem.titleView = imageView
     }
+    
 
+}
+
+extension NewAdTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    @objc func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        let cell = tableView.cellForRow(at: NSIndexPath(row: 0, section: 0) as IndexPath) as! MyNewAdCell
+        
+        if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            cell.imgAd.image = pickedImage
+        }
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    
 }

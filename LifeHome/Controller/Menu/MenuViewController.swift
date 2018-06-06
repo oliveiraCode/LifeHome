@@ -97,7 +97,7 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
         if indexPath.row == 1  {
             
             if Auth.auth().currentUser?.uid == nil {
-                KRProgressHUD.showError(withMessage: "You must to be logged in to access it.")
+                KRProgressHUD.showError(withMessage: "You must be logged in to access it.")
                 
                 DispatchQueue.main.asyncAfter(deadline: .now()+10) {
                     KRProgressHUD.dismiss()

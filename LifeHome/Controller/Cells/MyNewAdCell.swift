@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol ImagePickerDelegate {
+    
+    func pickImage()
+}
+
 class MyNewAdCell: UITableViewCell {
 
     
@@ -19,19 +24,30 @@ class MyNewAdCell: UITableViewCell {
     @IBOutlet weak var lbGarage: UILabel!
     @IBOutlet weak var tfPrice: UITextField!
     @IBOutlet weak var tvDescription: UITextView!
-    @IBOutlet weak var tfNumber: UITextField!
     @IBOutlet weak var tfStreet: UITextField!
     @IBOutlet weak var tfPostalCode: UITextField!
     @IBOutlet weak var tfCity: UITextField!
     @IBOutlet weak var tfProvince: UITextField!
     
     
+    var delegate : ImagePickerDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        imgAd.isUserInteractionEnabled = true
+        imgAd.clipsToBounds = true
+        imgAd.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openImagePicker)))
+        
     }
 
+    @objc func openImagePicker(){
+        delegate?.pickImage()
+    }
+
+  
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -56,6 +72,7 @@ class MyNewAdCell: UITableViewCell {
     @IBAction func btnTypeOfPropertyPressed(_ sender: Any) {
         NotificationCenter.default.post(name: Notification.Name("openTypeOfPropertyVC"), object: nil)
     }
+    
     
     
 }
