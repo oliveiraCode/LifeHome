@@ -9,6 +9,7 @@
 import UIKit
 import Photos
 import Firebase
+import KRProgressHUD
 
 
 class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
@@ -27,17 +28,13 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
         let nibName = UINib(nibName: "MyNewAdCell", bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: "myNewAdCell")
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(saveAd))
-        
-        
-        
     }
     
     
     //NotificationCenter was inspired from https://stackoverflow.com/questions/38204703/notificationcenter-issue-on-swift-3
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       
+        
         // Register to receive notification
         NotificationCenter.default.addObserver(self, selector: #selector(openTypeOfPropertyVC), name: NSNotification.Name(rawValue: "openTypeOfPropertyVC"), object: nil)
         
@@ -56,14 +53,14 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
     }
     
     
-    @objc func saveAd(){
+    @IBAction func saveAdPressed(_ sender: Any) {
         
         let indexPath : NSIndexPath = NSIndexPath(row: 0, section: 0) //Create the indexpath to get the cell
         let cell : MyNewAdCell = self.tableView.cellForRow(at: indexPath as IndexPath) as! MyNewAdCell
         
         
-       let uid = Auth.auth().currentUser?.uid
-       let adId = self.ref.childByAutoId().key //create a new Id
+        let uid = Auth.auth().currentUser?.uid
+        let adId = self.ref.childByAutoId().key //create a new Id
         
         self.uploadProfileImage(image:cell.imgAd.image!, adId:adId, uid:uid!) { url in
             
@@ -98,9 +95,21 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
             
             self.ref.child("Ad").child(uid!).child(adId).setValue(adObject)
             
-            
         }
+
+        let alert = UIAlertController(title: "", message: "Saved successfully.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
     }
+    
+    
+    @IBAction func cancelAdPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     
     
     func uploadProfileImage(image:UIImage, adId:String, uid:String, completion: @escaping ((_ url:URL?)->())) {

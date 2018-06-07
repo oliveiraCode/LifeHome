@@ -17,7 +17,7 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var lbName: UILabel!
     @IBOutlet weak var lbEmail: UILabel!
     @IBOutlet weak var imgProfile: UIImageView!
-    
+    @IBOutlet weak var img_login_logout: UIImageView!
     let ref = Database.database().reference()
     
     let nameMenu:[String] = ["Home","Profile","Settings","Help","About"]
@@ -32,9 +32,7 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         changeTitleNavigatorBar()
-        cornerRadiusButton()
         
-     
         
         imgProfile.layer.cornerRadius = imgProfile.bounds.height / 2
         imgProfile.layer.borderWidth = 1
@@ -190,7 +188,7 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 print ("Error signing out: %@", signOutError)
             }
             
-            btnSignInOut.backgroundColor = UIColor.blue
+            img_login_logout.image = UIImage(named: "login_btn")
             btnSignInOut.setTitle("Sign In", for: .normal)
             lbName.text = "Your name"
             lbEmail.text = "Your email"
@@ -205,7 +203,7 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewWillAppear(animated)
         
         if Auth.auth().currentUser?.uid != nil {
-            btnSignInOut.backgroundColor = UIColor.red
+            img_login_logout.image = UIImage(named: "logout_btn")
             btnSignInOut.setTitle("Sign Out", for: .normal)
             lbName.text = Auth.auth().currentUser?.displayName
             lbEmail.text = Auth.auth().currentUser?.email
@@ -242,10 +240,6 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
             })
         } )
     }
-    
-    func cornerRadiusButton (){
-        btnSignInOut.layer.cornerRadius = 10
-        btnSignInOut.layer.masksToBounds = true
-    }
+
     
 }

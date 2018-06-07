@@ -393,10 +393,10 @@
                                 <rect key="frame" x="0.0" y="604" width="275" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ym4-FZ-9ZQ">
-                                        <rect key="frame" x="82" y="9" width="110" height="44"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ym4-FZ-9ZQ">
+                                        <rect key="frame" x="36" y="0.0" width="239" height="62"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.0" green="0.43529411759999997" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Sign In">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -404,6 +404,10 @@
                                             <action selector="btnSignInOut:" destination="jtU-jw-eyV" eventType="touchUpInside" id="mRT-ah-ktS"/>
                                         </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login_btn" translatesAutoresizingMaskIntoConstraints="NO" id="MNx-dg-tAk">
+                                        <rect key="frame" x="71" y="11" width="40" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.43529411759999997" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -415,6 +419,7 @@
                     <connections>
                         <outlet property="btnSignInOut" destination="Ym4-FZ-9ZQ" id="OgC-l1-lVh"/>
                         <outlet property="imgProfile" destination="vyV-US-5WS" id="7TY-Au-an0"/>
+                        <outlet property="img_login_logout" destination="MNx-dg-tAk" id="JdQ-yw-0dP"/>
                         <outlet property="lbEmail" destination="Vyi-Lt-b0l" id="ixH-pq-76b"/>
                         <outlet property="lbName" destination="aYv-oM-yeQ" id="juG-lr-kWu"/>
                         <outlet property="tableView" destination="hzY-g9-ss2" id="j48-gx-ZeE"/>
@@ -462,8 +467,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="btnMenu" destination="G0y-h1-oBG" id="X5L-V8-eBp"/>
-                        <segue destination="4Xz-fN-EMP" kind="show" identifier="showNewAdVC" id="bJ4-gV-PB5"/>
                         <segue destination="ZgZ-z5-zG7" kind="showDetail" identifier="showLoginVC" id="wiV-RE-84V"/>
+                        <segue destination="MIm-T4-2FA" kind="showDetail" identifier="showNewAdVC" id="s1m-2t-2sE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cgN-u3-cz4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -494,13 +499,25 @@
                             <outlet property="delegate" destination="4Xz-fN-EMP" id="zWM-8Z-bSh"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="4zM-e1-Eiv">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="O2D-I7-swR">
+                            <connections>
+                                <action selector="cancelAdPressed:" destination="4Xz-fN-EMP" id="SIU-ZD-CZ8"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="XWl-uC-k5a">
+                            <connections>
+                                <action selector="saveAdPressed:" destination="4Xz-fN-EMP" id="mbu-Lg-c1p"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <segue destination="P3o-k5-ABJ" kind="showDetail" identifier="showTypeOfPropertyVC" id="KNh-lL-uks"/>
+                        <segue destination="P3o-k5-ABJ" kind="showDetail" identifier="showTypeOfPropertyVC" id="RGO-JD-Hcw"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wwE-vE-2DG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7561" y="4138"/>
+            <point key="canvasLocation" x="8500" y="4137.4812593703155"/>
         </scene>
         <!--Type of property-->
         <scene sceneID="GHh-QM-yum">
@@ -540,7 +557,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="loA-vh-h3Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="10015.200000000001" y="4233.7331334332839"/>
+            <point key="canvasLocation" x="10954.4" y="4233.7331334332839"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="g8A-L0-a07">
@@ -886,7 +903,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YXA-9s-C9E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9076" y="4233.7331334332839"/>
+            <point key="canvasLocation" x="10015.200000000001" y="4233.7331334332839"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GuD-lr-0rZ">
@@ -942,6 +959,24 @@
             </objects>
             <point key="canvasLocation" x="1116" y="3466"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="b6P-YL-Zs9">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MIm-T4-2FA" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="UWP-LQ-f36">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4Xz-fN-EMP" kind="relationship" relationship="rootViewController" id="ddA-Do-ooQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0EP-sz-2O7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7560.8000000000002" y="4137.4812593703155"/>
+        </scene>
     </scenes>
     <resources>
         <image name="ad" width="25" height="25"/>
@@ -952,6 +987,7 @@
         <image name="filter" width="25" height="25"/>
         <image name="list" width="25" height="25"/>
         <image name="location" width="50" height="50"/>
+        <image name="login_btn" width="30" height="35"/>
         <image name="logo" width="173" height="173"/>
         <image name="map" width="25" height="25"/>
         <image name="menu" width="24" height="24"/>
@@ -962,6 +998,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="zqV-Rn-GP9"/>
-        <segue reference="XBd-ZH-4aS"/>
+        <segue reference="wiV-RE-84V"/>
     </inferredMetricsTieBreakers>
 </document>
