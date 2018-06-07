@@ -15,10 +15,13 @@ class ListTableViewController: UITableViewController {
     @IBOutlet weak var btnMenu: UIBarButtonItem!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
+    var ref: DatabaseReference = Database.database().reference()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         changeTitleNavigatorBar()
         sideMenus()
+        getData()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -71,6 +74,45 @@ class ListTableViewController: UITableViewController {
         return cell
     }
  
+    func getData (){
+        
+
+   
+        var listAllAds:[Ad] = []
+        
+        ref.child("Ad").observe(.value, with:
+            { (snapshot) in
+                
+
+     
+                for userId in snapshot.children.allObjects as! [DataSnapshot] {
+                    
+                    for adId in userId.children.allObjects as! [DataSnapshot] {
+                        let adObj = Ad()
+                        
+                        guard let adDict = adId.value as? [String: Any] else { continue }
+                        adObj.bedroom = Int(adDict["bedroom"]! as! String)
+                        
+                        print(adObj.bedroom!)
+                        
+                        guard let addressDict = adDict["Address"] as? [String: Any] else { continue }
+                        let city = addressDict["city"] as? String
+                      //  print(city!)
+                        
+                        
+                       listAllAds.append(adObj)
+                    }
+                    
+                    
+                }
+               
+               
+                
+        })
+        
+        print(listAllAds.count)
+
+    }
 
     /*
     // Override to support conditional editing of the table view.

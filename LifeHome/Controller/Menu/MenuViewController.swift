@@ -25,12 +25,20 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet weak var tableView: UITableView!
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent //StatusBar white
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         changeTitleNavigatorBar()
         cornerRadiusButton()
         
+     
+        
         imgProfile.layer.cornerRadius = imgProfile.bounds.height / 2
+        imgProfile.layer.borderWidth = 1
+        imgProfile.layer.borderColor = UIColor.white.cgColor
         imgProfile.clipsToBounds = true
         
         self.tableView.delegate = self

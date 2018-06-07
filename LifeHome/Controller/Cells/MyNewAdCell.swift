@@ -71,6 +71,7 @@ class MyNewAdCell: UITableViewCell {
     
     @IBAction func btnTypeOfPropertyPressed(_ sender: Any) {
         NotificationCenter.default.post(name: Notification.Name("openTypeOfPropertyVC"), object: nil)
+        
     }
     
     

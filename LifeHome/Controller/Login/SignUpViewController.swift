@@ -108,11 +108,11 @@ class SignUpViewController: UIViewController {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let storageRef = Storage.storage().reference().child("ImageUsers/\(uid)")
         
-        guard let imageData = UIImageJPEGRepresentation(image, 0.75) else { return }
+        guard let imageData = UIImagePNGRepresentation(image) else { return }
         
         
         let metaData = StorageMetadata()
-        metaData.contentType = "image/jpg"
+        metaData.contentType = "image/png"
         
         storageRef.putData(imageData, metadata: metaData) { metaData, error in
             if error == nil, metaData != nil {

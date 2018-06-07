@@ -19,5 +19,6 @@ class Ad {
     var address:Address?
     var typeOfAd: TypeOfAd?
     var typeOfProperty: String?
+
     
 }
