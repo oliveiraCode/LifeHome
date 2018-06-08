@@ -9,11 +9,15 @@
 import UIKit
 import Firebase
 import SWRevealViewController
+import CoreLocation
 
-class ListTableViewController: UITableViewController {
+class ListTableViewController: UITableViewController,CLLocationManagerDelegate {
     
     @IBOutlet weak var btnMenu: UIBarButtonItem!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
+    var locationManager:CLLocationManager!
+    var myCurrentLocation:CLLocation!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +52,9 @@ class ListTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-            loadData()
+        determineMyCurrentLocation()
+        
+        loadData()
         tableView.reloadData()
     }
     
@@ -78,6 +84,11 @@ class ListTableViewController: UITableViewController {
         cell.lbGarage.text = String(self.appDelegate.listAllAds[indexPath.row].garage!)
         cell.lbPrice.text = String(format: "CAD %.2f",self.appDelegate.listAllAds[indexPath.row].price!)
         
+        if (self.appDelegate.listAllAds[indexPath.row].address?.longitude) != nil {
+            cell.lbDistance.text = String(format:"%.1f km ",self.calculateDistance(lat: (self.appDelegate.listAllAds[indexPath.row].address?.latitude)!, long: (self.appDelegate.listAllAds[indexPath.row].address?.longitude)!))
+
+        }
+ 
         return cell
     }
     
@@ -166,7 +177,7 @@ class ListTableViewController: UITableViewController {
                         
                         guard let adDict = adId.value as? [String: Any] else { continue }
                         
-
+                        
                         let storageRef = Storage.storage().reference(forURL: adDict["imageURL"]! as! String)
                         storageRef.downloadURL(completion: { (urls, error) in
                             
@@ -186,9 +197,9 @@ class ListTableViewController: UITableViewController {
                         })
                         
                         
-                    
-           
-     
+                        
+                        
+                        
                         
                         
                         adObj.bedroom = Int(adDict["bedroom"]! as! String)
@@ -211,6 +222,35 @@ class ListTableViewController: UITableViewController {
                         addressObj.province = addressDict["province"] as? String
                         addressObj.street = addressDict["street"] as? String
                         
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        let address = "\(addressObj.street!), \(addressObj.city!), \(addressObj.province!) \(addressObj.postalCode!)"
+                        
+                        
+                        let geoCoder = CLGeocoder()
+                        geoCoder.geocodeAddressString(address) { (placemarks, error) in
+                            guard
+                                let placemarks = placemarks,
+                                let location = placemarks.first?.location
+                           
+                                else {
+                                    // handle no location found
+                                    return
+                            }
+                            
+                            addressObj.latitude = location.coordinate.latitude
+                            addressObj.longitude = location.coordinate.longitude
+                            
+                        }
+                        
+                        
+                        
                         adObj.address = addressObj
                         
                         //Call the copmletion handler that was passed to us
@@ -225,6 +265,48 @@ class ListTableViewController: UITableViewController {
                     }
                 }
         })
+    }
+    
+    
+    func calculateDistance(lat: Double, long: Double) -> Double{
+        let adLocation = CLLocation(latitude: lat, longitude: long)
+        let distanceKm = myCurrentLocation.distance(from: adLocation)/1000
+        return distanceKm
+    }
+    
+
+
+    
+    func determineMyCurrentLocation() {
+        locationManager = CLLocationManager()
+        //setting this view controller to be responsible of Managing the locations
+        locationManager.delegate = self
+        //we want the best accurancy
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        //we want location service to on all the time
+        locationManager.requestAlwaysAuthorization()
+        
+        //Check if user authorized the use of location services
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+            //locationManager.startUpdatingHeading()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        myCurrentLocation = locations[0] as CLLocation
+        
+        // Call stopUpdatingLocation() to stop listening for location updates,
+        // other wise this function will be called every time when user location changes.
+        
+        manager.stopUpdatingLocation()
+        
+        print("user latitude = \(myCurrentLocation.coordinate.latitude)")
+        print("user longitude = \(myCurrentLocation.coordinate.longitude)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error){
+        print("Error \(error)")
     }
     
     

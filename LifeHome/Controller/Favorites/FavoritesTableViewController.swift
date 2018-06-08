@@ -47,17 +47,14 @@ class FavoritesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 2
+        return 0
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyCustomCell
+
         
-//        
-//        cell.commonInit(imgAd: "house", lbPrice: "900,00 $", lbTypeOfProperty: "Triplex", lbAddress: "9580, rue Berri, App 5", lbCity: "Montreal", lbDistance: "4.30 km", lbBathroom: "2", lbBedroom: "4", lbFloor: "15")
-//        
-//        
         
         // Configure the cell...
         

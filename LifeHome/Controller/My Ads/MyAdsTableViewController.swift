@@ -9,13 +9,17 @@
 import UIKit
 import Firebase
 import SWRevealViewController
+import CoreLocation
 
-class MyAdsTableViewController: UITableViewController {
+class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate {
 
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     @IBOutlet weak var btnMenu: UIBarButtonItem!
     
     var listMyAds:[Ad] = []
+    
+    var locationManager:CLLocationManager!
+    var myCurrentLocation:CLLocation!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +39,8 @@ class MyAdsTableViewController: UITableViewController {
  
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        determineMyCurrentLocation()
         
         loadDataMyAds()
         tableView.reloadData()
@@ -73,6 +79,12 @@ class MyAdsTableViewController: UITableViewController {
             cell.lbTypeOfProperty.text = String(listMyAds[indexPath.row].typeOfProperty!)
             cell.lbGarage.text = String(listMyAds[indexPath.row].garage!)
             cell.lbPrice.text = String(format: "CAD %.2f",listMyAds[indexPath.row].price!)
+            
+            if (listMyAds[indexPath.row].address?.longitude) != nil {
+                cell.lbDistance.text = String(format:"%.1f km ",self.calculateDistance(lat: (self.listMyAds[indexPath.row].address?.latitude)!, long: (self.listMyAds[indexPath.row].address?.longitude)!))
+                
+            }
+            
         }
         
         
@@ -206,6 +218,9 @@ class MyAdsTableViewController: UITableViewController {
                         
                         
                         
+
+                        
+                        
                         
                         
                         adObj.bedroom = Int(adDict["bedroom"]! as! String)
@@ -228,8 +243,31 @@ class MyAdsTableViewController: UITableViewController {
                         addressObj.province = addressDict["province"] as? String
                         addressObj.street = addressDict["street"] as? String
                         
+                        
+                        
+                        let address = "\(addressObj.street!), \(addressObj.city!), \(addressObj.province!) \(addressObj.postalCode!)"
+                        
+                        
+                        let geoCoder = CLGeocoder()
+                        geoCoder.geocodeAddressString(address) { (placemarks, error) in
+                            guard
+                                let placemarks = placemarks,
+                                let location = placemarks.first?.location
+                                
+                                else {
+                                    // handle no location found
+                                    return
+                            }
+                            
+                            addressObj.latitude = location.coordinate.latitude
+                            addressObj.longitude = location.coordinate.longitude
+                            
+                        }
+                        
+                        
                         adObj.address = addressObj
                         
+
                         //Call the copmletion handler that was passed to us
                         
                         self.listMyAds.append(adObj)
@@ -242,6 +280,48 @@ class MyAdsTableViewController: UITableViewController {
                     }
                 
         })
+    }
+    
+    
+    func calculateDistance(lat: Double, long: Double) -> Double{
+        let adLocation = CLLocation(latitude: lat, longitude: long)
+        let distanceKm = myCurrentLocation.distance(from: adLocation)/1000
+        return distanceKm
+    }
+    
+    
+    
+    
+    func determineMyCurrentLocation() {
+        locationManager = CLLocationManager()
+        //setting this view controller to be responsible of Managing the locations
+        locationManager.delegate = self
+        //we want the best accurancy
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        //we want location service to on all the time
+        locationManager.requestAlwaysAuthorization()
+        
+        //Check if user authorized the use of location services
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+            //locationManager.startUpdatingHeading()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        myCurrentLocation = locations[0] as CLLocation
+        
+        // Call stopUpdatingLocation() to stop listening for location updates,
+        // other wise this function will be called every time when user location changes.
+        
+        manager.stopUpdatingLocation()
+        
+        print("user latitude = \(myCurrentLocation.coordinate.latitude)")
+        print("user longitude = \(myCurrentLocation.coordinate.longitude)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error){
+        print("Error \(error)")
     }
     
 

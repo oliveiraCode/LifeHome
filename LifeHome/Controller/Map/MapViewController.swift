@@ -16,6 +16,8 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDel
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var btnMenu: UIBarButtonItem!
     
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
@@ -36,21 +38,37 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDel
         let currentLocation = locations[0] as CLLocation
         
         //Radius in Meters
-        let regionRadius: CLLocationDistance = 7000
+        let regionRadius: CLLocationDistance = 20000
         
         //Define Region
         let coordinateRegion: MKCoordinateRegion!
         
         //Create a Map region
-        coordinateRegion = MKCoordinateRegionMakeWithDistance(currentLocation.coordinate,regionRadius, regionRadius)
-        
+        if TARGET_OS_SIMULATOR == 1 {
+            print("######## running on simulator ######")
+            
+            let montreal = CLLocation(latitude: 45.5016889, longitude: -73.56725599999999)
+            
+            //Create a Map region
+            coordinateRegion = MKCoordinateRegionMakeWithDistance(montreal.coordinate,regionRadius, regionRadius)
+        }
+        else{
+            //WE ARE ON A DEVICE
+            //Create a Map region
+            coordinateRegion = MKCoordinateRegionMakeWithDistance(currentLocation.coordinate,regionRadius, regionRadius)
+        }
         
         //set mapView to the region specified
         map.setRegion(coordinateRegion, animated: true)
         self.map.showsUserLocation = true
         self.locationManager.stopUpdatingLocation() //para a atualizacao da localizacao atual
         
+        //Displaying all Stores Pins ( annotations)
+        displayAnnotations(listAllAds: self.appDelegate.listAllAds)
+        
     }
+    
+    
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
@@ -88,6 +106,32 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDel
         }
         
     }
+    
+    
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        let annotation = view.annotation
+        self.map.selectAnnotation(annotation!, animated: true)
+    }
+    
+    
+    func displayAnnotations(listAllAds:[Ad]){
+        for item in self.appDelegate.listAllAds {
+            let adObj : Ad = item
+            let adLocation = CLLocationCoordinate2D(latitude: (adObj.address?.latitude)!, longitude: (adObj.address?.longitude)!)
+            let aTitle = "\(adObj.typeOfProperty!)"
+            let aSubtitle =  String(format: "CAD %.2f", adObj.price!)
+            
+            let adAnnotation = AdAnnotation(title: aTitle, subtitle: aSubtitle, coordinate: adLocation)
+
+            
+            self.map.addAnnotation(adAnnotation)
+            self.map.selectAnnotation(adAnnotation, animated: true)
+            
+        }
+    }
+    
+    
     
     func changeTitleNavigatorBar(){
         let logo = UIImage(named: "logoTitle")

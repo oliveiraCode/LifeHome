@@ -13,6 +13,8 @@ class Address {
     var city:String?
     var province:String?
     var postalCode:String?
+    var latitude:Double?
+    var longitude:Double?
     
 
 }
