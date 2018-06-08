@@ -229,6 +229,8 @@ class SignUpViewController: UIViewController {
     
     
     func cornerRadiusButton (){
+        btnCreateAccount.layer.borderWidth = 1
+        btnCreateAccount.layer.borderColor = UIColor.init(red: 0/255, green: 111/255, blue: 173/255, alpha: 100).cgColor
         btnCreateAccount.layer.cornerRadius = 25
         btnCreateAccount.layer.masksToBounds = true
     }

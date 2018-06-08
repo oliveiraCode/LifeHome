@@ -77,7 +77,6 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let imgMenu = cell.contentView.viewWithTag(100) as! UIImageView
         let nameMenu = cell.contentView.viewWithTag(101) as! UILabel
         
-        
         imgMenu.image = UIImage(named:self.imgMenu[indexPath.row])
         nameMenu.text = self.nameMenu[indexPath.row]
         

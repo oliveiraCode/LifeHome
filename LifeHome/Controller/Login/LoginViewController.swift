@@ -74,6 +74,8 @@ class LoginViewController: UIViewController {
     }
     
     func cornerRadiusButton (){
+        btnSignIn.layer.borderWidth = 1
+        btnSignIn.layer.borderColor = UIColor.init(red: 0/255, green: 111/255, blue: 173/255, alpha: 100).cgColor
         btnSignIn.layer.cornerRadius = 25
         btnSignIn.layer.masksToBounds = true
         

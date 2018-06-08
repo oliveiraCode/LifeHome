@@ -13,6 +13,7 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var listAllAds:[Ad] = []
     var selectedRow : Int = 0
     let arrayTypeOfProperty:[String] =
         ["Select...","House","Townhouse","Apartment","Duplex","Triplex","Fourplex","Other"]
@@ -21,6 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         FirebaseApp.configure()
+        
+        //change the default tint color.
+        self.window!.tintColor = UIColor.init(red: 0/255, green: 111/255, blue: 173/255, alpha: 100)
     
         // Override point for customization after application launch.
 

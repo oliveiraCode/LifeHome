@@ -136,6 +136,7 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
         }
     }
     
+
     
     // MARK: - Table view data source
     
@@ -181,6 +182,20 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
         self.navigationItem.titleView = imageView
     }
     
+    //to resize the image before save it
+    func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage? {
+        
+        let scale = newWidth / image.size.width
+        let newHeight = image.size.height * scale
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+    
 }
 
 extension NewAdTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -195,7 +210,8 @@ extension NewAdTableViewController: UIImagePickerControllerDelegate, UINavigatio
         
         if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             cell.imgAd.contentMode = .scaleAspectFill
-            cell.imgAd.image = pickedImage
+            
+            cell.imgAd.image = resizeImage(image: pickedImage, newWidth: 400)
             
         }
         

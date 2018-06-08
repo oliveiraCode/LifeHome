@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="275.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="house" translatesAutoresizingMaskIntoConstraints="NO" id="cW1-1o-gut">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="house" translatesAutoresizingMaskIntoConstraints="NO" id="cW1-1o-gut">
                         <rect key="frame" x="3" y="5" width="369" height="200"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
@@ -27,7 +27,7 @@
                         <rect key="frame" x="285" y="245" width="80" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                        <color key="textColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="textColor" red="0.0" green="0.43529411759999997" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Type of property" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GiJ-Hy-5lB">
@@ -85,14 +85,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <visualEffectView opaque="NO" contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Emp-Tp-ueX">
-                        <rect key="frame" x="3" y="158" width="98" height="47"/>
+                        <rect key="frame" x="3" y="158" width="119" height="47"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="LlC-gM-B3c">
-                            <rect key="frame" x="0.0" y="0.0" width="98" height="47"/>
+                            <rect key="frame" x="0.0" y="0.0" width="119" height="47"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="850,00 $" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bl1-sr-E16">
-                                    <rect key="frame" x="0.0" y="13" width="98" height="21"/>
+                                    <rect key="frame" x="0.0" y="13" width="119" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -112,7 +112,7 @@
                 <outlet property="lbBedroom" destination="rRb-U8-OhY" id="jTg-1P-sRB"/>
                 <outlet property="lbCity" destination="hmt-qH-JnR" id="0WF-PT-Gx0"/>
                 <outlet property="lbDistance" destination="2zH-CL-rek" id="RNy-sp-ebT"/>
-                <outlet property="lbFloor" destination="sB5-iw-0ey" id="zZc-ND-dHj"/>
+                <outlet property="lbGarage" destination="sB5-iw-0ey" id="zZc-ND-dHj"/>
                 <outlet property="lbPrice" destination="bl1-sr-E16" id="nls-K2-xAZ"/>
                 <outlet property="lbTypeOfProperty" destination="GiJ-Hy-5lB" id="ppg-kH-eo9"/>
             </connections>

@@ -7,13 +7,15 @@
 //
 
 import UIKit
-import FirebaseAuth
+import Firebase
 import SWRevealViewController
 
 class MyAdsTableViewController: UITableViewController {
 
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     @IBOutlet weak var btnMenu: UIBarButtonItem!
+    
+    var listMyAds:[Ad] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +32,15 @@ class MyAdsTableViewController: UITableViewController {
         tableView.register(nibName, forCellReuseIdentifier: "myCell")
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+ 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        loadDataMyAds()
+        tableView.reloadData()
+        
     }
+    
 
     // MARK: - Table view data source
 
@@ -50,16 +57,23 @@ class MyAdsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return listMyAds.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyCustomCell
         
-        
-        cell.commonInit(imgAd: "house", lbPrice: "900,00 $", lbTypeOfProperty: "Triplex", lbAddress: "9580, rue Berri, App 5", lbCity: "Montreal", lbDistance: "4.30 km", lbBathroom: "2", lbBedroom: "4", lbFloor: "15")
-        
+        if listMyAds.count > 0 {
+            cell.lbAddress.text = listMyAds[indexPath.row].address?.street
+            cell.lbCity.text = listMyAds[indexPath.row].address?.city
+            cell.imgAd.image = listMyAds[indexPath.row].imageURL
+            cell.lbBedroom.text = String(listMyAds[indexPath.row].bedroom!)
+            cell.lbBathroom.text = String(listMyAds[indexPath.row].bathroom!)
+            cell.lbTypeOfProperty.text = String(listMyAds[indexPath.row].typeOfProperty!)
+            cell.lbGarage.text = String(listMyAds[indexPath.row].garage!)
+            cell.lbPrice.text = String(format: "CAD %.2f",listMyAds[indexPath.row].price!)
+        }
         
         
         // Configure the cell...
@@ -149,6 +163,87 @@ class MyAdsTableViewController: UITableViewController {
         }
         
     }
+    
+    
+    
+    func loadDataMyAds (){
+        
+        listMyAds.removeAll()
+
+        let ref: DatabaseReference = Database.database().reference()
+        
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        
+        ref.child("Ad").child(uid).observe(.value, with:
+            { (snapshot) in
+                
+                
+                    for adId in snapshot.children.allObjects as! [DataSnapshot] {
+                        
+                        
+                        let adObj = Ad()
+                        
+                        guard let adDict = adId.value as? [String: Any] else { continue }
+                        
+                        
+                        let storageRef = Storage.storage().reference(forURL: adDict["imageURL"]! as! String)
+                        storageRef.downloadURL(completion: { (url, error) in
+                            
+                            do {
+                                let data = try Data(contentsOf: url!)
+                                DispatchQueue.main.async {
+                                    adObj.imageURL = UIImage(data: data as Data)
+                                    self.tableView.reloadData()
+                                }
+                                
+                            } catch {
+                                print("Error: \(error.localizedDescription)")
+                            }
+                            
+                        })
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        adObj.bedroom = Int(adDict["bedroom"]! as! String)
+                        adObj.garage = Int(adDict["garage"]! as! String)
+                        adObj.bathroom = Int(adDict["bathroom"]! as! String)
+                        adObj.price = Float(adDict["price"]! as! String)
+                        adObj.description = adDict["description"]! as? String
+                        adObj.typeOfProperty = adDict["typeOfProperty"]! as? String
+                        
+                        if (adDict["typeOfAd"]! as! String) == "Sell" {
+                            adObj.typeOfAd = .Sell
+                        } else {
+                            adObj.typeOfAd = .Rent
+                        }
+                        
+                        guard let addressDict = adDict["Address"] as? [String: Any] else { continue }
+                        let addressObj = Address()
+                        addressObj.city = addressDict["city"] as? String
+                        addressObj.postalCode = addressDict["postal code"] as? String
+                        addressObj.province = addressDict["province"] as? String
+                        addressObj.street = addressDict["street"] as? String
+                        
+                        adObj.address = addressObj
+                        
+                        //Call the copmletion handler that was passed to us
+                        
+                        self.listMyAds.append(adObj)
+                        
+                        
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                        
+                    }
+                
+        })
+    }
+    
 
 
 }

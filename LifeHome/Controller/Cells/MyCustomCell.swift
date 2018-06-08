@@ -20,7 +20,7 @@ class MyCustomCell: UITableViewCell {
     @IBOutlet weak var lbDistance: UILabel!
     @IBOutlet weak var lbBathroom: UILabel!
     @IBOutlet weak var lbBedroom: UILabel!
-    @IBOutlet weak var lbFloor: UILabel!
+    @IBOutlet weak var lbGarage: UILabel!
     
     
     
@@ -38,8 +38,8 @@ class MyCustomCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func commonInit(imgAd:String, lbPrice:String, lbTypeOfProperty:String, lbAddress:String, lbCity:String, lbDistance:String, lbBathroom:String, lbBedroom:String, lbFloor:String){
-        self.imgAd.image = UIImage(named: imgAd)
+    func commonInit(imgAd:UIImage, lbPrice:String, lbTypeOfProperty:String, lbAddress:String, lbCity:String, lbDistance:String, lbBathroom:String, lbBedroom:String, lbGarage:String){
+        self.imgAd.image = imgAd
         self.lbPrice.text = lbPrice
         self.lbTypeOfProperty.text = lbTypeOfProperty
         self.lbAddress.text = lbAddress
@@ -47,7 +47,7 @@ class MyCustomCell: UITableViewCell {
         self.lbDistance.text = lbDistance
         self.lbBathroom.text = lbBathroom
         self.lbBedroom.text = lbBedroom
-        self.lbFloor.text = lbFloor
+        self.lbGarage.text = lbGarage
     }
     
     
