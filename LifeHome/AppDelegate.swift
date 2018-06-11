@@ -14,7 +14,7 @@ import CoreLocation
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var listAllAds:[Ad] = []
+    var currentListAds:[Ad] = []
     var selectedRow : Int = 0
     let arrayTypeOfProperty:[String] =
         ["Select...","House","Townhouse","Apartment","Duplex","Triplex","Fourplex","Other"]

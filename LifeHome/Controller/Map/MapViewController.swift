@@ -16,14 +16,15 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDel
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var btnMenu: UIBarButtonItem!
     
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         changeTitleNavigatorBar()
         sideMenus()
+        
         
     }
     
@@ -53,7 +54,7 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDel
         self.locationManager.stopUpdatingLocation() //para a atualizacao da localizacao atual
         
         //Displaying all Stores Pins ( annotations)
-        displayAnnotations(listAllAds: self.appDelegate.listAllAds)
+        displayAnnotations(listAllAds: self.appDelegate.currentListAds)
         
     }
     
@@ -105,7 +106,7 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDel
     
     
     func displayAnnotations(listAllAds:[Ad]){
-        for item in self.appDelegate.listAllAds {
+        for item in self.appDelegate.currentListAds {
             let adObj : Ad = item
             let adLocation = CLLocationCoordinate2D(latitude: (adObj.address?.latitude)!, longitude: (adObj.address?.longitude)!)
             let aTitle = "\(adObj.typeOfProperty!)"

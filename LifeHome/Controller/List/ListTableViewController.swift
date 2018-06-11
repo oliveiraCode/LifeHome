@@ -12,17 +12,22 @@ import SWRevealViewController
 import CoreLocation
 import KRActivityIndicatorView
 
-class ListTableViewController: UITableViewController,CLLocationManagerDelegate {
+class ListTableViewController: UITableViewController,CLLocationManagerDelegate,UISearchBarDelegate {
+    
+    
+    @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var btnMenu: UIBarButtonItem!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
+    var listAds:[Ad] = []
     var locationManager:CLLocationManager!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         changeTitleNavigatorBar()
         sideMenus()
+        
+        setUpSearchBar()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -41,12 +46,29 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate {
             })
         }
         
-
+        
         //get all data from Firebase
         loadData()
         
         
     }
+    
+    private func setUpSearchBar() {
+        searchBar.delegate = self
+        listAds = appDelegate.currentListAds
+    }
+    
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    
+        appDelegate.currentListAds = listAds.filter({ Ads -> Bool in
+            if searchText.isEmpty { return true }
+            return (Ads.address?.city!.lowercased().contains(searchText.lowercased()))!
+        })
+     
+        tableView.reloadData()
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -63,30 +85,33 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.appDelegate.listAllAds.count
+        return self.appDelegate.currentListAds.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyCustomCell
         
-        cell.lbAddress.text = self.appDelegate.listAllAds[indexPath.row].address?.street
-        cell.lbCity.text = self.appDelegate.listAllAds[indexPath.row].address?.city
-        cell.imgAd.image = self.appDelegate.listAllAds[indexPath.row].imageURL
-        cell.lbBedroom.text = String(self.appDelegate.listAllAds[indexPath.row].bedroom!)
-        cell.lbBathroom.text = String(self.appDelegate.listAllAds[indexPath.row].bathroom!)
-        cell.lbTypeOfProperty.text = String(self.appDelegate.listAllAds[indexPath.row].typeOfProperty!)
-        cell.lbGarage.text = String(self.appDelegate.listAllAds[indexPath.row].garage!)
-        cell.lbPrice.text = String(format: "CAD %.2f",self.appDelegate.listAllAds[indexPath.row].price!)
-        
-        if (self.appDelegate.listAllAds[indexPath.row].address?.longitude) != nil {
-            cell.lbDistance.text = String(format:"%.1f km ",self.calculateDistance(lat: (self.appDelegate.listAllAds[indexPath.row].address?.latitude)!, long: (self.appDelegate.listAllAds[indexPath.row].address?.longitude)!))
 
-        }
- 
+            cell.lbAddress.text = self.appDelegate.currentListAds[indexPath.row].address?.street
+            cell.lbCity.text = self.appDelegate.currentListAds[indexPath.row].address?.city
+            cell.imgAd.image = self.appDelegate.currentListAds[indexPath.row].imageURL
+            cell.lbBedroom.text = String(self.appDelegate.currentListAds[indexPath.row].bedroom!)
+            cell.lbBathroom.text = String(self.appDelegate.currentListAds[indexPath.row].bathroom!)
+            cell.lbTypeOfProperty.text = String(self.appDelegate.currentListAds[indexPath.row].typeOfProperty!)
+            cell.lbGarage.text = String(self.appDelegate.currentListAds[indexPath.row].garage!)
+            cell.lbPrice.text = String(format: "CAD %.2f",self.appDelegate.currentListAds[indexPath.row].price!)
+            
+            if (self.appDelegate.currentListAds[indexPath.row].address?.longitude) != nil {
+                cell.lbDistance.text = String(format:"%.1f km ",self.calculateDistance(lat: (self.appDelegate.currentListAds[indexPath.row].address?.latitude)!, long: (self.appDelegate.currentListAds[indexPath.row].address?.longitude)!))
+                
+            }
+        
+        
         return cell
     }
-
+    
+    
     
     func changeTitleNavigatorBar(){
         let logo = UIImage(named: "logoTitle")
@@ -110,8 +135,8 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate {
     
     
     func loadData (){
-    
-        self.appDelegate.listAllAds.removeAll()
+        
+        self.appDelegate.currentListAds.removeAll()
         let ref: DatabaseReference = Database.database().reference()
         
         ref.child("Ad").observe(.value, with:
@@ -171,7 +196,7 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate {
                         addressObj.province = addressDict["province"] as? String
                         addressObj.street = addressDict["street"] as? String
                         
-            
+                        
                         
                         
                         let address = "\(addressObj.street!), \(addressObj.city!), \(addressObj.province!) \(addressObj.postalCode!)"
@@ -182,7 +207,7 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate {
                             guard
                                 let placemarks = placemarks,
                                 let location = placemarks.first?.location
-                           
+                                
                                 else {
                                     // handle no location found
                                     return
@@ -199,28 +224,29 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate {
                         
                         //Call the copmletion handler that was passed to us
                         
-                        self.appDelegate.listAllAds.append(adObj)
+                        self.appDelegate.currentListAds.append(adObj)
                         
                         
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
+                            self.listAds = self.appDelegate.currentListAds
                         }
                         
                     }
                 }
         })
-
+        
     }
     
     
     func calculateDistance(lat: Double, long: Double) -> Double{
         let adLocation = CLLocation(latitude: lat, longitude: long)
-       let distanceKm = appDelegate.myCurrentLocation.distance(from: adLocation)/1000
+        let distanceKm = appDelegate.myCurrentLocation.distance(from: adLocation)/1000
         return distanceKm
     }
     
-
-
+    
+    
     
     func determineMyCurrentLocation() {
         locationManager = CLLocationManager()
