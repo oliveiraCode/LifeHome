@@ -72,19 +72,9 @@ class SignUpViewController: UIViewController {
     }
 
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         checkPermission()
         
     }
@@ -108,11 +98,10 @@ class SignUpViewController: UIViewController {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let storageRef = Storage.storage().reference().child("ImageUsers/\(uid)")
         
-        guard let imageData = UIImagePNGRepresentation(image) else { return }
-        
+        guard let imageData = UIImageJPEGRepresentation(image, 60) else {return}
         
         let metaData = StorageMetadata()
-        metaData.contentType = "image/png"
+        metaData.contentType = "image/jpg"
         
         storageRef.putData(imageData, metadata: metaData) { metaData, error in
             if error == nil, metaData != nil {
@@ -242,7 +231,7 @@ class SignUpViewController: UIViewController {
     
     //function to add custom activity indicator when the user click into create account
     func addKRActivityIndicatior(){
-        activityIndicator.style = .color(.blue)
+        activityIndicator.style = .color(.black)
         activityIndicator.isLarge = true
         activityIndicator.frame = CGRect(x: UIScreen.main.bounds.width/2, y: (UIScreen.main.bounds.height/2) - 170, width: 0, height: 0)
         

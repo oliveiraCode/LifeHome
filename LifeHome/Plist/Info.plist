@@ -20,29 +20,27 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-    
-    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>Our App needs access to location services to be able to....</string>
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>Our App needs access to location services to be able to....</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Our App needs access to location services to be able to....</string>
-    
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Our App needs access to location services to be able to....</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Our App needs access to location services to be able to....</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Our App needs access to location services to be able to....</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Photo Library Access Warning</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>Photo Library Access Warning</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIStatusBarHidden</key>
+	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

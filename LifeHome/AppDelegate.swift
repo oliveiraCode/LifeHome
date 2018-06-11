@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var selectedRow : Int = 0
     let arrayTypeOfProperty:[String] =
         ["Select...","House","Townhouse","Apartment","Duplex","Triplex","Fourplex","Other"]
+    var myCurrentLocation:CLLocation!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -28,6 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
         // Override point for customization after application launch.
 
+        
+        myCurrentLocation = CLLocation(latitude: 45.5016889, longitude: -73.56725599999999)
+        
         return true
     }
 

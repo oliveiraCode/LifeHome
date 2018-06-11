@@ -12,7 +12,7 @@ import CoreLocation
 import SWRevealViewController
 
 class MapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate {
-
+    
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var btnMenu: UIBarButtonItem!
     
@@ -24,9 +24,9 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDel
         super.viewDidLoad()
         changeTitleNavigatorBar()
         sideMenus()
-
+        
     }
-
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -35,7 +35,7 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDel
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let currentLocation = locations[0] as CLLocation
+        appDelegate.myCurrentLocation = locations[0] as CLLocation
         
         //Radius in Meters
         let regionRadius: CLLocationDistance = 20000
@@ -44,19 +44,8 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDel
         let coordinateRegion: MKCoordinateRegion!
         
         //Create a Map region
-        if TARGET_OS_SIMULATOR == 1 {
-            print("######## running on simulator ######")
-            
-            let montreal = CLLocation(latitude: 45.5016889, longitude: -73.56725599999999)
-            
-            //Create a Map region
-            coordinateRegion = MKCoordinateRegionMakeWithDistance(montreal.coordinate,regionRadius, regionRadius)
-        }
-        else{
-            //WE ARE ON A DEVICE
-            //Create a Map region
-            coordinateRegion = MKCoordinateRegionMakeWithDistance(currentLocation.coordinate,regionRadius, regionRadius)
-        }
+        coordinateRegion = MKCoordinateRegionMakeWithDistance(appDelegate.myCurrentLocation.coordinate,regionRadius, regionRadius)
+        
         
         //set mapView to the region specified
         map.setRegion(coordinateRegion, animated: true)
@@ -123,7 +112,7 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDel
             let aSubtitle =  String(format: "CAD %.2f", adObj.price!)
             
             let adAnnotation = AdAnnotation(title: aTitle, subtitle: aSubtitle, coordinate: adLocation)
-
+            
             
             self.map.addAnnotation(adAnnotation)
             self.map.selectAnnotation(adAnnotation, animated: true)
@@ -152,6 +141,6 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDel
         
     }
     
-
-
+    
+    
 }

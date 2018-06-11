@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import SWRevealViewController
 import CoreLocation
+import KRActivityIndicatorView
 
 class ListTableViewController: UITableViewController,CLLocationManagerDelegate {
     
@@ -17,25 +18,20 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     var locationManager:CLLocationManager!
-    var myCurrentLocation:CLLocation!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         changeTitleNavigatorBar()
         sideMenus()
-        
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         let nibName = UINib(nibName: "MyCustomCell", bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: "myCell")
         
-        if UserDefaults.standard.bool(forKey: "ContinueWithoutAnAccount") {
-            return
-        }
         
         //this code was inspired from Hakim
-        if ((Auth.auth().currentUser?.uid) == nil){
+        if ((Auth.auth().currentUser?.uid) == nil && !UserDefaults.standard.bool(forKey: "ContinueWithoutAnAccount")){
             let offset = 0.1
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(offset * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
@@ -45,17 +41,16 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate {
             })
         }
         
+
+        //get all data from Firebase
+        loadData()
         
         
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         determineMyCurrentLocation()
-        
-        loadData()
-        tableView.reloadData()
     }
     
     
@@ -91,53 +86,7 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate {
  
         return cell
     }
-    
-    
-    
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+
     
     func changeTitleNavigatorBar(){
         let logo = UIImage(named: "logoTitle")
@@ -161,7 +110,7 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate {
     
     
     func loadData (){
-        
+    
         self.appDelegate.listAllAds.removeAll()
         let ref: DatabaseReference = Database.database().reference()
         
@@ -222,12 +171,7 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate {
                         addressObj.province = addressDict["province"] as? String
                         addressObj.street = addressDict["street"] as? String
                         
-                        
-                        
-                        
-                        
-                        
-                        
+            
                         
                         
                         let address = "\(addressObj.street!), \(addressObj.city!), \(addressObj.province!) \(addressObj.postalCode!)"
@@ -265,12 +209,13 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate {
                     }
                 }
         })
+
     }
     
     
     func calculateDistance(lat: Double, long: Double) -> Double{
         let adLocation = CLLocation(latitude: lat, longitude: long)
-        let distanceKm = myCurrentLocation.distance(from: adLocation)/1000
+       let distanceKm = appDelegate.myCurrentLocation.distance(from: adLocation)/1000
         return distanceKm
     }
     
@@ -289,20 +234,19 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate {
         //Check if user authorized the use of location services
         if CLLocationManager.locationServicesEnabled() {
             locationManager.startUpdatingLocation()
-            //locationManager.startUpdatingHeading()
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        myCurrentLocation = locations[0] as CLLocation
+        appDelegate.myCurrentLocation = locations[0] as CLLocation
         
         // Call stopUpdatingLocation() to stop listening for location updates,
         // other wise this function will be called every time when user location changes.
         
         manager.stopUpdatingLocation()
         
-        print("user latitude = \(myCurrentLocation.coordinate.latitude)")
-        print("user longitude = \(myCurrentLocation.coordinate.longitude)")
+        print("user latitude = \(appDelegate.myCurrentLocation.coordinate.latitude)")
+        print("user longitude = \(appDelegate.myCurrentLocation.coordinate.longitude)")
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error){

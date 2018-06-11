@@ -28,7 +28,6 @@
 		9C94723F20C7166F00665DA7 /* Ad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C94723E20C7166F00665DA7 /* Ad.swift */; };
 		9C94724120C7173100665DA7 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C94724020C7173100665DA7 /* Address.swift */; };
 		9C94724320C7188A00665DA7 /* TypeOfAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C94724220C7188A00665DA7 /* TypeOfAd.swift */; };
-		9C94724520C7189800665DA7 /* TypeOfProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C94724420C7189800665DA7 /* TypeOfProperty.swift */; };
 		9CA2992420CAD2B000A8E500 /* AdAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA2992320CAD2B000A8E500 /* AdAnnotation.swift */; };
 		9CE4CCC120C18ABC00CC7007 /* MyCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE4CCBF20C18ABC00CC7007 /* MyCustomCell.swift */; };
 		9CE4CCC220C18ABC00CC7007 /* MyCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CE4CCC020C18ABC00CC7007 /* MyCustomCell.xib */; };
@@ -63,7 +62,6 @@
 		9C94723E20C7166F00665DA7 /* Ad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ad.swift; sourceTree = "<group>"; };
 		9C94724020C7173100665DA7 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		9C94724220C7188A00665DA7 /* TypeOfAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeOfAd.swift; sourceTree = "<group>"; };
-		9C94724420C7189800665DA7 /* TypeOfProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeOfProperty.swift; sourceTree = "<group>"; };
 		9CA2992320CAD2B000A8E500 /* AdAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdAnnotation.swift; sourceTree = "<group>"; };
 		9CA2992520CAD4A900A8E500 /* Montreal.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Montreal.gpx; sourceTree = "<group>"; };
 		9CE4CCBF20C18ABC00CC7007 /* MyCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomCell.swift; sourceTree = "<group>"; };
@@ -167,7 +165,6 @@
 				9C94723E20C7166F00665DA7 /* Ad.swift */,
 				9C94724020C7173100665DA7 /* Address.swift */,
 				9C94724220C7188A00665DA7 /* TypeOfAd.swift */,
-				9C94724420C7189800665DA7 /* TypeOfProperty.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -406,7 +403,6 @@
 				9C94723F20C7166F00665DA7 /* Ad.swift in Sources */,
 				9C94724320C7188A00665DA7 /* TypeOfAd.swift in Sources */,
 				9CE4CCCB20C2087400CC7007 /* MenuViewController.swift in Sources */,
-				9C94724520C7189800665DA7 /* TypeOfProperty.swift in Sources */,
 				9C19724620BC555100BE1FEB /* MyAdsTableViewController.swift in Sources */,
 				9C3DB9A620C5959A00044563 /* TypeOfPropertyTableViewController.swift in Sources */,
 				9C94724120C7173100665DA7 /* Address.swift in Sources */,

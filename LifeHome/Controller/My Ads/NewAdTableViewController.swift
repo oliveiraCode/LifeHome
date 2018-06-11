@@ -22,9 +22,6 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
         super.viewDidLoad()
         changeTitleNavigatorBar()
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
         let nibName = UINib(nibName: "MyNewAdCell", bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: "myNewAdCell")
         
@@ -116,10 +113,10 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
         
         let storageRef = Storage.storage().reference().child("ImageAds/\(uid)/\(adId)")
         
-        guard let imageData = UIImagePNGRepresentation(image) else { return }
+        guard let imageData = UIImageJPEGRepresentation(image, 60) else {return}
         
         let metaData = StorageMetadata()
-        metaData.contentType = "image/png"
+        metaData.contentType = "image/jpg"
         
         storageRef.putData(imageData, metadata: metaData) { metaData, error in
             if error == nil, metaData != nil {
@@ -182,20 +179,6 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
         self.navigationItem.titleView = imageView
     }
     
-    //to resize the image before save it
-    func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage? {
-        
-        let scale = newWidth / image.size.width
-        let newHeight = image.size.height * scale
-        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
-        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
-        
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage
-    }
-    
 }
 
 extension NewAdTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -211,7 +194,7 @@ extension NewAdTableViewController: UIImagePickerControllerDelegate, UINavigatio
         if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             cell.imgAd.contentMode = .scaleAspectFill
             
-            cell.imgAd.image = resizeImage(image: pickedImage, newWidth: 400)
+            cell.imgAd.image = pickedImage
             
         }
         
