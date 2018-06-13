@@ -17,9 +17,14 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     var ref: DatabaseReference = Database.database().reference()
+    let uid = Auth.auth().currentUser?.uid //get the current uid
+    let adObj = Ad()
+    let addressObj = Address()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         changeTitleNavigatorBar()
         
         let nibName = UINib(nibName: "MyNewAdCell", bundle: nil)
@@ -54,43 +59,74 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
         
         let indexPath : NSIndexPath = NSIndexPath(row: 0, section: 0) //Create the indexpath to get the cell
         let cell : MyNewAdCell = self.tableView.cellForRow(at: indexPath as IndexPath) as! MyNewAdCell
-        
-        
-        let uid = Auth.auth().currentUser?.uid
-        let adId = self.ref.childByAutoId().key //create a new Id
+        let adId = ref.childByAutoId().key //create a new Id
+        var typeOfAd:String?
         
         self.uploadProfileImage(image:cell.imgAd.image!, adId:adId, uid:uid!) { url in
             
-            let addressObject = [
-                "city": cell.tfCity.text!,
-                "postal code": cell.tfPostalCode.text!,
-                "province": cell.tfProvince.text!,
-                "street": cell.tfStreet.text!,
+            self.addressObj.street = cell.tfStreet.text!
+            self.addressObj.city = cell.tfCity.text!
+            self.addressObj.province = cell.tfProvince.text!
+            self.addressObj.postalCode = cell.tfPostalCode.text!
+            let address = "\(self.addressObj.street!), \(self.addressObj.city!), \(self.addressObj.province!) \(self.addressObj.postalCode!)"
+            print(address)
+            let geoCoder = CLGeocoder()
+            geoCoder.geocodeAddressString(address) { (placemarks, error) in
+                guard
+                    let placemarks = placemarks,
+                    let location = placemarks.first?.location
+                    else {
+                        print("test")
+                        return}
+                
+                print("vai ser fuder \(location.coordinate.latitude)")
+                self.addressObj.latitude = location.coordinate.latitude
+                self.addressObj.longitude = location.coordinate.longitude
+            }
+        
+            
+            
+            let addressData = [
+                "city": self.addressObj.city!,
+                "postal code": self.addressObj.postalCode!,
+                "province": self.addressObj.province!,
+                "street": self.addressObj.street!,
+                "latitude":self.addressObj.latitude!,
+                "longitude":self.addressObj.longitude!
                 ] as [String: Any]
             
-            var typeOfAd:String!
+            
             if cell.segTypeOfAd.selectedSegmentIndex == 0 {
+                self.adObj.typeOfAd = TypeOfAd.Rent
                 typeOfAd = "Rent"
             } else {
+                self.adObj.typeOfAd = TypeOfAd.Sell
                 typeOfAd = "Sell"
             }
             
+            self.adObj.bathroom = Int(cell.lbBathroom.text! as String)
+            self.adObj.bedroom = Int(cell.lbBedroom.text! as String)
+            self.adObj.garage = Int(cell.lbGarage.text! as String)
+            self.adObj.description = cell.tvDescription.text
+            self.adObj.price = Float(cell.tfPrice.text! as String)
+            self.adObj.typeOfProperty = cell.btnTypeOfProperty.titleLabel?.text
+
             
-            let adObject = [
-                "bathroom": cell.lbBathroom.text!,
-                "bedroom": cell.lbBedroom.text!,
-                "garage": cell.lbGarage.text!,
-                "description": cell.tvDescription.text!,
-                "price": cell.tfPrice.text!,
-                "typeOfAd": typeOfAd,
-                "typeOfProperty": cell.btnTypeOfProperty.titleLabel?.text!,
-                "Address": addressObject,
-                "imageURL": url?.absoluteString
+            let adData = [
+                "bathroom": self.adObj.bathroom!,
+                "bedroom": self.adObj.bedroom!,
+                "garage": self.adObj.garage!,
+                "description": self.adObj.description!,
+                "price": self.adObj.price!,
+                "typeOfAd": typeOfAd!,
+                "typeOfProperty": self.adObj.typeOfProperty!,
+                "Address": addressData,
+                "imageURL": url!.absoluteString
                 ] as [String:Any]
             
             
             
-            self.ref.child("Ad").child(uid!).child(adId).setValue(adObject)
+            self.ref.child("Ad").child(self.uid!).child(adId).setValue(adData)
             
         }
 
@@ -177,6 +213,21 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
         let logo = UIImage(named: "logoTitle")
         let imageView = UIImageView(image:logo)
         self.navigationItem.titleView = imageView
+    }
+    
+    func getCoordinates (address:String){
+        let geoCoder = CLGeocoder()
+        
+        geoCoder.geocodeAddressString(address) { (placemarks, error) in
+            guard
+                let placemarks = placemarks,
+                let location = placemarks.first?.location
+                else {return}
+            
+            print("vai ser fuder \(location.coordinate.latitude)")
+            self.addressObj.latitude = location.coordinate.latitude
+            self.addressObj.longitude = location.coordinate.longitude
+        }
     }
     
 }

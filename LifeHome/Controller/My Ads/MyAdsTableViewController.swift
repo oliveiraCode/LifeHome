@@ -164,17 +164,10 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
                         
                         
                         
-                        
-                        
-
-                        
-                        
-                        
-                        
-                        adObj.bedroom = Int(adDict["bedroom"]! as! String)
-                        adObj.garage = Int(adDict["garage"]! as! String)
-                        adObj.bathroom = Int(adDict["bathroom"]! as! String)
-                        adObj.price = Float(adDict["price"]! as! String)
+                        adObj.bedroom = adDict["bedroom"] as? Int
+                        adObj.garage = adDict["garage"] as? Int
+                        adObj.bathroom = adDict["bathroom"] as? Int
+                        adObj.price = adDict["price"] as? Float
                         adObj.description = adDict["description"]! as? String
                         adObj.typeOfProperty = adDict["typeOfProperty"]! as? String
                         
@@ -190,28 +183,8 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
                         addressObj.postalCode = addressDict["postal code"] as? String
                         addressObj.province = addressDict["province"] as? String
                         addressObj.street = addressDict["street"] as? String
-                        
-                        
-                        
-                        let address = "\(addressObj.street!), \(addressObj.city!), \(addressObj.province!) \(addressObj.postalCode!)"
-                        
-                        
-                        let geoCoder = CLGeocoder()
-                        geoCoder.geocodeAddressString(address) { (placemarks, error) in
-                            guard
-                                let placemarks = placemarks,
-                                let location = placemarks.first?.location
-                                
-                                else {
-                                    // handle no location found
-                                    return
-                            }
-                            
-                            addressObj.latitude = location.coordinate.latitude
-                            addressObj.longitude = location.coordinate.longitude
-                            
-                        }
-                        
+                        addressObj.latitude = addressDict["latitude"] as? Double
+                        addressObj.longitude = addressDict["longitude"] as? Double
                         
                         adObj.address = addressObj
                         
