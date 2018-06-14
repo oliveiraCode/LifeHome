@@ -9,24 +9,24 @@
 import UIKit
 import Firebase
 
+@objcMembers
 class LoginViewController: UIViewController {
-
+    
     @IBOutlet weak var btnSignIn: UIButton!
     @IBOutlet weak var btnFacebook: UIButton!
     @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var tfPassword: UITextField!
     
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         cornerRadiusButton()
-
+        
+        
+        
         // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
@@ -42,7 +42,7 @@ class LoginViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-
+    
     @IBAction func btnSignIn(_ sender: Any) {
         guard let email = tfEmail.text else {return}
         guard let password = tfPassword.text else {return}
@@ -51,14 +51,16 @@ class LoginViewController: UIViewController {
             
             if error == nil && user != nil {
                 UserDefaults.standard.set(false, forKey: "ContinueWithoutAnAccount")
+                self.appDelegate.getDataFromUser()
                 self.dismiss(animated: true, completion: nil)
             } else {
-                 print("Error: \(error!.localizedDescription)")
+                print("Error: \(error!.localizedDescription)")
             }
-
+            
         }
         
     }
+
     
     @IBAction func btnSignUp(_ sender: Any) {
         performSegue(withIdentifier: "showSignUpVC", sender: nil)

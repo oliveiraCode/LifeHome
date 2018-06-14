@@ -247,9 +247,7 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
         // other wise this function will be called every time when user location changes.
         
         manager.stopUpdatingLocation()
-        
-        print("user latitude = \(appDelegate.myCurrentLocation.coordinate.latitude)")
-        print("user longitude = \(appDelegate.myCurrentLocation.coordinate.longitude)")
+
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error){

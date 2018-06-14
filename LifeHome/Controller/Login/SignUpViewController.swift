@@ -15,7 +15,7 @@ import KRActivityIndicatorView
 
 class SignUpViewController: UIViewController {
     
-    @IBOutlet weak var fullNameField: UITextField!
+    @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var phoneField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -25,13 +25,14 @@ class SignUpViewController: UIViewController {
     
     var imagePicker:UIImagePickerController!
     let activityIndicator = KRActivityIndicatorView()
-    
-    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var userRef = Database.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         cornerRadiusButton()
+        userRef = Database.database().reference().child("users")
         
         let imageTap = UITapGestureRecognizer(target: self, action: #selector(openImagePicker))
         profileImageView.isUserInteractionEnabled = true
@@ -56,12 +57,7 @@ class SignUpViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+
     @IBAction func btnCreateAccountPressed(_ sender: Any) {
         
         //add an activity indicator from the KRActivityIndicator framework to this view
@@ -95,8 +91,7 @@ class SignUpViewController: UIViewController {
     
     
     func uploadProfileImage(_ image:UIImage, completion: @escaping ((_ url:URL?)->())) {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        let storageRef = Storage.storage().reference().child("ImageUsers/\(uid)")
+        let storageRef = Storage.storage().reference().child("ImageUsers/\(appDelegate.userObj.id)")
         
         guard let imageData = UIImageJPEGRepresentation(image, 60) else {return}
         
@@ -120,32 +115,31 @@ class SignUpViewController: UIViewController {
     
     
     @objc func handleSignUp() {
+        appDelegate.userObj.username = usernameField.text
+        appDelegate.userObj.email = emailField.text
+        appDelegate.userObj.phone = phoneField.text
+        appDelegate.userObj.password = passwordField.text
+        appDelegate.userObj.image = profileImageView.image
         
-      
-        guard let username = fullNameField.text else { return }
-        guard let email = emailField.text else { return }
-        guard let phone = phoneField.text else { return }
-        guard let pass = passwordField.text else { return }
-        guard let image = profileImageView.image else { return }
-        
-        Auth.auth().createUser(withEmail: email, password: pass) { user, error in
+
+        Auth.auth().createUser(withEmail: appDelegate.userObj.email, password: appDelegate.userObj.password) { user, error in
             if error == nil && user != nil {
                 print("User created!")
+                self.appDelegate.userObj.id = Auth.auth().currentUser?.uid //get id from current user
                 
                 // 1. Upload the profile image to Firebase Storage
                 
-                self.uploadProfileImage(image) { url in
+                self.uploadProfileImage(self.appDelegate.userObj.image) { url in
                     
                     if url != nil {
                         let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-                        changeRequest?.displayName = username
                         changeRequest?.photoURL = url
                         
                         changeRequest?.commitChanges { error in
                             if error == nil {
                                 print("User display name changed!")
                                 
-                                self.saveProfile(username: username,phone: phone, profileImageURL: url!) { success in
+                                self.saveProfile(profileImageURL: url!) { success in
                                     if success {
                                         UserDefaults.standard.set(false, forKey: "ContinueWithoutAnAccount")
             
@@ -199,19 +193,16 @@ class SignUpViewController: UIViewController {
     
     
     
-    func saveProfile(username:String, phone:String, profileImageURL:URL, completion: @escaping ((_ success:Bool)->())) {
-        
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        let databaseRef = Database.database().reference().child("users/\(uid)")
-        
-        
-        let userObject = [
-            "fullName": username,
-            "Phone": phone,
+    func saveProfile(profileImageURL:URL, completion: @escaping ((_ success:Bool)->())) {
+ 
+        let userData = [
+            "username": appDelegate.userObj.username,
+            "email":appDelegate.userObj.email,
+            "phone": appDelegate.userObj.phone,
             "photoURL": profileImageURL.absoluteString
             ] as [String:Any]
         
-        databaseRef.setValue(userObject) { error, ref in
+        userRef.child(appDelegate.userObj.id).setValue(userData) { error, ref in
             completion(error == nil)
         }
     }

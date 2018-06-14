@@ -20,6 +20,8 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var img_login_logout: UIImageView!
     let ref = Database.database().reference()
     
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     let nameMenu:[String] = ["Home","Profile","Settings","Help","About"]
     let imgMenu:[String] = ["home","profile","settings","help","about"]
     
@@ -32,7 +34,7 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         changeTitleNavigatorBar()
-        
+        isLogged()
         
         imgProfile.layer.cornerRadius = imgProfile.bounds.height / 2
         imgProfile.layer.borderWidth = 1
@@ -42,19 +44,8 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     // MARK: - Table view data source
     
@@ -65,9 +56,7 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        
         return self.nameMenu.count
-        
     }
     
     
@@ -96,7 +85,7 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.row == 0  {
-              performSegue(withIdentifier: "showHomeVC", sender: nil)
+            performSegue(withIdentifier: "showHomeVC", sender: nil)
         }
         
         if indexPath.row == 1  {
@@ -110,15 +99,15 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
             } else {
                 //   performSegue(withIdentifier: "showProfileVC", sender: nil)
             }
-         
+            
         }
         
         if indexPath.row == 2  {
-                performSegue(withIdentifier: "showSettingsVC", sender: nil)
+            performSegue(withIdentifier: "showSettingsVC", sender: nil)
         }
         
         if indexPath.row == 3  {
-               performSegue(withIdentifier: "showHelpVC", sender: nil)
+            performSegue(withIdentifier: "showHelpVC", sender: nil)
         }
         
         if indexPath.row == 4  {
@@ -128,43 +117,6 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
     func changeTitleNavigatorBar(){
         let logo = UIImage(named: "logoTitle")
@@ -200,45 +152,21 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if Auth.auth().currentUser?.uid != nil {
-            img_login_logout.image = UIImage(named: "logout_btn")
-            btnSignInOut.setTitle("Sign Out", for: .normal)
-            lbName.text = Auth.auth().currentUser?.displayName
-            lbEmail.text = Auth.auth().currentUser?.email
-            getPhotoFromProfile()
-        }
+        isLogged()
         
     }
     
-    func getPhotoFromProfile (){
-        
-        //this code was inspired from https://stackoverflow.com/questions/39398282/retrieving-image-from-firebase-storage-using-swift
-        
-        let usersRef = ref.child("users").child((Auth.auth().currentUser?.uid)!)
-        
-        // only need to fetch once so use single event
-        usersRef.observeSingleEvent(of: .value, with: { snapshot in
-            
-            if !snapshot.exists() { return }
-            
-            let userInfo = snapshot.value as! NSDictionary
-            let photoURL = userInfo["photoURL"] as! String //Here we can get the picture's url from Firebase
-            
-            let storageRef = Storage.storage().reference(forURL: photoURL)
-            storageRef.downloadURL(completion: { (url, error) in
-                
-                do {
-                    let data = try Data(contentsOf: url!)
-                    self.imgProfile.image = UIImage(data: data as Data)
-                    
-                } catch {
-                    print("error")
-                }
-                
-            })
-        } )
+    func isLogged(){
+        if Auth.auth().currentUser?.uid != nil {
+            appDelegate.getDataFromUser() //get all information about current user
+            img_login_logout.image = UIImage(named: "logout_btn")
+            btnSignInOut.setTitle("Sign Out", for: .normal)
+            lbName.text = appDelegate.userObj.username
+            lbEmail.text = appDelegate.userObj.email
+            imgProfile.image = appDelegate.userObj.image
+        }
     }
-
+    
+    
     
 }

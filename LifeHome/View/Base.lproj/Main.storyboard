@@ -193,10 +193,10 @@
                         <outlet property="btnCreateAccount" destination="pAR-Vh-syL" id="Bpu-BG-FgX"/>
                         <outlet property="changeProfileButton" destination="l5o-wG-lLi" id="Rsh-ih-tij"/>
                         <outlet property="emailField" destination="h7s-S1-oG9" id="urL-dH-tzn"/>
-                        <outlet property="fullNameField" destination="o1G-lX-jni" id="g5U-q8-cES"/>
                         <outlet property="passwordField" destination="Lo9-SU-irp" id="M9f-uP-5GY"/>
                         <outlet property="phoneField" destination="GW6-ls-vie" id="stX-cY-EYV"/>
                         <outlet property="profileImageView" destination="83r-G4-MJt" id="TJC-kZ-sBS"/>
+                        <outlet property="usernameField" destination="o1G-lX-jni" id="g5U-q8-cES"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lfA-zn-dIg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -531,7 +531,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Z6V-M5-Pb4">
                             <connections>
-                                <action selector="btnSavePressed:" destination="FZ7-MC-aae" id="Wv9-3v-E48"/>
+                                <action selector="btnSavePressed:" destination="FZ7-MC-aae" id="wTV-ys-3U1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -681,7 +681,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="HaG-r2-21K">
+                        <view key="tableHeaderView" contentMode="scaleToFill" misplaced="YES" id="HaG-r2-21K">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>

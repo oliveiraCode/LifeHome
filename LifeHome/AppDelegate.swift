@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let arrayTypeOfProperty:[String] =
         ["Select...","House","Townhouse","Apartment","Duplex","Triplex","Fourplex","Other"]
     var myCurrentLocation:CLLocation!
+    let userObj = User()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -57,6 +58,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func getDataFromUser(){
+        
+        let userRef = Database.database().reference().child("users")
+        
+        userRef.child((Auth.auth().currentUser?.uid)!).observe(.value, with: { (snapshot) in
+            if snapshot.childrenCount > 0 {
+                
+                let users = snapshot.value as! [String:AnyObject]
+                self.userObj.id = Auth.auth().currentUser?.uid
+                self.userObj.email = users["email"] as! String
+                self.userObj.phone = users["phone"] as! String
+                self.userObj.username = users["username"] as! String
+                let photoURL = users["photoURL"] as! String
+                
+                let storageRef = Storage.storage().reference(forURL: photoURL)
+                storageRef.downloadURL(completion: { (url, error) in
+                    
+                    do {
+                        let data = try Data(contentsOf: url!)
+                        self.userObj.image = UIImage(data: data as Data)
+                        
+                    } catch {
+                        print("error")
+                    }
+                    
+                })
+                
+            }
+        })
+        
+    }
+    
+
     
 
 }

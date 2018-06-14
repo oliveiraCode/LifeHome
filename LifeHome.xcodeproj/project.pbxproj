@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C14CCE620D2A622002B2621 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C14CCE520D2A622002B2621 /* User.swift */; };
 		9C15102420BC519100C05516 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C15102320BC519100C05516 /* FavoritesTableViewController.swift */; };
 		9C19724620BC555100BE1FEB /* MyAdsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C19724520BC555100BE1FEB /* MyAdsTableViewController.swift */; };
 		9C3DB9A320C584B600044563 /* MyNewAdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3DB9A120C584B600044563 /* MyNewAdCell.swift */; };
@@ -39,6 +40,7 @@
 		09BB835A7A2ADA7B5EDFAAC1 /* Pods-LifeHome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeHome.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LifeHome/Pods-LifeHome.debug.xcconfig"; sourceTree = "<group>"; };
 		2E2E1E3FA39609F1998A203A /* Pods_LifeHome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LifeHome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		837495C06E71305CD57D74D2 /* Pods-LifeHome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeHome.release.xcconfig"; path = "Pods/Target Support Files/Pods-LifeHome/Pods-LifeHome.release.xcconfig"; sourceTree = "<group>"; };
+		9C14CCE520D2A622002B2621 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9C15102320BC519100C05516 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
 		9C19724520BC555100BE1FEB /* MyAdsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAdsTableViewController.swift; sourceTree = "<group>"; };
 		9C3DB9A120C584B600044563 /* MyNewAdCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNewAdCell.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				9C94723E20C7166F00665DA7 /* Ad.swift */,
+				9C14CCE520D2A622002B2621 /* User.swift */,
 				9C94724020C7173100665DA7 /* Address.swift */,
 				9C94724220C7188A00665DA7 /* TypeOfAd.swift */,
 			);
@@ -400,6 +403,7 @@
 				9C5891E820BDEF2F0098235C /* NewAdTableViewController.swift in Sources */,
 				9C3DB9A320C584B600044563 /* MyNewAdCell.swift in Sources */,
 				9C4B290D20B6E72C00EE8A1B /* AppDelegate.swift in Sources */,
+				9C14CCE620D2A622002B2621 /* User.swift in Sources */,
 				9C94723F20C7166F00665DA7 /* Ad.swift in Sources */,
 				9C94724320C7188A00665DA7 /* TypeOfAd.swift in Sources */,
 				9CE4CCCB20C2087400CC7007 /* MenuViewController.swift in Sources */,
