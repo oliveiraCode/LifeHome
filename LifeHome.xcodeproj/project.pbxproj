@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9C14CCE620D2A622002B2621 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C14CCE520D2A622002B2621 /* User.swift */; };
+		9C14CCE820D3F72D002B2621 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C14CCE720D3F72D002B2621 /* Contact.swift */; };
 		9C15102420BC519100C05516 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C15102320BC519100C05516 /* FavoritesTableViewController.swift */; };
 		9C19724620BC555100BE1FEB /* MyAdsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C19724520BC555100BE1FEB /* MyAdsTableViewController.swift */; };
 		9C3DB9A320C584B600044563 /* MyNewAdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3DB9A120C584B600044563 /* MyNewAdCell.swift */; };
@@ -41,6 +42,7 @@
 		2E2E1E3FA39609F1998A203A /* Pods_LifeHome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LifeHome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		837495C06E71305CD57D74D2 /* Pods-LifeHome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeHome.release.xcconfig"; path = "Pods/Target Support Files/Pods-LifeHome/Pods-LifeHome.release.xcconfig"; sourceTree = "<group>"; };
 		9C14CCE520D2A622002B2621 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		9C14CCE720D3F72D002B2621 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		9C15102320BC519100C05516 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
 		9C19724520BC555100BE1FEB /* MyAdsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAdsTableViewController.swift; sourceTree = "<group>"; };
 		9C3DB9A120C584B600044563 /* MyNewAdCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNewAdCell.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				9C14CCE520D2A622002B2621 /* User.swift */,
 				9C94724020C7173100665DA7 /* Address.swift */,
 				9C94724220C7188A00665DA7 /* TypeOfAd.swift */,
+				9C14CCE720D3F72D002B2621 /* Contact.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 				9C4B292C20B856F900EE8A1B /* LoginViewController.swift in Sources */,
 				9C4B292920B71ACB00EE8A1B /* ListTableViewController.swift in Sources */,
 				9CE4CCC120C18ABC00CC7007 /* MyCustomCell.swift in Sources */,
+				9C14CCE820D3F72D002B2621 /* Contact.swift in Sources */,
 				9C15102420BC519100C05516 /* FavoritesTableViewController.swift in Sources */,
 				9C910DEF20C5C9F400506B3F /* HelpViewController.swift in Sources */,
 				9C5891E820BDEF2F0098235C /* NewAdTableViewController.swift in Sources */,

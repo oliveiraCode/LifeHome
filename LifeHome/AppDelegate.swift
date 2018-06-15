@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //change the default tint color.
         self.window!.tintColor = UIColor.init(red: 0/255, green: 111/255, blue: 173/255, alpha: 100)
         
+        
         // Override point for customization after application launch.
         
         
@@ -79,21 +80,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     do {
                         let data = try Data(contentsOf: url!)
                         self.userObj.image = UIImage(data: data as Data)
+                        NotificationCenter.default.post(name: Notification.Name("updateInfoUser"), object: nil)
                         
                     } catch {
                         print("error")
                     }
                     
                 })
-                
             }
         })
-        
     }
     
-
     
-
+    
+    
 }
 
 

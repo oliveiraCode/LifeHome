@@ -15,7 +15,7 @@ protocol ImagePickerDelegate {
 
 class MyNewAdCell: UITableViewCell {
 
-    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     @IBOutlet weak var imgAd: UIImageView!
     @IBOutlet weak var segTypeOfAd: UISegmentedControl!
     @IBOutlet weak var btnTypeOfProperty: UIButton!
@@ -28,7 +28,8 @@ class MyNewAdCell: UITableViewCell {
     @IBOutlet weak var tfPostalCode: UITextField!
     @IBOutlet weak var tfCity: UITextField!
     @IBOutlet weak var tfProvince: UITextField!
-    
+    @IBOutlet weak var tfEmail: UITextField!
+    @IBOutlet weak var tfPhone: UITextField!
     
     var delegate : ImagePickerDelegate?
     
@@ -54,6 +55,21 @@ class MyNewAdCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func switchPressed(_ sender: UISwitch) {
+        
+        if sender.isOn {
+             tfEmail.text = appDelegate.userObj.email
+            tfPhone.text = appDelegate.userObj.phone
+            tfEmail.isEnabled = false
+            tfPhone.isEnabled = false
+        } else {
+            tfEmail.isEnabled = true
+            tfPhone.isEnabled = true
+            tfEmail.text = ""
+            tfPhone.text = ""
+        }
+        
+    }
     
     @IBAction func stepperBedroom(_ sender: UIStepper) {
         self.lbBedroom.text = "\(Int(sender.value))"

@@ -18,14 +18,13 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var lbEmail: UILabel!
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var img_login_logout: UIImageView!
+    @IBOutlet weak var tableView: UITableView!
+    
     let ref = Database.database().reference()
-    
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
     let nameMenu:[String] = ["Home","Profile","Settings","Help","About"]
     let imgMenu:[String] = ["home","profile","settings","help","about"]
     
-    @IBOutlet weak var tableView: UITableView!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent //StatusBar white
@@ -44,6 +43,8 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
+        // Register to receive notification
+        NotificationCenter.default.addObserver(self, selector: #selector(updateInfoUser), name: NSNotification.Name(rawValue: "updateInfoUser"), object: nil)
     }
     
     
@@ -77,7 +78,6 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // Override to support conditional editing of the table view.
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        
         return true
         
     }
@@ -126,27 +126,20 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     
     @IBAction func btnSignInOut(_ sender: Any) {
-        
         if Auth.auth().currentUser?.uid == nil{
             performSegue(withIdentifier: "showLoginVC", sender: nil)
-        }
-        
-        if btnSignInOut.titleLabel?.text == "Sign Out" {
-            
+        } else {
             do {
                 try Auth.auth().signOut()
-            } catch let signOutError as NSError {
-                print ("Error signing out: %@", signOutError)
+                img_login_logout.image = UIImage(named: "login_btn")
+                btnSignInOut.setTitle("Sign In", for: .normal)
+                lbName.text = "Your name"
+                lbEmail.text = "Your email"
+                imgProfile.image = UIImage(named: "user")
+                
+            } catch {
             }
-            
-            img_login_logout.image = UIImage(named: "login_btn")
-            btnSignInOut.setTitle("Sign In", for: .normal)
-            lbName.text = "Your name"
-            lbEmail.text = "Your email"
-            imgProfile.image = UIImage(named: "user")
-            
         }
-        
         
     }
     
@@ -158,13 +151,19 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func isLogged(){
         if Auth.auth().currentUser?.uid != nil {
-            appDelegate.getDataFromUser() //get all information about current user
+            appDelegate.getDataFromUser()
             img_login_logout.image = UIImage(named: "logout_btn")
             btnSignInOut.setTitle("Sign Out", for: .normal)
-            lbName.text = appDelegate.userObj.username
-            lbEmail.text = appDelegate.userObj.email
-            imgProfile.image = appDelegate.userObj.image
+            
         }
+    }
+    
+    
+    //update info user got from firebase
+    @objc func updateInfoUser(){
+        lbName.text = appDelegate.userObj.username
+        lbEmail.text = appDelegate.userObj.email
+        imgProfile.image = appDelegate.userObj.image
     }
     
     

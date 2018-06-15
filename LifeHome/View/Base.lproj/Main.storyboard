@@ -460,16 +460,16 @@
         <scene sceneID="uJI-9h-Yq1">
             <objects>
                 <tableViewController title="New Ad" id="4Xz-fN-EMP" customClass="NewAdTableViewController" customModule="LifeHome" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="1290" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="qJw-DB-hDL">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="1467" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="qJw-DB-hDL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="1290" id="Mqj-lh-sfy">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="1290"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="1467" id="Mqj-lh-sfy">
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="1467"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mqj-lh-sfy" id="LY1-Et-PyN">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="1289.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="1466.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -488,7 +488,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="XWl-uC-k5a">
                             <connections>
-                                <action selector="saveAdPressed:" destination="4Xz-fN-EMP" id="mbu-Lg-c1p"/>
+                                <action selector="btnSaveAdPressed:" destination="4Xz-fN-EMP" id="mbu-Lg-c1p"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

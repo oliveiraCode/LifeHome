@@ -27,8 +27,6 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
         changeTitleNavigatorBar()
         sideMenus()
         
-        setUpSearchBar()
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         let nibName = UINib(nibName: "MyCustomCell", bundle: nil)
@@ -49,6 +47,8 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
         
         //get all data from Firebase
         loadData()
+        
+        setUpSearchBar()
         
         
     }
@@ -135,8 +135,9 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
     
     
     func loadData (){
-        
         self.appDelegate.currentListAds.removeAll()
+        
+        print(self.appDelegate.currentListAds.count)
         let ref: DatabaseReference = Database.database().reference()
         
         ref.child("Ad").observe(.value, with:
@@ -159,10 +160,9 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
                             
                             do {
                                 let data = try Data(contentsOf: url)
-                                DispatchQueue.main.async {
                                     adObj.imageURL = UIImage(data: data as Data)
-                                    self.tableView.reloadData()
-                                }
+                                self.tableView.reloadData()
+
                                 
                             } catch {
                                 print("Error: \(error.localizedDescription)")
@@ -200,14 +200,22 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
                         
                         adObj.address = addressObj
                         
+                        guard let contactDict = adDict["Contact"] as? [String: Any] else { continue }
+                        let contactObj = Contact()
+                        contactObj.email = contactDict["email"] as? String
+                        contactObj.phone = contactDict["phone"] as? String
+                        
+                        adObj.contact = contactObj
+                        
                         //Call the copmletion handler that was passed to us
                         self.appDelegate.currentListAds.append(adObj)
+                        self.tableView.reloadData()
                         
-                        
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                            self.listAds = self.appDelegate.currentListAds
-                        }
+//                        DispatchQueue.main.async {
+//                            print(self.appDelegate.currentListAds.count)
+//                            self.appDelegate.currentListAds.append(adObj)
+//                            self.tableView.reloadData()
+//                        }
                         
                     }
                 }
