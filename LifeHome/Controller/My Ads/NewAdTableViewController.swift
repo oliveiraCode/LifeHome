@@ -131,8 +131,7 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
         
         self.addressObj.latitude = locationCoordinate.coordinate.latitude
         self.addressObj.longitude = locationCoordinate.coordinate.longitude
-        
-        print(self.addressObj.latitude)
+
         var typeOfAd:String?
         
         
@@ -172,9 +171,6 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
         
         self.ref.child("Ad").child(self.uid!).child(self.adId).setValue(adData)
        
-        
-
-        
     }
     
     

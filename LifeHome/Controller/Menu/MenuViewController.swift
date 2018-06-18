@@ -22,8 +22,8 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     let ref = Database.database().reference()
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    let nameMenu:[String] = ["Home","Profile","Settings","Help","About"]
-    let imgMenu:[String] = ["home","profile","settings","help","about"]
+    let nameMenu:[String] = ["Home","Profile","Settings","About"]
+    let imgMenu:[String] = ["home","profile","settings","about"]
     
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -107,10 +107,6 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         if indexPath.row == 3  {
-            performSegue(withIdentifier: "showHelpVC", sender: nil)
-        }
-        
-        if indexPath.row == 4  {
             performSegue(withIdentifier: "showAboutVC", sender: nil)
         }
         

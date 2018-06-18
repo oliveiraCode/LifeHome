@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		9C14CCE620D2A622002B2621 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C14CCE520D2A622002B2621 /* User.swift */; };
 		9C14CCE820D3F72D002B2621 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C14CCE720D3F72D002B2621 /* Contact.swift */; };
-		9C15102420BC519100C05516 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C15102320BC519100C05516 /* FavoritesTableViewController.swift */; };
+		9C15102420BC519100C05516 /* WishlistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C15102320BC519100C05516 /* WishlistTableViewController.swift */; };
 		9C19724620BC555100BE1FEB /* MyAdsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C19724520BC555100BE1FEB /* MyAdsTableViewController.swift */; };
 		9C3DB9A320C584B600044563 /* MyNewAdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3DB9A120C584B600044563 /* MyNewAdCell.swift */; };
 		9C3DB9A420C584B600044563 /* MyNewAdCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C3DB9A220C584B600044563 /* MyNewAdCell.xib */; };
@@ -26,7 +26,6 @@
 		9C4B293020B8731100EE8A1B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B292F20B8731100EE8A1B /* SignUpViewController.swift */; };
 		9C5891E820BDEF2F0098235C /* NewAdTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5891E720BDEF2F0098235C /* NewAdTableViewController.swift */; };
 		9C910DED20C5C9E500506B3F /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C910DEC20C5C9E500506B3F /* AboutViewController.swift */; };
-		9C910DEF20C5C9F400506B3F /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C910DEE20C5C9F400506B3F /* HelpViewController.swift */; };
 		9C94723F20C7166F00665DA7 /* Ad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C94723E20C7166F00665DA7 /* Ad.swift */; };
 		9C94724120C7173100665DA7 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C94724020C7173100665DA7 /* Address.swift */; };
 		9C94724320C7188A00665DA7 /* TypeOfAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C94724220C7188A00665DA7 /* TypeOfAd.swift */; };
@@ -43,7 +42,7 @@
 		837495C06E71305CD57D74D2 /* Pods-LifeHome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeHome.release.xcconfig"; path = "Pods/Target Support Files/Pods-LifeHome/Pods-LifeHome.release.xcconfig"; sourceTree = "<group>"; };
 		9C14CCE520D2A622002B2621 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9C14CCE720D3F72D002B2621 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
-		9C15102320BC519100C05516 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
+		9C15102320BC519100C05516 /* WishlistTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistTableViewController.swift; sourceTree = "<group>"; };
 		9C19724520BC555100BE1FEB /* MyAdsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAdsTableViewController.swift; sourceTree = "<group>"; };
 		9C3DB9A120C584B600044563 /* MyNewAdCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNewAdCell.swift; sourceTree = "<group>"; };
 		9C3DB9A220C584B600044563 /* MyNewAdCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyNewAdCell.xib; sourceTree = "<group>"; };
@@ -62,7 +61,6 @@
 		9C4B292F20B8731100EE8A1B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		9C5891E720BDEF2F0098235C /* NewAdTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAdTableViewController.swift; sourceTree = "<group>"; };
 		9C910DEC20C5C9E500506B3F /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
-		9C910DEE20C5C9F400506B3F /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		9C94723E20C7166F00665DA7 /* Ad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ad.swift; sourceTree = "<group>"; };
 		9C94724020C7173100665DA7 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		9C94724220C7188A00665DA7 /* TypeOfAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeOfAd.swift; sourceTree = "<group>"; };
@@ -95,12 +93,12 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		9C15102220BC515500C05516 /* Favorites */ = {
+		9C15102220BC515500C05516 /* Wishlist */ = {
 			isa = PBXGroup;
 			children = (
-				9C15102320BC519100C05516 /* FavoritesTableViewController.swift */,
+				9C15102320BC519100C05516 /* WishlistTableViewController.swift */,
 			);
-			path = Favorites;
+			path = Wishlist;
 			sourceTree = "<group>";
 		};
 		9C19724420BC553D00BE1FEB /* My Ads */ = {
@@ -181,7 +179,7 @@
 				9CE4CCC720C204EC00CC7007 /* Menu */,
 				9CE4CCB620C1870800CC7007 /* Cells */,
 				9C19724420BC553D00BE1FEB /* My Ads */,
-				9C15102220BC515500C05516 /* Favorites */,
+				9C15102220BC515500C05516 /* Wishlist */,
 				9C4B292E20B8571600EE8A1B /* List */,
 				9C4B292D20B8570B00EE8A1B /* Map */,
 				9C4B292A20B856D200EE8A1B /* Login */,
@@ -224,14 +222,6 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		9C910DEA20C5C9C700506B3F /* Help */ = {
-			isa = PBXGroup;
-			children = (
-				9C910DEE20C5C9F400506B3F /* HelpViewController.swift */,
-			);
-			path = Help;
-			sourceTree = "<group>";
-		};
 		9C910DEB20C5C9D200506B3F /* About */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,7 +245,6 @@
 			isa = PBXGroup;
 			children = (
 				9CE4CCCA20C2087400CC7007 /* MenuViewController.swift */,
-				9C910DEA20C5C9C700506B3F /* Help */,
 				9C910DEB20C5C9D200506B3F /* About */,
 				9C4B293420B8B22100EE8A1B /* Settings */,
 			);
@@ -402,8 +391,7 @@
 				9C4B292920B71ACB00EE8A1B /* ListTableViewController.swift in Sources */,
 				9CE4CCC120C18ABC00CC7007 /* MyCustomCell.swift in Sources */,
 				9C14CCE820D3F72D002B2621 /* Contact.swift in Sources */,
-				9C15102420BC519100C05516 /* FavoritesTableViewController.swift in Sources */,
-				9C910DEF20C5C9F400506B3F /* HelpViewController.swift in Sources */,
+				9C15102420BC519100C05516 /* WishlistTableViewController.swift in Sources */,
 				9C5891E820BDEF2F0098235C /* NewAdTableViewController.swift in Sources */,
 				9C3DB9A320C584B600044563 /* MyNewAdCell.swift in Sources */,
 				9C4B290D20B6E72C00EE8A1B /* AppDelegate.swift in Sources */,

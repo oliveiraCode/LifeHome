@@ -9,7 +9,7 @@
 import UIKit
 import SWRevealViewController
 
-class FavoritesTableViewController: UITableViewController {
+class WishlistTableViewController: UITableViewController {
 
     @IBOutlet weak var btnMenu: UIBarButtonItem!
     

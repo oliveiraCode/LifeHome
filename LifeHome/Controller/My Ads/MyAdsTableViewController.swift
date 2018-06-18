@@ -70,9 +70,12 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
             cell.lbGarage.text = String(listMyAds[indexPath.row].garage!)
             cell.lbPrice.text = String(format: "CAD %.2f",listMyAds[indexPath.row].price!)
             
-            if (listMyAds[indexPath.row].address?.longitude) != nil {
-                cell.lbDistance.text = String(format:"%.1f km ",self.calculateDistance(lat: (self.listMyAds[indexPath.row].address?.latitude)!, long: (self.listMyAds[indexPath.row].address?.longitude)!))
-                
+            if UserDefaults.standard.bool(forKey: "miles"){
+                if (listMyAds[indexPath.row].address?.longitude) != nil {
+                    cell.lbDistance.text = String(format:"%.2f mi ",self.calculateDistanceMi(lat: (listMyAds[indexPath.row].address?.latitude)!, long: (listMyAds[indexPath.row].address?.longitude)!))
+                }
+            } else if (listMyAds[indexPath.row].address?.longitude) != nil {
+                cell.lbDistance.text = String(format:"%.2f km ",self.calculateDistanceKm(lat: (listMyAds[indexPath.row].address?.latitude)!, long: (listMyAds[indexPath.row].address?.longitude)!))
             }
             
         }
@@ -204,10 +207,16 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
     }
     
     
-    func calculateDistance(lat: Double, long: Double) -> Double{
+    func calculateDistanceKm(lat: Double, long: Double) -> Double{
         let adLocation = CLLocation(latitude: lat, longitude: long)
         let distanceKm = appDelegate.myCurrentLocation.distance(from: adLocation)/1000
         return distanceKm
+    }
+    
+    func calculateDistanceMi(lat: Double, long: Double) -> Double{
+        let distanceKm = calculateDistanceKm(lat: lat, long: long)
+        let distanceMi = distanceKm/1.6
+        return distanceMi
     }
     
     
