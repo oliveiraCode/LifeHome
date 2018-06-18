@@ -14,6 +14,8 @@ import CoreLocation
 class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate {
 
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var ref: DatabaseReference = Database.database().reference()
+    let uid = Auth.auth().currentUser?.uid //get the current uid
     @IBOutlet weak var btnMenu: UIBarButtonItem!
     
     var listMyAds:[Ad] = []
@@ -88,6 +90,24 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
     }
 
 
+    // Override to support editing the table view.
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        //User Defaults
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            self.tableView.beginUpdates()
+            tableView.deleteRows(at: [indexPath], with: .fade)
+           
+        self.ref.child("Ad").child(self.uid!).child(self.listMyAds[indexPath.row].id!).setValue(nil)
+
+            self.listMyAds.remove(at: indexPath.row)
+
+            self.tableView.endUpdates()
+            self.tableView.reloadData()
+        }
+        
+    }
 
     
     @IBAction func btnNewAd(_ sender: Any) {
@@ -164,8 +184,7 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
                             
                         })
                         
-                        
-                        
+                        adObj.id = adId.key
                         adObj.bedroom = adDict["bedroom"] as? Int
                         adObj.garage = adDict["garage"] as? Int
                         adObj.bathroom = adDict["bathroom"] as? Int

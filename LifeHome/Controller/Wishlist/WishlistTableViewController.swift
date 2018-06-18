@@ -27,7 +27,7 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
         let nibName = UINib(nibName: "MyAdCell", bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: "myCell")
         
-        loadData()
+        loadDataWishList()
  
         // Uncomment the following line to preserve selection between presentations
         self.clearsSelectionOnViewWillAppear = false
@@ -59,7 +59,7 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyAdCell
 
-        
+        if self.appDelegate.wishlistAd.count > 0 {
         cell.lbAddress.text = self.appDelegate.wishlistAd[indexPath.row].address?.street
         cell.lbCity.text = self.appDelegate.wishlistAd[indexPath.row].address?.city
         cell.imgAd.image = self.appDelegate.wishlistAd[indexPath.row].image
@@ -76,7 +76,7 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
         } else if (self.appDelegate.wishlistAd[indexPath.row].address?.longitude) != nil {
             cell.lbDistance.text = String(format:"%.2f km ",self.calculateDistanceKm(lat: (self.appDelegate.wishlistAd[indexPath.row].address?.latitude)!, long: (self.appDelegate.wishlistAd[indexPath.row].address?.longitude)!))
         }
-        
+        }
         return cell
     }
 
@@ -110,9 +110,7 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
             // Delete the row from the data source
             self.tableView.beginUpdates()
             tableView.deleteRows(at: [indexPath], with: .fade)
-    
-            
-            self.ref.child("Wishlist").child(self.uid!).child(self.appDelegate.wishlistAd[indexPath.row].id!).setValue(nil)
+     self.ref.child("Wishlist").child(self.uid!).child(self.appDelegate.wishlistAd[indexPath.row].id!).setValue(nil)
         
             self.appDelegate.wishlistAd.remove(at: indexPath.row)
             
@@ -123,6 +121,7 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
     }
     
 
+    
     /*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
@@ -157,7 +156,7 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
     }
     
     
-    func loadData (){
+    func loadDataWishList (){
         
         let ref: DatabaseReference = Database.database().reference()
         
@@ -220,19 +219,17 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
                     
                     //Call the copmletion handler that was passed to us
                     self.appDelegate.wishlistAd.append(adObj)
-                    DispatchQueue.main.async {
-                        self.updateBadgeValue()
-                    }
                     self.tableView.reloadData()
                     
                 }
             }
+            DispatchQueue.main.async {
+                self.updateBadgeValue()
+            }
         }
         
-        
-
-        
     }
+    
     
     func updateBadgeValue(){
         if UserDefaults.standard.bool(forKey: "wishlistNotification") {

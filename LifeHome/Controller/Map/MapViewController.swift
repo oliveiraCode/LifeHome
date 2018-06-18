@@ -54,7 +54,7 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDel
         self.locationManager.stopUpdatingLocation() //para a atualizacao da localizacao atual
         
         //Displaying all Stores Pins ( annotations)
-        displayAnnotations(listAllAds: self.appDelegate.currentListAds)
+        displayAnnotations()
         
     }
     
@@ -105,7 +105,7 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDel
     }
     
     
-    func displayAnnotations(listAllAds:[Ad]){
+    func displayAnnotations(){
         for item in self.appDelegate.currentListAds {
             let adObj : Ad = item
             let adLocation = CLLocationCoordinate2D(latitude: (adObj.address?.latitude)!, longitude: (adObj.address?.longitude)!)

@@ -139,6 +139,8 @@ class DetailAdTableViewController: UITableViewController {
             isWishlist = true
         }
         
+        cell.displayAnnotations()
+        
         return cell
     }
     

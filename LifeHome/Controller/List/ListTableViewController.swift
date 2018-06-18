@@ -46,12 +46,11 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
         // Register to receive notification
         NotificationCenter.default.addObserver(self, selector: #selector(updateBagdeValue), name: NSNotification.Name(rawValue: "updateBagdeValue"), object: nil)
         
-        //get all data from Firebase
-        loadData()
+        //get all Ads data from Firebase
+        loadDataAllAds()
         
         setUpSearchBar()
-        
-        
+  
     }
     
     private func setUpSearchBar() {
@@ -147,7 +146,7 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
     }
     
     
-    func loadData (){
+    func loadDataAllAds (){
 
         let ref: DatabaseReference = Database.database().reference()
         
