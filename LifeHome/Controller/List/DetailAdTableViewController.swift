@@ -29,6 +29,8 @@ class DetailAdTableViewController: UITableViewController {
         
         // Register to receive notification
         NotificationCenter.default.addObserver(self, selector: #selector(saveWishlist), name: NSNotification.Name(rawValue: "saveWishlist"), object: nil)
+        
+
     }
     
     
@@ -36,20 +38,57 @@ class DetailAdTableViewController: UITableViewController {
         
         self.tableView.reloadData() //to change the heart picture
         
+        if isWishlist {
+            saveData()
+            
+        } else {
+            deleteData()
+        }
+
+    }
+    
+    func deleteData(){
+        self.ref.child("Wishlist").child(self.uid!).child(self.appDelegate.detailAd[0].id!).setValue(nil)
+    }
+    
+    func saveData(){
+        var typeOfAd:String?
         
-//        if isWishlist {
-//        self.ref.child("Wishlist").child(self.uid!).child("AdId\(self.appDelegate.detailAd[0].id!)").setValue("IdUser-\(self.uid!)")
-//        } else {
-//            self.ref.child("Wishlist").child(self.uid!).child("AdId\(self.appDelegate.detailAd[0].id!)").setValue(nil)
-//        }
-//
+        let addressData = [
+            "city": self.appDelegate.detailAd[0].address!.city!,
+            "postal code": self.appDelegate.detailAd[0].address!.postalCode!,
+            "province": self.appDelegate.detailAd[0].address!.province!,
+            "street": self.appDelegate.detailAd[0].address!.street!,
+            "latitude": self.appDelegate.detailAd[0].address!.latitude!,
+            "longitude": self.appDelegate.detailAd[0].address!.longitude!
+            ] as [String:Any]
+        
+        let contactData = [
+            "email":self.appDelegate.detailAd[0].contact!.email!,
+            "phone":self.appDelegate.detailAd[0].contact!.phone!
+            ] as [String:Any]
+        
+        if self.appDelegate.detailAd[0].typeOfAd == TypeOfAd.Rent{
+            typeOfAd = "Rent"
+        } else {
+            typeOfAd = "Sell"
+        }
+        
+        let adData = [
+            "bathroom": self.appDelegate.detailAd[0].bathroom!,
+            "bedroom": self.appDelegate.detailAd[0].bedroom!,
+            "garage": self.appDelegate.detailAd[0].garage!,
+            "description": self.appDelegate.detailAd[0].description!,
+            "price": self.appDelegate.detailAd[0].price!,
+            "typeOfAd": typeOfAd!,
+            "typeOfProperty": self.appDelegate.detailAd[0].typeOfProperty!,
+            "Address": addressData,
+            "Contact": contactData,
+            "imageURL": self.appDelegate.detailAd[0].imgUrl!
+            ] as [String:Any]
         
         
-//        if UserDefaults.standard.bool(forKey: "wishlistNotification"){
-//            tabBarController?.tabBar.items?.last?.badgeValue = "\(self.appDelegate.wishlistAd.count)"
-//        }
-        
-        
+        self.ref.child("Wishlist").child(self.uid!).child(self.appDelegate.detailAd[0].id!).setValue(adData)
         
     }
     
@@ -74,7 +113,7 @@ class DetailAdTableViewController: UITableViewController {
         
         cell.lbPhone.text = self.appDelegate.detailAd[indexPath.row].contact?.phone
         cell.lbEmail.text = self.appDelegate.detailAd[indexPath.row].contact?.email
-        cell.imageAd.image = self.appDelegate.detailAd[indexPath.row].imageURL
+        cell.imageAd.image = self.appDelegate.detailAd[indexPath.row].image
         cell.tvDescription.text = self.appDelegate.detailAd[indexPath.row].description
         cell.lbBedroom.text = String(self.appDelegate.detailAd[indexPath.row].bedroom!)
         cell.lbBathroom.text = String(self.appDelegate.detailAd[indexPath.row].bathroom!)

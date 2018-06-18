@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9C03E25220D83B74009B4EF6 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9C03E25020D83B74009B4EF6 /* Model.xcdatamodeld */; };
 		9C14CCE620D2A622002B2621 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C14CCE520D2A622002B2621 /* User.swift */; };
 		9C14CCE820D3F72D002B2621 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C14CCE720D3F72D002B2621 /* Contact.swift */; };
 		9C15102420BC519100C05516 /* WishlistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C15102320BC519100C05516 /* WishlistTableViewController.swift */; };
@@ -44,7 +43,6 @@
 		09BB835A7A2ADA7B5EDFAAC1 /* Pods-LifeHome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeHome.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LifeHome/Pods-LifeHome.debug.xcconfig"; sourceTree = "<group>"; };
 		2E2E1E3FA39609F1998A203A /* Pods_LifeHome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LifeHome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		837495C06E71305CD57D74D2 /* Pods-LifeHome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeHome.release.xcconfig"; path = "Pods/Target Support Files/Pods-LifeHome/Pods-LifeHome.release.xcconfig"; sourceTree = "<group>"; };
-		9C03E25120D83B74009B4EF6 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		9C14CCE520D2A622002B2621 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9C14CCE720D3F72D002B2621 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		9C15102320BC519100C05516 /* WishlistTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistTableViewController.swift; sourceTree = "<group>"; };
@@ -101,15 +99,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		9C03E25320D83B98009B4EF6 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				9C03E25020D83B74009B4EF6 /* Model.xcdatamodeld */,
-			);
-			name = Data;
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		9C15102220BC515500C05516 /* Wishlist */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,7 +141,6 @@
 				9CE4CCC320C1E91A00CC7007 /* LifeHome-Bridging-Header.h */,
 				9C4B291320B6E72D00EE8A1B /* Assets.xcassets */,
 				9C4B292520B703E900EE8A1B /* Controller */,
-				9C03E25320D83B98009B4EF6 /* Data */,
 				9C4B292420B703DE00EE8A1B /* Model */,
 				9C4B290C20B6E72C00EE8A1B /* AppDelegate.swift */,
 				9C4B292320B7022800EE8A1B /* View */,
@@ -410,7 +398,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C4B292C20B856F900EE8A1B /* LoginViewController.swift in Sources */,
-				9C03E25220D83B74009B4EF6 /* Model.xcdatamodeld in Sources */,
 				9C4B292920B71ACB00EE8A1B /* ListTableViewController.swift in Sources */,
 				9CE4CCC120C18ABC00CC7007 /* MyAdCell.swift in Sources */,
 				9C14CCE820D3F72D002B2621 /* Contact.swift in Sources */,
@@ -636,19 +623,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		9C03E25020D83B74009B4EF6 /* Model.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				9C03E25120D83B74009B4EF6 /* Model.xcdatamodel */,
-			);
-			currentVersion = 9C03E25120D83B74009B4EF6 /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 9C4B290120B6E72C00EE8A1B /* Project object */;
 }

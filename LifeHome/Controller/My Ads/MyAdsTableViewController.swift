@@ -64,7 +64,7 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
         if listMyAds.count > 0 {
             cell.lbAddress.text = listMyAds[indexPath.row].address?.street
             cell.lbCity.text = listMyAds[indexPath.row].address?.city
-            cell.imgAd.image = listMyAds[indexPath.row].imageURL
+            cell.imgAd.image = listMyAds[indexPath.row].image
             cell.lbBedroom.text = String(listMyAds[indexPath.row].bedroom!)
             cell.lbBathroom.text = String(listMyAds[indexPath.row].bathroom!)
             cell.lbTypeOfProperty.text = String(listMyAds[indexPath.row].typeOfProperty!)
@@ -154,10 +154,9 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
                             
                             do {
                                 let data = try Data(contentsOf: url!)
-                                DispatchQueue.main.async {
-                                    adObj.imageURL = UIImage(data: data as Data)
+                                    adObj.imgUrl = url!.absoluteString
+                                    adObj.image = UIImage(data: data as Data)
                                     self.tableView.reloadData()
-                                }
                                 
                             } catch {
                                 print("Error: \(error.localizedDescription)")

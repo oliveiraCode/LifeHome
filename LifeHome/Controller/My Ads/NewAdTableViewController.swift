@@ -19,7 +19,6 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
     var ref: DatabaseReference = Database.database().reference()
     let uid = Auth.auth().currentUser?.uid //get the current uid
     var adId:String!
-    var imgUrl:String!
     let adObj = Ad()
     let addressObj = Address()
     let contactObj = Contact()
@@ -69,7 +68,6 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
         
         self.uploadImage(image:cell.imgAd.image!, adId:adId, uid:uid!) { url in
             
-            self.imgUrl = url!.absoluteString
             self.addressObj.street = cell.tfStreet.text!
             self.addressObj.city = cell.tfCity.text!
             self.addressObj.province = cell.tfProvince.text!
@@ -85,7 +83,7 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
                 self.adObj.typeOfAd = TypeOfAd.Sell
             }
             
-            
+            self.adObj.imgUrl = url!.absoluteString
             self.adObj.bathroom = Int(cell.lbBathroom.text! as String)
             self.adObj.bedroom = Int(cell.lbBedroom.text! as String)
             self.adObj.garage = Int(cell.lbGarage.text! as String)
@@ -165,7 +163,7 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
             "typeOfProperty": self.adObj.typeOfProperty!,
             "Address": addressData,
             "Contact": contactData,
-            "imageURL": imgUrl
+            "imageURL": self.adObj.imgUrl!
             ] as [String:Any]
         
         

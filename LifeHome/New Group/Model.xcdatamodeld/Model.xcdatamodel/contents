@@ -13,11 +13,14 @@
     </entity>
     <entity name="Address" representedClassName="Address" syncable="YES" codeGenerationType="class">
         <attribute name="attribute" optional="YES" syncable="YES"/>
+        <attribute name="city" optional="YES" syncable="YES"/>
+        <attribute name="province" optional="YES" syncable="YES"/>
+        <attribute name="street" optional="YES" syncable="YES"/>
     </entity>
     <entity name="Contact" representedClassName="Contact" syncable="YES" codeGenerationType="class"/>
     <elements>
         <element name="Ad" positionX="-63" positionY="-18" width="128" height="180"/>
-        <element name="Address" positionX="-54" positionY="63" width="128" height="60"/>
+        <element name="Address" positionX="-54" positionY="63" width="128" height="105"/>
         <element name="Contact" positionX="-36" positionY="72" width="128" height="45"/>
     </elements>
 </model>

@@ -67,7 +67,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Wishlist" id="Cb6-gk-HW8">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="Z8e-qr-QdL"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="YZY-8S-75j"/>
                     </navigationItem>
                     <connections>
                         <outlet property="btnMenu" destination="Z8e-qr-QdL" id="cQZ-RB-eJz"/>

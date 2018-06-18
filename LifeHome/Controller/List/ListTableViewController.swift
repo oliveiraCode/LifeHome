@@ -43,6 +43,8 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
             })
         }
         
+        // Register to receive notification
+        NotificationCenter.default.addObserver(self, selector: #selector(updateBagdeValue), name: NSNotification.Name(rawValue: "updateBagdeValue"), object: nil)
         
         //get all data from Firebase
         loadData()
@@ -72,12 +74,12 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
         super.viewWillAppear(animated)
         determineMyCurrentLocation()
         
-        if UserDefaults.standard.bool(forKey: "wishlist") {
-            //to put the badgeValue count from wishlist array
-            tabBarController?.tabBar.items?.last?.badgeValue = "\(self.appDelegate.wishlistAd.count)"
-        }
     }
     
+    
+    @objc func updateBagdeValue(){
+
+    }
     
     // MARK: - Table view data source
     
@@ -104,7 +106,7 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
         
         cell.lbAddress.text = self.appDelegate.currentListAds[indexPath.row].address?.street
         cell.lbCity.text = self.appDelegate.currentListAds[indexPath.row].address?.city
-        cell.imgAd.image = self.appDelegate.currentListAds[indexPath.row].imageURL
+        cell.imgAd.image = self.appDelegate.currentListAds[indexPath.row].image
         cell.lbBedroom.text = String(self.appDelegate.currentListAds[indexPath.row].bedroom!)
         cell.lbBathroom.text = String(self.appDelegate.currentListAds[indexPath.row].bathroom!)
         cell.lbTypeOfProperty.text = String(self.appDelegate.currentListAds[indexPath.row].typeOfProperty!)
@@ -166,7 +168,8 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
                         guard let url = urls else {return}
                         do {
                             let data = try Data(contentsOf: url)
-                            adObj.imageURL = UIImage(data: data as Data)
+                            adObj.imgUrl = url.absoluteString
+                            adObj.image = UIImage(data: data as Data)
                             self.tableView.reloadData()
                         } catch {
                             print("Error: \(error.localizedDescription)")
@@ -181,6 +184,7 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
                     adObj.price = adDict["price"] as? Float
                     adObj.description = adDict["description"]! as? String
                     adObj.typeOfProperty = adDict["typeOfProperty"]! as? String
+                    
                     
                     if (adDict["typeOfAd"]! as! String) == "Sell" {
                         adObj.typeOfAd = .Sell
