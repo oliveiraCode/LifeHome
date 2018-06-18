@@ -15,6 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     var currentListAds:[Ad] = []
+    var detailAd:[Ad] = []
+    var wishlistAd:[Ad] = []
     var selectedRow : Int = 0
     let arrayTypeOfProperty:[String] =
         ["Select...","House","Townhouse","Apartment","Duplex","Triplex","Fourplex","Other"]

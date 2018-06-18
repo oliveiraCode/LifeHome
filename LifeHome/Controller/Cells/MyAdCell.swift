@@ -1,5 +1,5 @@
 //
-//  MyCustomCell.swift
+//  MyAdCell.swift
 //  LifeHome
 //
 //  Created by Leandro Oliveira on 2018-06-01.
@@ -9,7 +9,7 @@
 import UIKit
 
 //This code was inspired from https://www.youtube.com/watch?v=owwLP7GMDf8
-class MyCustomCell: UITableViewCell {
+class MyAdCell: UITableViewCell {
 
     
     @IBOutlet weak var imgAd: UIImageView!
@@ -38,17 +38,7 @@ class MyCustomCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func commonInit(imgAd:UIImage, lbPrice:String, lbTypeOfProperty:String, lbAddress:String, lbCity:String, lbDistance:String, lbBathroom:String, lbBedroom:String, lbGarage:String){
-        self.imgAd.image = imgAd
-        self.lbPrice.text = lbPrice
-        self.lbTypeOfProperty.text = lbTypeOfProperty
-        self.lbAddress.text = lbAddress
-        self.lbCity.text = lbCity
-        self.lbDistance.text = lbDistance
-        self.lbBathroom.text = lbBathroom
-        self.lbBedroom.text = lbBedroom
-        self.lbGarage.text = lbGarage
-    }
+
     
     
 }

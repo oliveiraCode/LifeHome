@@ -35,6 +35,7 @@
                     <connections>
                         <outlet property="btnMenu" destination="IaV-uG-B53" id="hUZ-Mn-Y6f"/>
                         <outlet property="map" destination="Vlu-Qb-4Uh" id="4Ii-pl-liT"/>
+                        <segue destination="Jf9-db-35Y" kind="show" identifier="showMapDetailVC" id="fhG-82-3XY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LyN-eG-6rm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -752,11 +753,41 @@
                     <connections>
                         <outlet property="btnMenu" destination="xIu-C6-wc3" id="1et-rd-ZsQ"/>
                         <outlet property="searchBar" destination="h4k-4a-Cnb" id="so3-jk-oRH"/>
+                        <segue destination="Jf9-db-35Y" kind="show" identifier="showListDetailVC" id="2iO-P9-oLc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C8q-KS-hRx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7279.1999999999998" y="1871.5142428785609"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="XJw-UK-Vte">
+            <objects>
+                <tableViewController id="Jf9-db-35Y" customClass="DetailAdTableViewController" customModule="LifeHome" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="1182" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="UD9-zy-YiJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="1182" id="Bmx-PD-23S">
+                                <rect key="frame" x="0.0" y="28" width="375" height="1182"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bmx-PD-23S" id="Rv2-Y7-WJH">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="1181.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Jf9-db-35Y" id="9rm-k7-Qnf"/>
+                            <outlet property="delegate" destination="Jf9-db-35Y" id="ym0-JL-MLw"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Title" id="7Bz-kR-0y6"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W3q-iq-SqJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9022" y="2259"/>
         </scene>
         <!--Wishlist-->
         <scene sceneID="EJg-nw-UOk">
@@ -989,6 +1020,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="zqV-Rn-GP9"/>
+        <segue reference="fhG-82-3XY"/>
         <segue reference="XBd-ZH-4aS"/>
     </inferredMetricsTieBreakers>
 </document>

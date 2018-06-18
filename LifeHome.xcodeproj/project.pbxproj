@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C03E25220D83B74009B4EF6 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9C03E25020D83B74009B4EF6 /* Model.xcdatamodeld */; };
 		9C14CCE620D2A622002B2621 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C14CCE520D2A622002B2621 /* User.swift */; };
 		9C14CCE820D3F72D002B2621 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C14CCE720D3F72D002B2621 /* Contact.swift */; };
 		9C15102420BC519100C05516 /* WishlistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C15102320BC519100C05516 /* WishlistTableViewController.swift */; };
 		9C19724620BC555100BE1FEB /* MyAdsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C19724520BC555100BE1FEB /* MyAdsTableViewController.swift */; };
+		9C2DEB4420D7D4E30039FE71 /* DetailAdTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2DEB4220D7D4E30039FE71 /* DetailAdTableViewController.swift */; };
+		9C2DEB4820D7D67F0039FE71 /* MyDetailAdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2DEB4620D7D67F0039FE71 /* MyDetailAdCell.swift */; };
+		9C2DEB4920D7D67F0039FE71 /* MyDetailAdCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C2DEB4720D7D67F0039FE71 /* MyDetailAdCell.xib */; };
 		9C3DB9A320C584B600044563 /* MyNewAdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3DB9A120C584B600044563 /* MyNewAdCell.swift */; };
 		9C3DB9A420C584B600044563 /* MyNewAdCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C3DB9A220C584B600044563 /* MyNewAdCell.xib */; };
 		9C3DB9A620C5959A00044563 /* TypeOfPropertyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3DB9A520C5959A00044563 /* TypeOfPropertyTableViewController.swift */; };
@@ -30,8 +34,8 @@
 		9C94724120C7173100665DA7 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C94724020C7173100665DA7 /* Address.swift */; };
 		9C94724320C7188A00665DA7 /* TypeOfAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C94724220C7188A00665DA7 /* TypeOfAd.swift */; };
 		9CA2992420CAD2B000A8E500 /* AdAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA2992320CAD2B000A8E500 /* AdAnnotation.swift */; };
-		9CE4CCC120C18ABC00CC7007 /* MyCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE4CCBF20C18ABC00CC7007 /* MyCustomCell.swift */; };
-		9CE4CCC220C18ABC00CC7007 /* MyCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CE4CCC020C18ABC00CC7007 /* MyCustomCell.xib */; };
+		9CE4CCC120C18ABC00CC7007 /* MyAdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE4CCBF20C18ABC00CC7007 /* MyAdCell.swift */; };
+		9CE4CCC220C18ABC00CC7007 /* MyAdCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CE4CCC020C18ABC00CC7007 /* MyAdCell.xib */; };
 		9CE4CCCB20C2087400CC7007 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE4CCCA20C2087400CC7007 /* MenuViewController.swift */; };
 		E590A76DB15DAED5F8D10F08 /* Pods_LifeHome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E2E1E3FA39609F1998A203A /* Pods_LifeHome.framework */; };
 /* End PBXBuildFile section */
@@ -40,10 +44,14 @@
 		09BB835A7A2ADA7B5EDFAAC1 /* Pods-LifeHome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeHome.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LifeHome/Pods-LifeHome.debug.xcconfig"; sourceTree = "<group>"; };
 		2E2E1E3FA39609F1998A203A /* Pods_LifeHome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LifeHome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		837495C06E71305CD57D74D2 /* Pods-LifeHome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeHome.release.xcconfig"; path = "Pods/Target Support Files/Pods-LifeHome/Pods-LifeHome.release.xcconfig"; sourceTree = "<group>"; };
+		9C03E25120D83B74009B4EF6 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		9C14CCE520D2A622002B2621 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9C14CCE720D3F72D002B2621 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		9C15102320BC519100C05516 /* WishlistTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistTableViewController.swift; sourceTree = "<group>"; };
 		9C19724520BC555100BE1FEB /* MyAdsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAdsTableViewController.swift; sourceTree = "<group>"; };
+		9C2DEB4220D7D4E30039FE71 /* DetailAdTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAdTableViewController.swift; sourceTree = "<group>"; };
+		9C2DEB4620D7D67F0039FE71 /* MyDetailAdCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDetailAdCell.swift; sourceTree = "<group>"; };
+		9C2DEB4720D7D67F0039FE71 /* MyDetailAdCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyDetailAdCell.xib; sourceTree = "<group>"; };
 		9C3DB9A120C584B600044563 /* MyNewAdCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNewAdCell.swift; sourceTree = "<group>"; };
 		9C3DB9A220C584B600044563 /* MyNewAdCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyNewAdCell.xib; sourceTree = "<group>"; };
 		9C3DB9A520C5959A00044563 /* TypeOfPropertyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeOfPropertyTableViewController.swift; sourceTree = "<group>"; };
@@ -66,8 +74,8 @@
 		9C94724220C7188A00665DA7 /* TypeOfAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeOfAd.swift; sourceTree = "<group>"; };
 		9CA2992320CAD2B000A8E500 /* AdAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdAnnotation.swift; sourceTree = "<group>"; };
 		9CA2992520CAD4A900A8E500 /* Montreal.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Montreal.gpx; sourceTree = "<group>"; };
-		9CE4CCBF20C18ABC00CC7007 /* MyCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomCell.swift; sourceTree = "<group>"; };
-		9CE4CCC020C18ABC00CC7007 /* MyCustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCustomCell.xib; sourceTree = "<group>"; };
+		9CE4CCBF20C18ABC00CC7007 /* MyAdCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAdCell.swift; sourceTree = "<group>"; };
+		9CE4CCC020C18ABC00CC7007 /* MyAdCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyAdCell.xib; sourceTree = "<group>"; };
 		9CE4CCC320C1E91A00CC7007 /* LifeHome-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LifeHome-Bridging-Header.h"; sourceTree = "<group>"; };
 		9CE4CCCA20C2087400CC7007 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,6 +99,15 @@
 				837495C06E71305CD57D74D2 /* Pods-LifeHome.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		9C03E25320D83B98009B4EF6 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				9C03E25020D83B74009B4EF6 /* Model.xcdatamodeld */,
+			);
+			name = Data;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		9C15102220BC515500C05516 /* Wishlist */ = {
@@ -135,6 +152,7 @@
 				9CE4CCC320C1E91A00CC7007 /* LifeHome-Bridging-Header.h */,
 				9C4B291320B6E72D00EE8A1B /* Assets.xcassets */,
 				9C4B292520B703E900EE8A1B /* Controller */,
+				9C03E25320D83B98009B4EF6 /* Data */,
 				9C4B292420B703DE00EE8A1B /* Model */,
 				9C4B290C20B6E72C00EE8A1B /* AppDelegate.swift */,
 				9C4B292320B7022800EE8A1B /* View */,
@@ -210,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				9C4B292820B71ACB00EE8A1B /* ListTableViewController.swift */,
+				9C2DEB4220D7D4E30039FE71 /* DetailAdTableViewController.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -233,10 +252,12 @@
 		9CE4CCB620C1870800CC7007 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				9CE4CCBF20C18ABC00CC7007 /* MyCustomCell.swift */,
-				9CE4CCC020C18ABC00CC7007 /* MyCustomCell.xib */,
 				9C3DB9A120C584B600044563 /* MyNewAdCell.swift */,
 				9C3DB9A220C584B600044563 /* MyNewAdCell.xib */,
+				9CE4CCBF20C18ABC00CC7007 /* MyAdCell.swift */,
+				9CE4CCC020C18ABC00CC7007 /* MyAdCell.xib */,
+				9C2DEB4620D7D67F0039FE71 /* MyDetailAdCell.swift */,
+				9C2DEB4720D7D67F0039FE71 /* MyDetailAdCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -323,9 +344,10 @@
 				9C4B291720B6E72D00EE8A1B /* LaunchScreen.storyboard in Resources */,
 				9C4B292120B6E7D800EE8A1B /* GoogleService-Info.plist in Resources */,
 				9C4B291420B6E72D00EE8A1B /* Assets.xcassets in Resources */,
-				9CE4CCC220C18ABC00CC7007 /* MyCustomCell.xib in Resources */,
+				9CE4CCC220C18ABC00CC7007 /* MyAdCell.xib in Resources */,
 				9C4B291220B6E72D00EE8A1B /* Main.storyboard in Resources */,
 				9C3DB9A420C584B600044563 /* MyNewAdCell.xib in Resources */,
+				9C2DEB4920D7D67F0039FE71 /* MyDetailAdCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,14 +410,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C4B292C20B856F900EE8A1B /* LoginViewController.swift in Sources */,
+				9C03E25220D83B74009B4EF6 /* Model.xcdatamodeld in Sources */,
 				9C4B292920B71ACB00EE8A1B /* ListTableViewController.swift in Sources */,
-				9CE4CCC120C18ABC00CC7007 /* MyCustomCell.swift in Sources */,
+				9CE4CCC120C18ABC00CC7007 /* MyAdCell.swift in Sources */,
 				9C14CCE820D3F72D002B2621 /* Contact.swift in Sources */,
 				9C15102420BC519100C05516 /* WishlistTableViewController.swift in Sources */,
 				9C5891E820BDEF2F0098235C /* NewAdTableViewController.swift in Sources */,
 				9C3DB9A320C584B600044563 /* MyNewAdCell.swift in Sources */,
 				9C4B290D20B6E72C00EE8A1B /* AppDelegate.swift in Sources */,
 				9C14CCE620D2A622002B2621 /* User.swift in Sources */,
+				9C2DEB4820D7D67F0039FE71 /* MyDetailAdCell.swift in Sources */,
 				9C94723F20C7166F00665DA7 /* Ad.swift in Sources */,
 				9C94724320C7188A00665DA7 /* TypeOfAd.swift in Sources */,
 				9CE4CCCB20C2087400CC7007 /* MenuViewController.swift in Sources */,
@@ -403,6 +427,7 @@
 				9C3DB9A620C5959A00044563 /* TypeOfPropertyTableViewController.swift in Sources */,
 				9C94724120C7173100665DA7 /* Address.swift in Sources */,
 				9C910DED20C5C9E500506B3F /* AboutViewController.swift in Sources */,
+				9C2DEB4420D7D4E30039FE71 /* DetailAdTableViewController.swift in Sources */,
 				9C3DB9AA20C5BA2E00044563 /* SettingsViewController.swift in Sources */,
 				9CA2992420CAD2B000A8E500 /* AdAnnotation.swift in Sources */,
 				9C4B292720B714C700EE8A1B /* MapViewController.swift in Sources */,
@@ -611,6 +636,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9C03E25020D83B74009B4EF6 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9C03E25120D83B74009B4EF6 /* Model.xcdatamodel */,
+			);
+			currentVersion = 9C03E25120D83B74009B4EF6 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9C4B290120B6E72C00EE8A1B /* Project object */;
 }

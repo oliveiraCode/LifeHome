@@ -9,7 +9,7 @@
 import UIKit
 
 class Ad {
-    var id:Int?
+    var id:String?
     var imageURL:UIImage?
     var bathroom:Int?
     var bedroom:Int?

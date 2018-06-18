@@ -18,8 +18,8 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var viewDistance: UIView!
     @IBOutlet weak var viewNotification: UIView!
     @IBOutlet weak var btnMenu: UIBarButtonItem!
-    var isWishList = true
     
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,15 +57,15 @@ class SettingsViewController: UIViewController {
     func changeImage(whichTag:Int){
         switch (whichTag){
         case 100:
-            if isWishList {
-                UserDefaults.standard.set(true, forKey: "wishlist")
-                imgWishlist.image = UIImage(named: "check")
-                isWishList = false
-            } else {
-                UserDefaults.standard.set(false, forKey: "wishlist")
+            
+            if UserDefaults.standard.bool(forKey: "wishlistNotification") {
                 imgWishlist.image = UIImage(named: "uncheck")
-                isWishList = true
+                UserDefaults.standard.set(false, forKey: "wishlistNotification")
+            } else {
+                imgWishlist.image = UIImage(named: "check")
+                UserDefaults.standard.set(true, forKey: "wishlistNotification")
             }
+            
             break
         case 101:
             UserDefaults.standard.set(false, forKey: "miles")
@@ -85,6 +85,18 @@ class SettingsViewController: UIViewController {
                 imgKilometers.image = UIImage(named: "check")
                 imgMiles.image = UIImage(named: "uncheck")
             }
+            
+            //check if wishlist exist on UserDefaults
+            if UserDefaults.exists(key: "wishlistNotification"){
+                
+                if UserDefaults.standard.bool(forKey: "wishlistNotification") {
+                    imgWishlist.image = UIImage(named: "check")
+                } else {
+                    imgWishlist.image = UIImage(named: "uncheck")
+                }
+   
+            }
+
             break
         }
         
@@ -117,5 +129,14 @@ class SettingsViewController: UIViewController {
         
     }
     
+    
+}
+
+//the code was inspired from https://stackoverflow.com/questions/47581644/swift-how-to-check-if-userdefaults-exists-and-if-not-save-a-chosen-standard-val
+extension UserDefaults {
+    
+    static func exists(key: String) -> Bool {
+        return UserDefaults.standard.object(forKey: key) != nil
+    }
     
 }

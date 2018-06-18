@@ -27,10 +27,8 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
         super.viewDidLoad()
         changeTitleNavigatorBar()
         sideMenus()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        let nibName = UINib(nibName: "MyCustomCell", bundle: nil)
+
+        let nibName = UINib(nibName: "MyAdCell", bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: "myCell")
         
         
@@ -73,6 +71,11 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         determineMyCurrentLocation()
+        
+        if UserDefaults.standard.bool(forKey: "wishlist") {
+            //to put the badgeValue count from wishlist array
+            tabBarController?.tabBar.items?.last?.badgeValue = "\(self.appDelegate.wishlistAd.count)"
+        }
     }
     
     
@@ -89,8 +92,14 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
     }
     
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        appDelegate.detailAd.removeAll()
+        appDelegate.detailAd.append(appDelegate.currentListAds[indexPath.row])
+        performSegue(withIdentifier: "showListDetailVC", sender: nil)
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyCustomCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyAdCell
         
         
         cell.lbAddress.text = self.appDelegate.currentListAds[indexPath.row].address?.street
@@ -148,7 +157,6 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
             for userId in snapshot.children.allObjects as! [DataSnapshot] {
                 for adId in userId.children.allObjects as! [DataSnapshot] {
                     
-                    
                     let adObj = Ad()
                     guard let adDict = adId.value as? [String: Any] else { continue }
                     
@@ -166,7 +174,7 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
                         
                     })
                     
-                    
+                    adObj.id = adId.key
                     adObj.bedroom = adDict["bedroom"] as? Int
                     adObj.garage = adDict["garage"] as? Int
                     adObj.bathroom = adDict["bathroom"] as? Int

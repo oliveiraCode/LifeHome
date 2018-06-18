@@ -25,7 +25,7 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
         changeTitleNavigatorBar()
         sideMenus()
 
-        let nibName = UINib(nibName: "MyCustomCell", bundle: nil)
+        let nibName = UINib(nibName: "MyAdCell", bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: "myCell")
         
         loadDataMyAds()
@@ -35,6 +35,7 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         determineMyCurrentLocation()
+
     }
     
 
@@ -58,7 +59,7 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyCustomCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyAdCell
         
         if listMyAds.count > 0 {
             cell.lbAddress.text = listMyAds[indexPath.row].address?.street
@@ -130,8 +131,6 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
     
     
     func loadDataMyAds (){
-        
-        listMyAds.removeAll()
 
         let ref: DatabaseReference = Database.database().reference()
         
@@ -140,6 +139,7 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
         ref.child("Ad").child(uid).observe(.value, with:
             { (snapshot) in
                 
+                self.listMyAds.removeAll() //remove all values before get more from firebase
                 
                     for adId in snapshot.children.allObjects as! [DataSnapshot] {
                         
@@ -195,12 +195,8 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
                         //Call the copmletion handler that was passed to us
                         
                         self.listMyAds.append(adObj)
-                        
-                        
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                        }
-                        
+                        self.tableView.reloadData()
+
                     }
                 
         })

@@ -18,7 +18,7 @@ class WishlistTableViewController: UITableViewController {
         changeTitleNavigatorBar()
         sideMenus()
 
-        let nibName = UINib(nibName: "MyCustomCell", bundle: nil)
+        let nibName = UINib(nibName: "MyAdCell", bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: "myCell")
     }
 
@@ -46,7 +46,7 @@ class WishlistTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyCustomCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyAdCell
 
         
         
@@ -104,6 +104,8 @@ class WishlistTableViewController: UITableViewController {
         let logo = UIImage(named: "logoTitle")
         let imageView = UIImageView(image:logo)
         self.navigationItem.titleView = imageView
+        
+        
     }
     
     func sideMenus() {
