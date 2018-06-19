@@ -319,7 +319,46 @@
                     <view key="view" contentMode="scaleToFill" id="a3J-r6-ujk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A2f-dc-eCh">
+                                <rect key="frame" x="24" y="51" width="327" height="449"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="99c-mD-OqE">
+                                        <rect key="frame" x="8" y="8" width="311" height="433"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <attributedString key="attributedText">
+                                            <fragment>
+                                                <string key="content">
+
+
+
+
+This app was made by Leandro Oliveira as the final project of the course.
+
+
+
+Mobile and Web Application Development
+College LaSalle.
+
+
+
+Contact:
+leandro.oliveira@live.com</string>
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="system" size="14"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <viewLayoutGuide key="safeArea" id="IAz-hQ-Y9D"/>
                     </view>
                     <navigationItem key="navigationItem" title="About" id="f0Z-ez-3F9">
@@ -327,11 +366,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="btnMenu" destination="QNm-nX-Eyh" id="wwt-8a-wCg"/>
+                        <outlet property="viewAbout" destination="A2f-dc-eCh" id="Nsc-HE-ge6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nxr-0C-VKj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="663" y="2783"/>
+            <point key="canvasLocation" x="661.60000000000002" y="2782.7586206896553"/>
         </scene>
         <!--Menu-->
         <scene sceneID="1Su-XZ-gXP">

@@ -11,6 +11,7 @@ import SWRevealViewController
 
 class AboutViewController: UIViewController {
 
+    @IBOutlet weak var viewAbout: UIView!
     
     @IBOutlet weak var btnMenu: UIBarButtonItem!
     
@@ -20,8 +21,15 @@ class AboutViewController: UIViewController {
         sideMenus()
 
         // Do any additional setup after loading the view.
+        
+        setupView()
     }
 
+    func setupView(){
+        viewAbout.layer.cornerRadius = 9
+        viewAbout.layer.masksToBounds = true
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
