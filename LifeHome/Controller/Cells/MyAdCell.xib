@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="house" translatesAutoresizingMaskIntoConstraints="NO" id="cW1-1o-gut">
-                        <rect key="frame" x="3" y="5" width="369" height="200"/>
+                        <rect key="frame" x="1" y="3" width="373" height="200"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0 km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zH-CL-rek">
@@ -81,7 +81,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <visualEffectView opaque="NO" contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Emp-Tp-ueX">
-                        <rect key="frame" x="3" y="158" width="119" height="47"/>
+                        <rect key="frame" x="1" y="156" width="119" height="47"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="LlC-gM-B3c">
                             <rect key="frame" x="0.0" y="0.0" width="119" height="47"/>
@@ -123,6 +123,6 @@
         <image name="bathroom" width="80" height="80"/>
         <image name="bedroom" width="80" height="80"/>
         <image name="garage" width="80" height="80"/>
-        <image name="house" width="400" height="267"/>
+        <image name="house" width="367" height="213"/>
     </resources>
 </document>

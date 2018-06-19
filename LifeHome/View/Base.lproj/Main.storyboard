@@ -490,16 +490,16 @@
         <scene sceneID="uJI-9h-Yq1">
             <objects>
                 <tableViewController title="New Ad" id="4Xz-fN-EMP" customClass="NewAdTableViewController" customModule="LifeHome" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="1467" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="qJw-DB-hDL">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="1601" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="qJw-DB-hDL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="1467" id="Mqj-lh-sfy">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="1467"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="1601" id="Mqj-lh-sfy">
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="1601"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mqj-lh-sfy" id="LY1-Et-PyN">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="1466.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="1600.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -759,20 +759,20 @@
             </objects>
             <point key="canvasLocation" x="7279.1999999999998" y="1871.5142428785609"/>
         </scene>
-        <!--Title-->
+        <!--Detail Ad-->
         <scene sceneID="XJw-UK-Vte">
             <objects>
-                <tableViewController id="Jf9-db-35Y" customClass="DetailAdTableViewController" customModule="LifeHome" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="1182" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="UD9-zy-YiJ">
+                <tableViewController id="Jf9-db-35Y" userLabel="Detail Ad" customClass="DetailAdTableViewController" customModule="LifeHome" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="1176" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="UD9-zy-YiJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="1182" id="Bmx-PD-23S">
-                                <rect key="frame" x="0.0" y="28" width="375" height="1182"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="1176" id="Bmx-PD-23S">
+                                <rect key="frame" x="0.0" y="28" width="375" height="1176"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bmx-PD-23S" id="Rv2-Y7-WJH">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="1181.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="1175.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -782,7 +782,7 @@
                             <outlet property="delegate" destination="Jf9-db-35Y" id="ym0-JL-MLw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Title" id="7Bz-kR-0y6"/>
+                    <navigationItem key="navigationItem" title="DetailAd" id="7Bz-kR-0y6"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W3q-iq-SqJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

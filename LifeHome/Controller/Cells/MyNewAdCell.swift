@@ -13,8 +13,8 @@ protocol ImagePickerDelegate {
     func pickImage()
 }
 
-class MyNewAdCell: UITableViewCell {
-
+class MyNewAdCell: UITableViewCell, UITextViewDelegate {
+    
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     @IBOutlet weak var imgAd: UIImageView!
     @IBOutlet weak var segTypeOfAd: UISegmentedControl!
@@ -41,13 +41,46 @@ class MyNewAdCell: UITableViewCell {
         imgAd.clipsToBounds = true
         imgAd.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openImagePicker)))
         
+        
+        setupLayout()
+   
+    }
+    
+    
+    func setupLayout(){
+        //this code was inspired from https://stackoverflow.com/questions/27652227/text-view-placeholder-swift
+        //to put placeholder into TextView, the textViewDidBeginEditing and textViewDidEndEditing must be implemented together.
+        tvDescription.delegate = self
+        tvDescription.text = "Type here your description"
+        tvDescription.textColor = UIColor.lightGray
+        
+        
+        //to make a border on TextView
+        tvDescription.layer.borderWidth = 0.6
+        tvDescription.layer.borderColor = UIColor.gray.cgColor
+    }
+    
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if tvDescription.textColor == UIColor.lightGray {
+            tvDescription.text = nil
+            tvDescription.textColor = UIColor.black
+        }
     }
 
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if tvDescription.text.isEmpty {
+            tvDescription.text = "Type here your description"
+            tvDescription.textColor = UIColor.lightGray
+        }
+    }
+    
     @objc func openImagePicker(){
         delegate?.pickImage()
     }
 
   
+    
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

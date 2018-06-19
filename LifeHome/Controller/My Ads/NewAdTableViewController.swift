@@ -38,6 +38,11 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
     }
     
     
+    //Hide header
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return section == 0 ? 1.0 : 32
+    }
+    
     //NotificationCenter was inspired from https://stackoverflow.com/questions/38204703/notificationcenter-issue-on-swift-3
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
