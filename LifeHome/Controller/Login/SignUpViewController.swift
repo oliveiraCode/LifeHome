@@ -34,24 +34,40 @@ class SignUpViewController: UIViewController {
         cornerRadiusButton()
         userRef = Database.database().reference().child("users")
         
-        let imageTap = UITapGestureRecognizer(target: self, action: #selector(openImagePicker))
+        let imageTap = UITapGestureRecognizer(target: self, action: #selector(pickImage))
         profileImageView.isUserInteractionEnabled = true
         profileImageView.addGestureRecognizer(imageTap)
         profileImageView.layer.cornerRadius = profileImageView.bounds.height / 2
         profileImageView.clipsToBounds = true
         
-        imagePicker = UIImagePickerController()
-        imagePicker.allowsEditing = true
-        imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
-        imagePicker.delegate = self
-        changeProfileButton.addTarget(self, action: #selector(openImagePicker), for: .touchUpInside)
+        changeProfileButton.addTarget(self, action: #selector(pickImage), for: .touchUpInside)
 
         // Do any additional setup after loading the view.
     }
-
-    @objc func openImagePicker(_ sender:Any) {
-        // Open Image Picker
-        self.present(imagePicker, animated: true, completion: nil)
+    
+    @objc func pickImage() {
+        
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { action in
+            let cameraPicker = UIImagePickerController()
+            cameraPicker.delegate = self
+            cameraPicker.sourceType = .camera
+            cameraPicker.allowsEditing = true
+            self.present(cameraPicker, animated: true)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { action in
+            let imagePicker = UIImagePickerController()
+            imagePicker.allowsEditing = true
+            imagePicker.delegate = self
+            self.present(imagePicker, animated: true)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

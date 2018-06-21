@@ -27,6 +27,7 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
         changeTitleNavigatorBar()
         sideMenus()
 
+        //Register cell classes
         let nibName = UINib(nibName: "MyAdCell", bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: "myCell")
         

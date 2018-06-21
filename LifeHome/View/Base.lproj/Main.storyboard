@@ -141,7 +141,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" smartInsertDeleteType="no"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="phonePad" keyboardAppearance="alert" smartInsertDeleteType="no"/>
                                     </textField>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FY6-Lw-F8l">
                                         <rect key="frame" x="55" y="303" width="230" height="1"/>
@@ -212,7 +212,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kzS-Jd-Bph">
-                                <rect key="frame" x="0.0" y="78" width="375" height="100"/>
+                                <rect key="frame" x="0.0" y="30" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Notification in" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XYb-oB-mLb">
@@ -245,7 +245,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YUq-Dp-U76">
-                                <rect key="frame" x="0.0" y="211" width="375" height="128"/>
+                                <rect key="frame" x="0.0" y="160" width="375" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance units" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mf6-0F-pPV">
@@ -292,6 +292,48 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fpR-9W-5V8">
+                                <rect key="frame" x="0.0" y="318" width="375" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Filter by distance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXD-WO-ycM">
+                                        <rect key="frame" x="28" y="8" width="137" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ITQ-77-aAX">
+                                        <rect key="frame" x="28" y="31" width="320" height="0.5"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="xbt-JE-bRx">
+                                        <rect key="frame" x="55" y="81" width="259" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="minimumTrackTintColor" red="0.0" green="0.43529411759999997" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="thumbTintColor" red="0.0" green="0.43529411759999997" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="sliderChanged:" destination="A56-ps-tLQ" eventType="valueChanged" id="asr-l3-Arg"/>
+                                        </connections>
+                                    </slider>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xr3-oN-IZa">
+                                        <rect key="frame" x="151" y="52" width="43" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Km" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="175-TR-oG3">
+                                        <rect key="frame" x="182" y="52" width="43" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <viewLayoutGuide key="safeArea" id="oQ3-1V-8mp"/>
@@ -304,6 +346,8 @@
                         <outlet property="imgKilometers" destination="SF1-He-Bb0" id="LVh-cO-sBE"/>
                         <outlet property="imgMiles" destination="Ps4-ed-1W1" id="M8h-Yy-Nn4"/>
                         <outlet property="imgWishlist" destination="8dz-nE-VuY" id="9Tc-sN-Q97"/>
+                        <outlet property="lbFilterBy" destination="Xr3-oN-IZa" id="uFj-Tr-Z46"/>
+                        <outlet property="lbFilterUnit" destination="175-TR-oG3" id="ITc-6U-MWI"/>
                         <outlet property="viewDistance" destination="YUq-Dp-U76" id="GB6-iJ-zfz"/>
                         <outlet property="viewNotification" destination="kzS-Jd-Bph" id="z1D-5v-wqA"/>
                     </connections>
@@ -752,11 +796,11 @@ leandro.oliveira@live.com</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" misplaced="YES" id="HaG-r2-21K">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" placeholder="Search by city" translatesAutoresizingMaskIntoConstraints="NO" id="h4k-4a-Cnb">
-                                    <rect key="frame" x="7" y="-6" width="360" height="56"/>
+                                    <rect key="frame" x="8" y="-1" width="360" height="56"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
                                     <scopeButtonTitles>
@@ -772,7 +816,7 @@ leandro.oliveira@live.com</string>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="276" id="rIk-9t-QW3">
-                                <rect key="frame" x="0.0" y="99.5" width="375" height="276"/>
+                                <rect key="frame" x="0.0" y="109.5" width="375" height="276"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rIk-9t-QW3" id="4hZ-HS-pIH">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="275.5"/>
@@ -787,7 +831,11 @@ leandro.oliveira@live.com</string>
                     </tableView>
                     <navigationItem key="navigationItem" title="List" id="1f2-Y0-Yge">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="xIu-C6-wc3"/>
-                        <barButtonItem key="rightBarButtonItem" image="filter" id="0Z6-lz-3En"/>
+                        <barButtonItem key="rightBarButtonItem" title="Order by" id="2JN-xv-fx0">
+                            <connections>
+                                <action selector="btnOrderBy:" destination="Ske-kX-d2C" id="9kM-kB-PrQ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="btnMenu" destination="xIu-C6-wc3" id="1et-rd-ZsQ"/>
@@ -1044,7 +1092,6 @@ leandro.oliveira@live.com</string>
         <image name="edit" width="25" height="25"/>
         <image name="email" width="20" height="20"/>
         <image name="facebook" width="20" height="39"/>
-        <image name="filter" width="25" height="25"/>
         <image name="list" width="25" height="25"/>
         <image name="login_btn" width="30" height="35"/>
         <image name="logo" width="173" height="173"/>
@@ -1059,7 +1106,7 @@ leandro.oliveira@live.com</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="zqV-Rn-GP9"/>
-        <segue reference="fhG-82-3XY"/>
+        <segue reference="2iO-P9-oLc"/>
         <segue reference="XBd-ZH-4aS"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -236,14 +236,27 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
     }
     
     func pickImage() {
-        let imagePicker = UIImagePickerController()
-        imagePicker.allowsEditing = true
+
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+       
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { action in
+            let cameraPicker = UIImagePickerController()
+            cameraPicker.delegate = self
+            cameraPicker.sourceType = .camera
+            cameraPicker.allowsEditing = true
+            self.present(cameraPicker, animated: true)
+        }))
         
+        alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { action in
+            let imagePicker = UIImagePickerController()
+            imagePicker.allowsEditing = true
+            imagePicker.delegate = self
+            self.present(imagePicker, animated: true)
+        }))
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
-        imagePicker.sourceType = .photoLibrary
-        
-        imagePicker.delegate = self
-        self.present(imagePicker, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
         
     }
     

@@ -13,8 +13,7 @@ import CoreLocation
 import KRActivityIndicatorView
 
 
-class ListTableViewController: UITableViewController,CLLocationManagerDelegate,UISearchBarDelegate {
-    
+class ListTableViewController: UITableViewController,CLLocationManagerDelegate,UISearchBarDelegate,UIPickerViewDelegate,UIPickerViewDataSource {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -22,12 +21,14 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var listAds:[Ad] = []
     var locationManager:CLLocationManager!
+    let arrayOrderBy:[String] = ["Distance", "Price: low to hight", "Price: hight to low"]
+    var selectedRow:Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         changeTitleNavigatorBar()
         sideMenus()
-
+        
         let nibName = UINib(nibName: "MyAdCell", bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: "myCell")
         
@@ -43,20 +44,30 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
             })
         }
         
-        // Register to receive notification
-        NotificationCenter.default.addObserver(self, selector: #selector(updateBagdeValue), name: NSNotification.Name(rawValue: "updateBagdeValue"), object: nil)
-        
         //get all Ads data from Firebase
         loadDataAllAds()
         
         setUpSearchBar()
-  
+        
     }
     
     private func setUpSearchBar() {
         searchBar.delegate = self
     }
     
+    
+    //these 3 func were inspired from https://stackoverflow.com/questions/34692277/how-to-exit-from-the-search-on-clicking-on-cancel-button
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = nil
+        searchBar.setShowsCancelButton(false, animated: true)
+        searchBar.resignFirstResponder()
+        self.searchBar(searchBar, textDidChange: "")
+    }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
@@ -73,11 +84,7 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
         super.viewWillAppear(animated)
         determineMyCurrentLocation()
         
-    }
-    
-    
-    @objc func updateBagdeValue(){
-
+        
     }
     
     // MARK: - Table view data source
@@ -147,7 +154,7 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
     
     
     func loadDataAllAds (){
-
+        
         let ref: DatabaseReference = Database.database().reference()
         
         ref.child("Ad").observe(.value) { (snapshot) in
@@ -262,6 +269,71 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error){
         print("Error \(error)")
+    }
+    
+    @IBAction func btnOrderBy(_ sender: Any) {
+        
+        //inspired from https://stackoverflow.com/questions/40190629/swift-uialertcontroller-with-pickerview-button-action-stay-up
+        let vc = UIViewController()
+        vc.preferredContentSize = CGSize(width: 250,height: 200)
+        let pickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: 350, height: 200))
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        vc.view.addSubview(pickerView)
+        let alert = UIAlertController(title: "Order by", message: nil, preferredStyle: .actionSheet)
+        alert.setValue(vc, forKey: "contentViewController")
+        alert.addAction(UIAlertAction(title: "Apply", style: .default, handler: { action in
+            
+            switch self.selectedRow {
+            case 0 :
+                break
+            case 1 :
+                self.sortByPrice(type: "LowtoHight")
+                break
+            case 2 :
+                self.sortByPrice(type: "HighttoLow")
+                break
+            default:
+                print("default")
+                break
+            }
+            
+            self.tableView.reloadData()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+        
+        
+    }
+    
+
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return arrayOrderBy.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return arrayOrderBy[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+       selectedRow = row
+    }
+    
+    func sortByPrice (type:String){
+        if type == "LowtoHight" {
+            self.appDelegate.currentListAds = self.appDelegate.currentListAds.sorted{
+                $0.price! < $1.price!
+            }
+        } else {
+            self.appDelegate.currentListAds = self.appDelegate.currentListAds.sorted{
+                $0.price! > $1.price!
+            }
+        }
+        
     }
     
     
