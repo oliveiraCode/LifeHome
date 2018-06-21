@@ -21,7 +21,7 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var listAds:[Ad] = []
     var locationManager:CLLocationManager!
-    let arrayOrderBy:[String] = ["Distance", "Price: low to hight", "Price: hight to low"]
+    let arrayOrderBy:[String] = ["Select","Most Recent","Distance", "Price: Low to Hight", "Price: Hight to Low"]
     var selectedRow:Int = 0
     
     override func viewDidLoad() {
@@ -109,7 +109,7 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyAdCell
         
-        
+        cell.lbCreatedOn.text = "Created on \(self.appDelegate.currentListAds[indexPath.row].creationDate!)"
         cell.lbAddress.text = self.appDelegate.currentListAds[indexPath.row].address?.street
         cell.lbCity.text = self.appDelegate.currentListAds[indexPath.row].address?.city
         cell.imgAd.image = self.appDelegate.currentListAds[indexPath.row].image
@@ -203,7 +203,7 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
                     adObj.price = adDict["price"] as? Float
                     adObj.description = adDict["description"]! as? String
                     adObj.typeOfProperty = adDict["typeOfProperty"]! as? String
-                    
+                    adObj.creationDate = adDict["creationDate"]! as? String
                     
                     if (adDict["typeOfAd"]! as! String) == "Sell" {
                         adObj.typeOfAd = .Sell
@@ -276,22 +276,25 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
         //inspired from https://stackoverflow.com/questions/40190629/swift-uialertcontroller-with-pickerview-button-action-stay-up
         let vc = UIViewController()
         vc.preferredContentSize = CGSize(width: 250,height: 200)
-        let pickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: 350, height: 200))
+        let pickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: 250, height: 200))
         pickerView.delegate = self
         pickerView.dataSource = self
         vc.view.addSubview(pickerView)
-        let alert = UIAlertController(title: "Order by", message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "Sort Type", message: nil, preferredStyle: .alert)
         alert.setValue(vc, forKey: "contentViewController")
         alert.addAction(UIAlertAction(title: "Apply", style: .default, handler: { action in
 
             switch self.selectedRow {
-            case 0 :
-                self.sortByDistance()
-                break
             case 1 :
-                self.sortByPrice(type: "LowtoHight")
+                self.sortByDate()
                 break
             case 2 :
+                self.sortByDistance()
+                break
+            case 3 :
+                self.sortByPrice(type: "LowtoHight")
+                break
+            case 4 :
                 self.sortByPrice(type: "HighttoLow")
                 break
             default:
@@ -327,6 +330,12 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
     func sortByDistance(){
         self.appDelegate.currentListAds = self.appDelegate.currentListAds.sorted{
             $0.address!.distance! < $1.address!.distance!
+        }
+    }
+    
+    func sortByDate(){
+        self.appDelegate.currentListAds = self.appDelegate.currentListAds.sorted{
+            $0.creationDate! < $1.creationDate!
         }
     }
     

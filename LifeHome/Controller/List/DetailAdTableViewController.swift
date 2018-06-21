@@ -82,6 +82,7 @@ class DetailAdTableViewController: UITableViewController {
             "price": self.appDelegate.detailAd[0].price!,
             "typeOfAd": typeOfAd!,
             "typeOfProperty": self.appDelegate.detailAd[0].typeOfProperty!,
+            "creationDate":self.appDelegate.detailAd[0].creationDate!,
             "Address": addressData,
             "Contact": contactData,
             "imageURL": self.appDelegate.detailAd[0].imgUrl!
@@ -109,8 +110,8 @@ class DetailAdTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyDetailAdCell
-        
-        
+
+        cell.lbCreatedOn.text = "Created on \(self.appDelegate.detailAd[indexPath.row].creationDate!)"
         cell.lbPhone.text = self.appDelegate.detailAd[indexPath.row].contact?.phone
         cell.lbEmail.text = self.appDelegate.detailAd[indexPath.row].contact?.email
         cell.imageAd.image = self.appDelegate.detailAd[indexPath.row].image

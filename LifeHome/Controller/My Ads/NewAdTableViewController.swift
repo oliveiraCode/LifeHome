@@ -88,6 +88,7 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
                 self.adObj.typeOfAd = TypeOfAd.Sell
             }
             
+            self.adObj.creationDate = self.getTodaysDate()
             self.adObj.imgUrl = url!.absoluteString
             self.adObj.bathroom = Int(cell.lbBathroom.text! as String)
             self.adObj.bedroom = Int(cell.lbBedroom.text! as String)
@@ -117,6 +118,31 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
         
 
 
+    }
+    
+    func getTodaysDate() -> String{
+        let date = NSDate()
+        let calendar = NSCalendar.current
+        let days = calendar.component(.day, from: date as Date)
+        let months = calendar.component(.month, from: date as Date)
+        let year = calendar.component(.year, from: date as Date)
+        
+        var day:String!
+        var month:String!
+        
+        if days < 10 {
+            day = "0\(days)"
+        } else {
+            day = "\(days)"
+        }
+        
+        if months < 10 {
+            month = "0\(months)"
+        }else{
+            month = "\(months)"
+        }
+        
+        return "\(day!)/\(month!)/\(year)"
     }
     
     
@@ -152,9 +178,10 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
             "phone":self.contactObj.phone!
         ] as [String:Any]
         
-        if adObj.typeOfAd == TypeOfAd.Rent{
+        switch adObj.typeOfAd {
+        case .Rent?:
             typeOfAd = "Rent"
-        } else {
+        default:
             typeOfAd = "Sell"
         }
         
@@ -166,6 +193,7 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
             "price": self.adObj.price!,
             "typeOfAd": typeOfAd!,
             "typeOfProperty": self.adObj.typeOfProperty!,
+            "creationDate": self.adObj.creationDate!,
             "Address": addressData,
             "Contact": contactData,
             "imageURL": self.adObj.imgUrl!

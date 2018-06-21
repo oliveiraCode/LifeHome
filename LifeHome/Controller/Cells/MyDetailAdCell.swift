@@ -13,6 +13,7 @@ class MyDetailAdCell: UITableViewCell {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
+    @IBOutlet weak var lbCreatedOn: UILabel!
     @IBOutlet weak var btnWishlist: UIButton!
     @IBOutlet weak var imageAd: UIImageView!
     @IBOutlet weak var map: MKMapView!

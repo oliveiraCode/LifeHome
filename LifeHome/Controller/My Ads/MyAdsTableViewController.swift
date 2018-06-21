@@ -192,6 +192,7 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
                         adObj.price = adDict["price"] as? Float
                         adObj.description = adDict["description"]! as? String
                         adObj.typeOfProperty = adDict["typeOfProperty"]! as? String
+                        adObj.creationDate = adDict["creationDate"]! as? String
                         
                         if (adDict["typeOfAd"]! as! String) == "Sell" {
                             adObj.typeOfAd = .Sell

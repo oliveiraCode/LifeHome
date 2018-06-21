@@ -12,6 +12,7 @@ import UIKit
 class MyAdCell: UITableViewCell {
 
     
+    @IBOutlet weak var lbCreatedOn: UILabel!
     @IBOutlet weak var imgAd: UIImageView!
     @IBOutlet weak var lbPrice: UILabel!
     @IBOutlet weak var lbTypeOfProperty: UILabel!

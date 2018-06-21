@@ -21,5 +21,6 @@ class Ad {
     var typeOfAd: TypeOfAd?
     var typeOfProperty: String?
     var contact:Contact?
+    var creationDate:String?
 
 }

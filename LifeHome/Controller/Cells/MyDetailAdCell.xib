@@ -36,9 +36,16 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="850,00 $" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5d6-ae-5db">
-                                <rect key="frame" x="19" y="272" width="181" height="21"/>
+                                <rect key="frame" x="19" y="258" width="181" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Created on 01/01/2010" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YzQ-vc-mgx">
+                                <rect key="frame" x="19" y="284" width="156" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -219,6 +226,7 @@
                 <outlet property="lbAddress2" destination="uWR-cR-P9n" id="i3v-xu-Yn9"/>
                 <outlet property="lbBathroom" destination="hSh-3j-SQR" id="F1L-HQ-YZb"/>
                 <outlet property="lbBedroom" destination="K5c-pd-Grk" id="bcK-Bb-f9S"/>
+                <outlet property="lbCreatedOn" destination="YzQ-vc-mgx" id="3G4-K6-qIX"/>
                 <outlet property="lbEmail" destination="p6J-Om-DoJ" id="z56-Na-d70"/>
                 <outlet property="lbGarage" destination="taf-ZR-7dt" id="FW1-Wz-LJh"/>
                 <outlet property="lbPhone" destination="Kl9-JK-bQR" id="fYv-xV-2O1"/>
