@@ -22,7 +22,7 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
     var listAds:[Ad] = []
     var locationManager:CLLocationManager!
     let arrayOrderBy:[String] = ["Distance", "Price: low to hight", "Price: hight to low"]
-    var selectedRow:Int!
+    var selectedRow:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -121,10 +121,12 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
         
         if UserDefaults.standard.bool(forKey: "miles"){
             if (self.appDelegate.currentListAds[indexPath.row].address?.longitude) != nil {
-                cell.lbDistance.text = String(format:"%.2f mi ",self.calculateDistanceMi(lat: (self.appDelegate.currentListAds[indexPath.row].address?.latitude)!, long: (self.appDelegate.currentListAds[indexPath.row].address?.longitude)!))
+                self.appDelegate.currentListAds[indexPath.row].address?.distance = self.calculateDistanceMi(lat: (self.appDelegate.currentListAds[indexPath.row].address?.latitude)!, long: (self.appDelegate.currentListAds[indexPath.row].address?.longitude)!)
+                cell.lbDistance.text = String(format:"%.2f mi ",(self.appDelegate.currentListAds[indexPath.row].address?.distance)!)
             }
         } else if (self.appDelegate.currentListAds[indexPath.row].address?.longitude) != nil {
-            cell.lbDistance.text = String(format:"%.2f km ",self.calculateDistanceKm(lat: (self.appDelegate.currentListAds[indexPath.row].address?.latitude)!, long: (self.appDelegate.currentListAds[indexPath.row].address?.longitude)!))
+            self.appDelegate.currentListAds[indexPath.row].address?.distance = self.calculateDistanceKm(lat: (self.appDelegate.currentListAds[indexPath.row].address?.latitude)!, long: (self.appDelegate.currentListAds[indexPath.row].address?.longitude)!)
+            cell.lbDistance.text = String(format:"%.2f km ",(self.appDelegate.currentListAds[indexPath.row].address?.distance)!)
         }
         
         
@@ -132,6 +134,17 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
     }
     
     
+    func calculateDistanceKm(lat: Double, long: Double) -> Double{
+        let adLocation = CLLocation(latitude: lat, longitude: long)
+        let distanceKm = appDelegate.myCurrentLocation.distance(from: adLocation)/1000
+        return distanceKm
+    }
+    
+    func calculateDistanceMi(lat: Double, long: Double) -> Double{
+        let distanceKm = calculateDistanceKm(lat: lat, long: long)
+        let distanceMi = distanceKm/1.6
+        return distanceMi
+    }
     
     func changeTitleNavigatorBar(){
         let logo = UIImage(named: "logoTitle")
@@ -228,19 +241,6 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
     }
     
     
-    func calculateDistanceKm(lat: Double, long: Double) -> Double{
-        let adLocation = CLLocation(latitude: lat, longitude: long)
-        let distanceKm = appDelegate.myCurrentLocation.distance(from: adLocation)/1000
-        return distanceKm
-    }
-    
-    func calculateDistanceMi(lat: Double, long: Double) -> Double{
-        let distanceKm = calculateDistanceKm(lat: lat, long: long)
-        let distanceMi = distanceKm/1.6
-        return distanceMi
-    }
-    
-    
     
     func determineMyCurrentLocation() {
         locationManager = CLLocationManager()
@@ -283,9 +283,10 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
         let alert = UIAlertController(title: "Order by", message: nil, preferredStyle: .actionSheet)
         alert.setValue(vc, forKey: "contentViewController")
         alert.addAction(UIAlertAction(title: "Apply", style: .default, handler: { action in
-            
+
             switch self.selectedRow {
             case 0 :
+                self.sortByDistance()
                 break
             case 1 :
                 self.sortByPrice(type: "LowtoHight")
@@ -321,6 +322,12 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
        selectedRow = row
+    }
+    
+    func sortByDistance(){
+        self.appDelegate.currentListAds = self.appDelegate.currentListAds.sorted{
+            $0.address!.distance! < $1.address!.distance!
+        }
     }
     
     func sortByPrice (type:String){

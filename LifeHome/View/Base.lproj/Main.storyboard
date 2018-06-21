@@ -831,7 +831,7 @@ leandro.oliveira@live.com</string>
                     </tableView>
                     <navigationItem key="navigationItem" title="List" id="1f2-Y0-Yge">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="xIu-C6-wc3"/>
-                        <barButtonItem key="rightBarButtonItem" title="Order by" id="2JN-xv-fx0">
+                        <barButtonItem key="rightBarButtonItem" title="Order by" image="orderby" id="2JN-xv-fx0">
                             <connections>
                                 <action selector="btnOrderBy:" destination="Ske-kX-d2C" id="9kM-kB-PrQ"/>
                             </connections>
@@ -1097,6 +1097,7 @@ leandro.oliveira@live.com</string>
         <image name="logo" width="173" height="173"/>
         <image name="map" width="25" height="25"/>
         <image name="menu" width="24" height="24"/>
+        <image name="orderby" width="22" height="23"/>
         <image name="password" width="20" height="22"/>
         <image name="phone" width="20" height="20"/>
         <image name="uncheck" width="114" height="114"/>
