@@ -12,7 +12,6 @@ import SWRevealViewController
 class AboutViewController: UIViewController {
 
     @IBOutlet weak var viewAbout: UIView!
-    
     @IBOutlet weak var btnMenu: UIBarButtonItem!
     
     override func viewDidLoad() {
@@ -20,8 +19,6 @@ class AboutViewController: UIViewController {
         changeTitleNavigatorBar()
         sideMenus()
 
-        // Do any additional setup after loading the view.
-        
         setupView()
     }
 
@@ -29,23 +26,7 @@ class AboutViewController: UIViewController {
         viewAbout.layer.cornerRadius = 9
         viewAbout.layer.masksToBounds = true
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
     func changeTitleNavigatorBar(){
         let logo = UIImage(named: "logoTitle")
         let imageView = UIImageView(image:logo)

@@ -12,21 +12,14 @@ class TypeOfPropertyTableViewController: UITableViewController {
 
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var indexPathSelected:Int!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         changeTitleNavigatorBar()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -60,9 +53,7 @@ class TypeOfPropertyTableViewController: UITableViewController {
         else{
             cell.accessoryType = .none
         }
-        
-        
-        // Configure the cell...
+ 
         cell.textLabel?.text = self.appDelegate.arrayTypeOfProperty[indexPath.row]
 
         return cell

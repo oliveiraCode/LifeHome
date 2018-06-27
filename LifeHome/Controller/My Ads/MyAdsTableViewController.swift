@@ -16,11 +16,10 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var ref: DatabaseReference = Database.database().reference()
     let uid = Auth.auth().currentUser?.uid //get the current uid
-    @IBOutlet weak var btnMenu: UIBarButtonItem!
-    
     var listMyAds:[Ad] = []
-    
     var locationManager:CLLocationManager!
+    
+    @IBOutlet weak var btnMenu: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +60,12 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
     }
     
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        appDelegate.detailAd.removeAll()
+        appDelegate.detailAd.append(appDelegate.currentListAds[indexPath.row])
+        performSegue(withIdentifier: "showMyDetailVC", sender: nil)
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyAdCell
         
@@ -83,9 +88,6 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
             }
             
         }
-        
-        
-        // Configure the cell...
         
         return cell
     }
@@ -237,7 +239,7 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
     
     
     
-    
+
     func determineMyCurrentLocation() {
         locationManager = CLLocationManager()
         //setting this view controller to be responsible of Managing the locations
@@ -246,26 +248,22 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         //we want location service to on all the time
         locationManager.requestAlwaysAuthorization()
-        
+
         //Check if user authorized the use of location services
         if CLLocationManager.locationServicesEnabled() {
             locationManager.startUpdatingLocation()
             //locationManager.startUpdatingHeading()
         }
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         appDelegate.myCurrentLocation = locations[0] as CLLocation
-        
+
         // Call stopUpdatingLocation() to stop listening for location updates,
         // other wise this function will be called every time when user location changes.
-        
+
         manager.stopUpdatingLocation()
-        
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error){
-        print("Error \(error)")
+
     }
     
 

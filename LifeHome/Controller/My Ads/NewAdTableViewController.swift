@@ -15,7 +15,6 @@ import KRProgressHUD
 class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
     var ref: DatabaseReference = Database.database().reference()
     let uid = Auth.auth().currentUser?.uid //get the current uid
     var adId:String!

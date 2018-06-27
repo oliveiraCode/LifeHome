@@ -80,6 +80,11 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        appDelegate.detailAd.removeAll()
+        appDelegate.detailAd.append(appDelegate.wishlistAd[indexPath.row])
+        performSegue(withIdentifier: "showWishlistDetailVC", sender: nil)
+    }
     
     func calculateDistanceKm(lat: Double, long: Double) -> Double{
         let adLocation = CLLocation(latitude: lat, longitude: long)
@@ -93,14 +98,6 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
         return distanceMi
     }
     
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -115,56 +112,22 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
             self.appDelegate.wishlistAd.remove(at: indexPath.row)
             
             self.tableView.endUpdates()
-            self.tableView.reloadData()
+            self.updateBadgeValue()
         }
         
     }
     
 
     
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    func changeTitleNavigatorBar(){
-        let logo = UIImage(named: "logoTitle")
-        let imageView = UIImageView(image:logo)
-        self.navigationItem.titleView = imageView
-        
-        
-    }
-    
     
     func loadDataWishList (){
         
         let ref: DatabaseReference = Database.database().reference()
         
-        ref.child("Wishlist").observe(.value) { (snapshot) in
+        ref.child("Wishlist").child(self.uid!).observe(.value) { (snapshot) in
             self.appDelegate.wishlistAd.removeAll() //remove all values before get more from firebase
             
-            for userId in snapshot.children.allObjects as! [DataSnapshot] {
-                for adId in userId.children.allObjects as! [DataSnapshot] {
+                for adId in snapshot.children.allObjects as! [DataSnapshot] {
                     
                     let adObj = Ad()
                     guard let adDict = adId.value as? [String: Any] else { continue }
@@ -191,6 +154,7 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
                     adObj.price = adDict["price"] as? Float
                     adObj.description = adDict["description"]! as? String
                     adObj.typeOfProperty = adDict["typeOfProperty"]! as? String
+                    adObj.creationDate = adDict["creationDate"]! as? String
                     
                     
                     if (adDict["typeOfAd"]! as! String) == "Sell" {
@@ -219,14 +183,12 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
                     
                     //Call the copmletion handler that was passed to us
                     self.appDelegate.wishlistAd.append(adObj)
-                    self.tableView.reloadData()
+                    DispatchQueue.main.async {
+                        self.updateBadgeValue()
+                    }
                     
                 }
             }
-            DispatchQueue.main.async {
-                self.updateBadgeValue()
-            }
-        }
         
     }
     
@@ -236,7 +198,9 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
             //to put the badgeValue count from wishlist array
             tabBarController?.tabBar.items?.last?.badgeValue = "\(self.appDelegate.wishlistAd.count)"
         }
+        tableView.reloadData()
     }
+    
     
     func sideMenus() {
         
@@ -251,33 +215,13 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
         
     }
     
-    func determineMyCurrentLocation() {
-        locationManager = CLLocationManager()
-        //setting this view controller to be responsible of Managing the locations
-        locationManager.delegate = self
-        //we want the best accurancy
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        //we want location service to on all the time
-        locationManager.requestAlwaysAuthorization()
-        
-        //Check if user authorized the use of location services
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.startUpdatingLocation()
-        }
-    }
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        appDelegate.myCurrentLocation = locations[0] as CLLocation
-        
-        // Call stopUpdatingLocation() to stop listening for location updates,
-        // other wise this function will be called every time when user location changes.
-        
-        manager.stopUpdatingLocation()
-        
+    func changeTitleNavigatorBar(){
+        let logo = UIImage(named: "logoTitle")
+        let imageView = UIImageView(image:logo)
+        self.navigationItem.titleView = imageView
     }
     
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error){
-        print("Error \(error)")
-    }
+
 
 
     

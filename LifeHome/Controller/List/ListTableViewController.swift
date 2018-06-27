@@ -15,6 +15,7 @@ import KRActivityIndicatorView
 
 class ListTableViewController: UITableViewController,CLLocationManagerDelegate,UISearchBarDelegate,UIPickerViewDelegate,UIPickerViewDataSource {
     
+    
     @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var btnMenu: UIBarButtonItem!
@@ -69,8 +70,10 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
         self.searchBar(searchBar, textDidChange: "")
     }
     
+
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
+       print(searchBar.selectedScopeButtonIndex)
         appDelegate.currentListAds = listAds.filter({ Ads -> Bool in
             if searchText.isEmpty { return true }
             return (Ads.address?.city!.lowercased().contains(searchText.lowercased()))!
@@ -108,8 +111,7 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyAdCell
-        
-        cell.lbCreatedOn.text = "Created on \(self.appDelegate.currentListAds[indexPath.row].creationDate!)"
+    
         cell.lbAddress.text = self.appDelegate.currentListAds[indexPath.row].address?.street
         cell.lbCity.text = self.appDelegate.currentListAds[indexPath.row].address?.city
         cell.imgAd.image = self.appDelegate.currentListAds[indexPath.row].image

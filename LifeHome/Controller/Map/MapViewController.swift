@@ -58,28 +58,6 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDel
         
     }
     
-    
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        switch status {
-        case .notDetermined:
-            print("notDetermined")
-            break
-        case .authorizedWhenInUse:
-            print("authorizedWhenInUse")
-            break
-        case .authorizedAlways:
-            print("authorizedAlways")
-            break
-        case .restricted:
-            print("restricted")
-            break
-        case .denied:
-            print("denied")
-            break
-        }
-    }
-    
     func callLocationServices(){
         //setting this view controller to be responsible of Managing the locations
         self.locationManager.delegate = self
@@ -113,7 +91,6 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDel
             let aSubtitle =  String(format: "CAD %.2f", adObj.price!)
             
             let adAnnotation = AdAnnotation(title: aTitle, subtitle: aSubtitle, coordinate: adLocation)
-            
             
             self.map.addAnnotation(adAnnotation)
             self.map.selectAnnotation(adAnnotation, animated: true)

@@ -12,7 +12,6 @@ import UIKit
 class MyAdCell: UITableViewCell {
 
     
-    @IBOutlet weak var lbCreatedOn: UILabel!
     @IBOutlet weak var imgAd: UIImageView!
     @IBOutlet weak var lbPrice: UILabel!
     @IBOutlet weak var lbTypeOfProperty: UILabel!
@@ -22,24 +21,6 @@ class MyAdCell: UITableViewCell {
     @IBOutlet weak var lbBathroom: UILabel!
     @IBOutlet weak var lbBedroom: UILabel!
     @IBOutlet weak var lbGarage: UILabel!
-    
-    
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-        
-
-       
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
-
     
     
 }

@@ -6,7 +6,7 @@
 //  Copyright © 2018 Leandro Oliveira. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import CoreLocation
 
 class Address {

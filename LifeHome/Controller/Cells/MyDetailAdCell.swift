@@ -32,22 +32,12 @@ class MyDetailAdCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
-        
         setupLayout() //to make a border on TextView
     }
     
     func setupLayout(){
         tvDescription.layer.borderWidth = 0.6
         tvDescription.layer.borderColor = UIColor.gray.cgColor
-    }
-    
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        
-        // Configure the view for the selected state
     }
     
     @IBAction func btnWishlist(_ sender: Any) {

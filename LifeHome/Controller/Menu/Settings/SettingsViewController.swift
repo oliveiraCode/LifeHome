@@ -18,8 +18,6 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var viewDistance: UIView!
     @IBOutlet weak var viewNotification: UIView!
     @IBOutlet weak var btnMenu: UIBarButtonItem!
-    @IBOutlet weak var lbFilterBy: UILabel!
-    @IBOutlet weak var lbFilterUnit: UILabel!
     
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -28,21 +26,8 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         setupLayout()
         sideMenus()
-        
-        // Do any additional setup after loading the view.
+
     }
-    
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
     @IBAction func btnWishlist(_ sender: UIButton) {
         changeImage(whichTag: sender.tag)
@@ -53,14 +38,7 @@ class SettingsViewController: UIViewController {
         changeImage(whichTag: sender.tag)
     }
     
-    @IBAction func sliderChanged(_ sender: UISlider) {
-        
-        lbFilterBy.text = "\(Int(sender.value))"
-        UserDefaults.standard.set(Int(sender.value), forKey: "FilterByDistance")
  
-    }
-    
-
     func changeImage(whichTag:Int){
         switch (whichTag){
         case 100:
@@ -78,23 +56,19 @@ class SettingsViewController: UIViewController {
             UserDefaults.standard.set(false, forKey: "miles")
             imgKilometers.image = UIImage(named: "check")
             imgMiles.image = UIImage(named: "uncheck")
-            lbFilterUnit.text = "Km"
             break
         case 102:
             UserDefaults.standard.set(true, forKey: "miles")
             imgKilometers.image = UIImage(named: "uncheck")
             imgMiles.image = UIImage(named: "check")
-            lbFilterUnit.text = "Mi"
             break
         default:
             if UserDefaults.standard.bool(forKey: "miles") {
                 imgKilometers.image = UIImage(named: "uncheck")
                 imgMiles.image = UIImage(named: "check")
-                lbFilterUnit.text = "Mi"
             } else {
                 imgKilometers.image = UIImage(named: "check")
                 imgMiles.image = UIImage(named: "uncheck")
-                lbFilterUnit.text = "Km"
             }
             
             //check if wishlist exist on UserDefaults

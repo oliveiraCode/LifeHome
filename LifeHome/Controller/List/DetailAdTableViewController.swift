@@ -30,7 +30,7 @@ class DetailAdTableViewController: UITableViewController {
         // Register to receive notification
         NotificationCenter.default.addObserver(self, selector: #selector(saveWishlist), name: NSNotification.Name(rawValue: "saveWishlist"), object: nil)
         
-
+        
     }
     
     
@@ -40,11 +40,10 @@ class DetailAdTableViewController: UITableViewController {
         
         if isWishlist {
             saveData()
-            
         } else {
             deleteData()
         }
-
+        
     }
     
     func deleteData(){
@@ -94,6 +93,34 @@ class DetailAdTableViewController: UITableViewController {
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super .viewWillAppear(animated)
+       // tableView.reloadData()
+    }
+    
+    
+    func checkIfWishlistExist () -> Bool{
+        var existFlag = false
+        
+        ref.child("Wishlist").child(self.uid!).observe(.value) { (snapshot) in
+            
+            for adId in snapshot.children.allObjects as! [DataSnapshot] {
+                
+                if adId.key == self.appDelegate.detailAd[0].id! {
+                    existFlag = true
+                    self.tableView.reloadData()
+                }
+            }
+            
+        }
+        return existFlag
+    }
+    
+    
+    
+    
+    
+    
     
     // MARK: - Table view data source
     
@@ -110,7 +137,7 @@ class DetailAdTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyDetailAdCell
-
+        
         cell.lbCreatedOn.text = "Created on \(self.appDelegate.detailAd[indexPath.row].creationDate!)"
         cell.lbPhone.text = self.appDelegate.detailAd[indexPath.row].contact?.phone
         cell.lbEmail.text = self.appDelegate.detailAd[indexPath.row].contact?.email
@@ -132,7 +159,7 @@ class DetailAdTableViewController: UITableViewController {
         cell.lbTypeOfProperty.text = String(self.appDelegate.detailAd[indexPath.row].typeOfProperty!)
         cell.lbPrice.text = String(format: "CAD %.2f",self.appDelegate.detailAd[indexPath.row].price!)
         
-        if isWishlist {
+        if isWishlist || checkIfWishlistExist(){
             cell.btnWishlist.setImage(UIImage(named: "wishlist_saved"), for: .normal)
             isWishlist = false
         } else {

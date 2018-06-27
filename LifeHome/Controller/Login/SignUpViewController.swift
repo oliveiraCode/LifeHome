@@ -34,15 +34,17 @@ class SignUpViewController: UIViewController {
         cornerRadiusButton()
         userRef = Database.database().reference().child("users")
         
+        setupProfileImageView()
+        
+        changeProfileButton.addTarget(self, action: #selector(pickImage), for: .touchUpInside)
+    }
+    
+    func setupProfileImageView(){
         let imageTap = UITapGestureRecognizer(target: self, action: #selector(pickImage))
         profileImageView.isUserInteractionEnabled = true
         profileImageView.addGestureRecognizer(imageTap)
         profileImageView.layer.cornerRadius = profileImageView.bounds.height / 2
         profileImageView.clipsToBounds = true
-        
-        changeProfileButton.addTarget(self, action: #selector(pickImage), for: .touchUpInside)
-
-        // Do any additional setup after loading the view.
     }
     
     @objc func pickImage() {

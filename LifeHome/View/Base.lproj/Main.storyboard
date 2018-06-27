@@ -70,6 +70,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="btnMenu" destination="Z8e-qr-QdL" id="cQZ-RB-eJz"/>
+                        <segue destination="Jf9-db-35Y" kind="show" identifier="showWishlistDetailVC" id="yqK-PV-dns"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="neo-zG-V6O" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -292,48 +293,6 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fpR-9W-5V8">
-                                <rect key="frame" x="0.0" y="318" width="375" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Filter by distance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXD-WO-ycM">
-                                        <rect key="frame" x="28" y="8" width="137" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ITQ-77-aAX">
-                                        <rect key="frame" x="28" y="31" width="320" height="0.5"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
-                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="xbt-JE-bRx">
-                                        <rect key="frame" x="55" y="81" width="259" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="minimumTrackTintColor" red="0.0" green="0.43529411759999997" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="thumbTintColor" red="0.0" green="0.43529411759999997" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <action selector="sliderChanged:" destination="A56-ps-tLQ" eventType="valueChanged" id="asr-l3-Arg"/>
-                                        </connections>
-                                    </slider>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xr3-oN-IZa">
-                                        <rect key="frame" x="151" y="52" width="43" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Km" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="175-TR-oG3">
-                                        <rect key="frame" x="182" y="52" width="43" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <viewLayoutGuide key="safeArea" id="oQ3-1V-8mp"/>
@@ -346,8 +305,6 @@
                         <outlet property="imgKilometers" destination="SF1-He-Bb0" id="LVh-cO-sBE"/>
                         <outlet property="imgMiles" destination="Ps4-ed-1W1" id="M8h-Yy-Nn4"/>
                         <outlet property="imgWishlist" destination="8dz-nE-VuY" id="9Tc-sN-Q97"/>
-                        <outlet property="lbFilterBy" destination="Xr3-oN-IZa" id="uFj-Tr-Z46"/>
-                        <outlet property="lbFilterUnit" destination="175-TR-oG3" id="ITc-6U-MWI"/>
                         <outlet property="viewDistance" destination="YUq-Dp-U76" id="GB6-iJ-zfz"/>
                         <outlet property="viewNotification" destination="kzS-Jd-Bph" id="z1D-5v-wqA"/>
                     </connections>
@@ -564,6 +521,7 @@ leandro.oliveira@live.com</string>
                         <outlet property="btnMenu" destination="G0y-h1-oBG" id="X5L-V8-eBp"/>
                         <segue destination="ZgZ-z5-zG7" kind="showDetail" identifier="showLoginVC" id="wiV-RE-84V"/>
                         <segue destination="MIm-T4-2FA" kind="showDetail" identifier="showNewAdVC" id="s1m-2t-2sE"/>
+                        <segue destination="Jf9-db-35Y" kind="show" identifier="showMyDetailVC" id="dag-zl-MMj"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cgN-u3-cz4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -874,7 +832,7 @@ leandro.oliveira@live.com</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W3q-iq-SqJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9021.6000000000004" y="2257.4212893553226"/>
+            <point key="canvasLocation" x="9153" y="2939"/>
         </scene>
         <!--Wishlist-->
         <scene sceneID="EJg-nw-UOk">
@@ -1107,7 +1065,7 @@ leandro.oliveira@live.com</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="zqV-Rn-GP9"/>
-        <segue reference="2iO-P9-oLc"/>
+        <segue reference="yqK-PV-dns"/>
         <segue reference="wiV-RE-84V"/>
     </inferredMetricsTieBreakers>
 </document>
