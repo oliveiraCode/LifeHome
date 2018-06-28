@@ -97,6 +97,10 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     KRProgressHUD.dismiss()
                 }
             } else {
+                let alert = UIAlertController(title: nil, message: "That feature will be created in the next version. Sorry!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                
                 //   performSegue(withIdentifier: "showProfileVC", sender: nil)
             }
             
@@ -127,6 +131,7 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
         } else {
             do {
                 try Auth.auth().signOut()
+                appDelegate.userObj.resetValues()
                 img_login_logout.image = UIImage(named: "login_btn")
                 btnSignInOut.setTitle("Sign In", for: .normal)
                 lbName.text = "Your name"

@@ -96,19 +96,30 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
-        //User Defaults
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            self.tableView.beginUpdates()
-            tableView.deleteRows(at: [indexPath], with: .fade)
-           
-        self.ref.child("Ad").child(self.uid!).child(self.listMyAds[indexPath.row].id!).setValue(nil)
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: "Delete Ad", style: .destructive, handler: { action in
+            
+            //User Defaults
+            if editingStyle == .delete {
+                // Delete the row from the data source
+                self.tableView.beginUpdates()
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                
+                self.ref.child("Ad").child(self.uid!).child(self.listMyAds[indexPath.row].id!).setValue(nil)
+                
+                self.listMyAds.remove(at: indexPath.row)
+                
+                self.tableView.endUpdates()
+                self.tableView.reloadData()
+            }
+            
+        }))
+        
+        self.present(alert, animated: true)
+        
 
-            self.listMyAds.remove(at: indexPath.row)
-
-            self.tableView.endUpdates()
-            self.tableView.reloadData()
-        }
         
     }
 
@@ -117,7 +128,7 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
         
         //Check if the user is logged before to show a new ad view controller
         if Auth.auth().currentUser?.uid == nil {
-            let alert = UIAlertController(title: "Sign In", message: "You must sign in to create a new ad.", preferredStyle: UIAlertControllerStyle.actionSheet)
+            let alert = UIAlertController(title: "Sign In", message: "You must sign in to create a new ad.", preferredStyle: .actionSheet)
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             
             alert.addAction(UIAlertAction(title: "Sign In", style: .default, handler: { action in

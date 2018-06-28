@@ -16,7 +16,7 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
     @IBOutlet weak var btnMenu: UIBarButtonItem!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var ref: DatabaseReference = Database.database().reference()
-    let uid = Auth.auth().currentUser?.uid //get the current uid
+    var uid = Auth.auth().currentUser?.uid //get the current uid
     var locationManager:CLLocationManager!
     
     override func viewDidLoad() {
@@ -102,19 +102,29 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
-        //User Defaults
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            self.tableView.beginUpdates()
-            tableView.deleteRows(at: [indexPath], with: .fade)
-     self.ref.child("Wishlist").child(self.uid!).child(self.appDelegate.wishlistAd[indexPath.row].id!).setValue(nil)
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
-            self.appDelegate.wishlistAd.remove(at: indexPath.row)
+        alert.addAction(UIAlertAction(title: "Delete Wishlist", style: .destructive, handler: { action in
             
-            self.tableView.endUpdates()
-            self.updateBadgeValue()
-        }
-        
+            //User Defaults
+            if editingStyle == .delete {
+                // Delete the row from the data source
+                self.tableView.beginUpdates()
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                self.ref.child("Wishlist").child(self.uid!).child(self.appDelegate.wishlistAd[indexPath.row].id!).setValue(nil)
+                
+                self.appDelegate.wishlistAd.remove(at: indexPath.row)
+                
+                self.tableView.endUpdates()
+                self.updateBadgeValue()
+            }
+            
+            
+        }))
+
+        self.present(alert, animated: true)
+ 
     }
     
 
@@ -124,7 +134,9 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
         
         let ref: DatabaseReference = Database.database().reference()
         
-        ref.child("Wishlist").child(self.uid!).observe(.value) { (snapshot) in
+        guard let uid = appDelegate.userObj.id else {return}
+        
+        ref.child("Wishlist").child(uid).observe(.value) { (snapshot) in
             self.appDelegate.wishlistAd.removeAll() //remove all values before get more from firebase
             
                 for adId in snapshot.children.allObjects as! [DataSnapshot] {

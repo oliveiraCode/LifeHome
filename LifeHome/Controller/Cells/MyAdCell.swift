@@ -8,7 +8,7 @@
 
 import UIKit
 
-//This code was inspired from https://www.youtube.com/watch?v=owwLP7GMDf8
+//That code was inspired from https://www.youtube.com/watch?v=owwLP7GMDf8
 class MyAdCell: UITableViewCell {
 
     

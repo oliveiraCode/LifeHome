@@ -18,15 +18,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Vlu-Qb-4Uh">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Vlu-Qb-4Uh">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="eLU-Jw-9uO" id="0VU-U9-xF0"/>
                                 </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Vlu-Qb-4Uh" firstAttribute="trailing" secondItem="66T-kI-F0n" secondAttribute="trailing" id="4RU-Pv-Hcc"/>
+                            <constraint firstItem="Vlu-Qb-4Uh" firstAttribute="bottom" secondItem="66T-kI-F0n" secondAttribute="bottom" id="NoR-c0-rZu"/>
+                            <constraint firstItem="Vlu-Qb-4Uh" firstAttribute="top" secondItem="66T-kI-F0n" secondAttribute="top" id="U3I-Cm-EQl"/>
+                            <constraint firstItem="Vlu-Qb-4Uh" firstAttribute="leading" secondItem="66T-kI-F0n" secondAttribute="leading" id="zmP-Pe-4FV"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="66T-kI-F0n"/>
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="cpd-oI-X64">
@@ -293,8 +298,20 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ini-JM-7Ui">
+                                <rect key="frame" x="0.0" y="501" width="375" height="50"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="r9l-mu-u5d"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Ini-JM-7Ui" firstAttribute="bottom" secondItem="oQ3-1V-8mp" secondAttribute="bottom" id="0kG-gS-5Ut"/>
+                            <constraint firstItem="Ini-JM-7Ui" firstAttribute="trailing" secondItem="oQ3-1V-8mp" secondAttribute="trailing" id="Qob-Pz-Qsp"/>
+                            <constraint firstItem="Ini-JM-7Ui" firstAttribute="leading" secondItem="oQ3-1V-8mp" secondAttribute="leading" id="rUz-cl-ZpK"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="oQ3-1V-8mp"/>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="FUp-Y1-2ov">
@@ -322,11 +339,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A2f-dc-eCh">
-                                <rect key="frame" x="24" y="51" width="327" height="449"/>
+                                <rect key="frame" x="24" y="51" width="327" height="400"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="99c-mD-OqE">
-                                        <rect key="frame" x="8" y="8" width="311" height="433"/>
+                                        <rect key="frame" x="8" y="8" width="311" height="392"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <attributedString key="attributedText">
@@ -358,8 +375,21 @@ leandro.oliveira@live.com</string>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wZD-jp-ZeT">
+                                <rect key="frame" x="0.0" y="501" width="375" height="50"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="O4d-ir-1vP"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="YHE-4O-uht"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="wZD-jp-ZeT" firstAttribute="leading" secondItem="IAz-hQ-Y9D" secondAttribute="leading" id="Bjg-s9-758"/>
+                            <constraint firstItem="wZD-jp-ZeT" firstAttribute="bottom" secondItem="IAz-hQ-Y9D" secondAttribute="bottom" id="SI0-Sg-XEm"/>
+                            <constraint firstItem="wZD-jp-ZeT" firstAttribute="trailing" secondItem="IAz-hQ-Y9D" secondAttribute="trailing" id="X2V-vr-LwU"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="IAz-hQ-Y9D"/>
                     </view>
                     <navigationItem key="navigationItem" title="About" id="f0Z-ez-3F9">
@@ -442,9 +472,8 @@ leandro.oliveira@live.com</string>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.43529411759999997" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DfK-ql-G2L">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DfK-ql-G2L">
                                 <rect key="frame" x="0.0" y="604" width="275" height="63"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ym4-FZ-9ZQ">
                                         <rect key="frame" x="36" y="0.0" width="239" height="62"/>
@@ -463,9 +492,17 @@ leandro.oliveira@live.com</string>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.43529411759999997" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="63" id="JGh-xT-wCX"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="DfK-ql-G2L" firstAttribute="leading" secondItem="iFg-IP-eNR" secondAttribute="leading" id="DIq-Ab-pag"/>
+                            <constraint firstItem="iFg-IP-eNR" firstAttribute="trailing" secondItem="DfK-ql-G2L" secondAttribute="trailing" constant="100" id="LPa-zi-Bzm"/>
+                            <constraint firstItem="DfK-ql-G2L" firstAttribute="bottom" secondItem="iFg-IP-eNR" secondAttribute="bottom" id="Yfc-LQ-pAZ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="iFg-IP-eNR"/>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="NEM-IY-4sZ"/>
@@ -620,10 +657,6 @@ leandro.oliveira@live.com</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="JIj-71-Sxz">
-                                <rect key="frame" x="122" y="49" width="130" height="130"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KdY-g2-Osn">
                                 <rect key="frame" x="84" y="601" width="206" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -728,7 +761,14 @@ leandro.oliveira@live.com</string>
                                 <state key="normal" title="   Connect with Facebook" image="facebook">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="loginFacebookTapped:" destination="ZgZ-z5-zG7" eventType="touchUpInside" id="Joo-2O-LMD"/>
+                                </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="JIj-71-Sxz">
+                                <rect key="frame" x="122" y="65" width="130" height="130"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Svi-bL-50b"/>
@@ -1052,7 +1092,7 @@ leandro.oliveira@live.com</string>
         <image name="facebook" width="20" height="39"/>
         <image name="list" width="25" height="25"/>
         <image name="login_btn" width="30" height="35"/>
-        <image name="logo" width="173" height="173"/>
+        <image name="logo" width="162" height="180"/>
         <image name="map" width="25" height="25"/>
         <image name="menu" width="24" height="24"/>
         <image name="orderby" width="22" height="23"/>
@@ -1065,7 +1105,7 @@ leandro.oliveira@live.com</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="zqV-Rn-GP9"/>
-        <segue reference="yqK-PV-dns"/>
-        <segue reference="wiV-RE-84V"/>
+        <segue reference="fhG-82-3XY"/>
+        <segue reference="XBd-ZH-4aS"/>
     </inferredMetricsTieBreakers>
 </document>

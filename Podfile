@@ -17,4 +17,6 @@ target 'LifeHome' do
 
   pod "KRProgressHUD"
 
+  pod 'FBSDKLoginKit'
+
 end

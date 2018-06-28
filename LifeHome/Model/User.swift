@@ -15,4 +15,13 @@ class User {
     var password:String!
     var phone:String!
     var image:UIImage!
+    
+    func resetValues() {
+        self.id = nil
+        self.email = nil
+        self.image = nil
+        self.password = nil
+        self.phone = nil
+        self.username = nil
+    }
 }

@@ -34,7 +34,7 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
         tableView.register(nibName, forCellReuseIdentifier: "myCell")
         
         
-        //this code was inspired from Hakim
+        //That code was inspired from Hakim
         if ((Auth.auth().currentUser?.uid) == nil && !UserDefaults.standard.bool(forKey: "ContinueWithoutAnAccount")){
             let offset = 0.1
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(offset * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {

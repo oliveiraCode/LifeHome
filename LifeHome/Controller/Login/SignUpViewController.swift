@@ -159,7 +159,7 @@ class SignUpViewController: UIViewController {
                                 
                                 self.saveProfile(profileImageURL: url!) { success in
                                     if success {
-                                        UserDefaults.standard.set(false, forKey: "ContinueWithoutAnAccount")
+                                        UserDefaults.standard.set(true, forKey: "ContinueWithoutAnAccount")
             
                                         self.activityIndicator.stopAnimating()
                                         self.view.isUserInteractionEnabled = true

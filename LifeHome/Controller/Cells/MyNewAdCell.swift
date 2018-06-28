@@ -48,7 +48,7 @@ class MyNewAdCell: UITableViewCell, UITextViewDelegate {
     
     
     func setupLayout(){
-        //this code was inspired from https://stackoverflow.com/questions/27652227/text-view-placeholder-swift
+        //That code was inspired from https://stackoverflow.com/questions/27652227/text-view-placeholder-swift
         //to put placeholder into TextView, the textViewDidBeginEditing and textViewDidEndEditing must be implemented together.
         tvDescription.delegate = self
         tvDescription.text = "Type here your description"
