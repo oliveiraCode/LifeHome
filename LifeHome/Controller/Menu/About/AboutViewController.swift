@@ -10,7 +10,7 @@ import UIKit
 import SWRevealViewController
 
 class AboutViewController: UIViewController {
-
+    
     @IBOutlet weak var viewAbout: UIView!
     @IBOutlet weak var btnMenu: UIBarButtonItem!
     
@@ -18,15 +18,15 @@ class AboutViewController: UIViewController {
         super.viewDidLoad()
         changeTitleNavigatorBar()
         sideMenus()
-
+        
         setupView()
     }
-
+    
     func setupView(){
         viewAbout.layer.cornerRadius = 9
         viewAbout.layer.masksToBounds = true
     }
-
+    
     func changeTitleNavigatorBar(){
         let logo = UIImage(named: "logoTitle")
         let imageView = UIImageView(image:logo)
@@ -45,5 +45,5 @@ class AboutViewController: UIViewController {
         }
         
     }
-
+    
 }

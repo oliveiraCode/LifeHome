@@ -58,7 +58,6 @@ class MyDetailAdCell: UITableViewCell {
     }
     
     func displayAnnotations(){
-        
         let adLocation = CLLocationCoordinate2D(latitude: (self.appDelegate.detailAd[0].address?.latitude)!, longitude: (self.appDelegate.detailAd[0].address?.longitude)!)
         let aTitle = "\(self.appDelegate.detailAd[0].typeOfProperty!)"
         let aSubtitle =  String(format: "CAD %.2f", self.appDelegate.detailAd[0].price!)

@@ -16,11 +16,8 @@ class TypeOfPropertyTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         changeTitleNavigatorBar()
-
     }
 
-
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         indexPathSelected = appDelegate.selectedRow
@@ -64,8 +61,6 @@ class TypeOfPropertyTableViewController: UITableViewController {
         indexPathSelected = indexPath.row
         tableView.reloadData()
     }
-    
-
     
     
     @IBAction func btnCancelPressed(_ sender: Any) {

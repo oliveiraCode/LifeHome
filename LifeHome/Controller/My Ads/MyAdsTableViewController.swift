@@ -165,7 +165,6 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
     
     
     func loadDataMyAds (){
-
         let ref: DatabaseReference = Database.database().reference()
         
         guard let uid = Auth.auth().currentUser?.uid else {return}

@@ -51,16 +51,16 @@
         <scene sceneID="uFi-Zc-hs1">
             <objects>
                 <tableViewController id="PBI-Wl-Frj" customClass="WishlistTableViewController" customModule="LifeHome" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="290" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="LDn-jV-KFW">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="320" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="LDn-jV-KFW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="290" id="lFn-yM-zKJ">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="290"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="320" id="lFn-yM-zKJ">
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="320"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lFn-yM-zKJ" id="T1b-Rr-gpW">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="289.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="319.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -186,7 +186,11 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="MCR-bw-BCh"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="frY-BZ-Y0L" appends="YES" id="fho-3k-Qo1"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Sign Up" id="pfs-CJ-2Xh">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="HJ6-uv-ZMd">
@@ -206,6 +210,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lfA-zn-dIg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="frY-BZ-Y0L" userLabel="Show View Tap Gesture Recognizer">
+                    <connections>
+                        <action selector="showViewTapGestureRecongnizer:" destination="D0o-oK-lMo" id="sda-ru-IO4"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3476" y="4209"/>
         </scene>
@@ -527,16 +536,16 @@ leandro.oliveira@live.com</string>
         <scene sceneID="2hH-Zc-D4W">
             <objects>
                 <tableViewController id="JnN-hh-p5C" customClass="MyAdsTableViewController" customModule="LifeHome" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="290" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="W9t-WG-kON">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="320" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="W9t-WG-kON">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="290" id="HBp-S1-4T3">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="290"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="320" id="HBp-S1-4T3">
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="320"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HBp-S1-4T3" id="hPE-mE-RBG">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="289.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="319.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -789,7 +798,7 @@ leandro.oliveira@live.com</string>
         <scene sceneID="UcZ-Rd-0Tn">
             <objects>
                 <tableViewController id="Ske-kX-d2C" customClass="ListTableViewController" customModule="LifeHome" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="center" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="289" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="tCc-X6-KSJ">
+                    <tableView key="view" clipsSubviews="YES" contentMode="center" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="320" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="tCc-X6-KSJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -813,11 +822,11 @@ leandro.oliveira@live.com</string>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="289" id="rIk-9t-QW3">
-                                <rect key="frame" x="0.0" y="109.5" width="375" height="289"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="320" id="rIk-9t-QW3">
+                                <rect key="frame" x="0.0" y="109.5" width="375" height="320"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rIk-9t-QW3" id="4hZ-HS-pIH">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="288.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="319.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -1105,7 +1114,7 @@ leandro.oliveira@live.com</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="zqV-Rn-GP9"/>
-        <segue reference="fhG-82-3XY"/>
-        <segue reference="XBd-ZH-4aS"/>
+        <segue reference="yqK-PV-dns"/>
+        <segue reference="wiV-RE-84V"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -22,8 +22,6 @@ class DetailAdTableViewController: UITableViewController {
         
         changeTitleNavigatorBar()
         
-        
-        
         let nibName = UINib(nibName: "MyDetailAdCell", bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: "myCell")
         
@@ -95,13 +93,12 @@ class DetailAdTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
-       // tableView.reloadData()
+        tableView.reloadData()
     }
     
     
     func checkIfWishlistExist () -> Bool{
         var existFlag = false
-        
         ref.child("Wishlist").child(self.uid!).observe(.value) { (snapshot) in
             
             for adId in snapshot.children.allObjects as! [DataSnapshot] {

@@ -35,7 +35,6 @@ class SignUpViewController: UIViewController {
         userRef = Database.database().reference().child("users")
         
         setupProfileImageView()
-        
         changeProfileButton.addTarget(self, action: #selector(pickImage), for: .touchUpInside)
     }
     
@@ -72,10 +71,10 @@ class SignUpViewController: UIViewController {
         
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    @IBAction func showViewTapGestureRecongnizer(_ sender: Any) {
         self.view.endEditing(true)
     }
-
+    
     @IBAction func btnCreateAccountPressed(_ sender: Any) {
         
         //add an activity indicator from the KRActivityIndicator framework to this view
@@ -254,16 +253,15 @@ class SignUpViewController: UIViewController {
 extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
    @objc func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
     }
-    
     @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             self.profileImageView.image = pickedImage
         }
         
-        picker.dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
     }
     
     

@@ -133,12 +133,10 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
     func loadDataWishList (){
         
         let ref: DatabaseReference = Database.database().reference()
-        
         guard let uid = appDelegate.userObj.id else {return}
         
         ref.child("Wishlist").child(uid).observe(.value) { (snapshot) in
             self.appDelegate.wishlistAd.removeAll() //remove all values before get more from firebase
-            
                 for adId in snapshot.children.allObjects as! [DataSnapshot] {
                     
                     let adObj = Ad()
@@ -217,7 +215,6 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
     func sideMenus() {
         
         if revealViewController() != nil {
-            
             self.btnMenu.target = revealViewController()
             self.btnMenu.action = #selector(SWRevealViewController.revealToggle(_:))
             revealViewController().rearViewRevealWidth = 275

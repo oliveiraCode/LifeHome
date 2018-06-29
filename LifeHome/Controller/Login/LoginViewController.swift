@@ -99,7 +99,6 @@ class LoginViewController: UIViewController {
     }
     
     func resetForm() {
-        
         //There are several ways of handling error in the Firebase site.
         //https://firebase.google.com/docs/auth/ios/errors
         

@@ -49,7 +49,6 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     
     // MARK: - Table view data source
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -83,7 +82,6 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         if indexPath.row == 0  {
             performSegue(withIdentifier: "showHomeVC", sender: nil)
         }

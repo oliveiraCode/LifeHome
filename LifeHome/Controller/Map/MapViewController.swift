@@ -24,8 +24,6 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDel
         super.viewDidLoad()
         changeTitleNavigatorBar()
         sideMenus()
-        
-        
     }
     
     

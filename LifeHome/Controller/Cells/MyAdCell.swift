@@ -11,7 +11,6 @@ import UIKit
 //That code was inspired from https://www.youtube.com/watch?v=owwLP7GMDf8
 class MyAdCell: UITableViewCell {
 
-    
     @IBOutlet weak var imgAd: UIImageView!
     @IBOutlet weak var lbPrice: UILabel!
     @IBOutlet weak var lbTypeOfProperty: UILabel!
@@ -21,6 +20,5 @@ class MyAdCell: UITableViewCell {
     @IBOutlet weak var lbBathroom: UILabel!
     @IBOutlet weak var lbBedroom: UILabel!
     @IBOutlet weak var lbGarage: UILabel!
-    
     
 }

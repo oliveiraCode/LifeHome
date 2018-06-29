@@ -26,7 +26,7 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         setupLayout()
         sideMenus()
-
+        
     }
     
     @IBAction func btnWishlist(_ sender: UIButton) {
@@ -38,7 +38,7 @@ class SettingsViewController: UIViewController {
         changeImage(whichTag: sender.tag)
     }
     
- 
+    
     func changeImage(whichTag:Int){
         switch (whichTag){
         case 100:
@@ -79,9 +79,9 @@ class SettingsViewController: UIViewController {
                 } else {
                     imgWishlist.image = UIImage(named: "uncheck")
                 }
-   
+                
             }
-
+            
             break
         }
         
@@ -102,7 +102,6 @@ class SettingsViewController: UIViewController {
     }
     
     func sideMenus() {
-        
         if revealViewController() != nil {
             
             self.btnMenu.target = revealViewController()
@@ -111,9 +110,7 @@ class SettingsViewController: UIViewController {
             
             view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-        
     }
-    
     
 }
 

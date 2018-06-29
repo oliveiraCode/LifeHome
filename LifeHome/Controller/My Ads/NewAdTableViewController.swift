@@ -213,7 +213,6 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
     func uploadImage(image:UIImage, adId:String, uid:String, completion: @escaping ((_ url:URL?)->())) {
         
         let storageRef = Storage.storage().reference().child("ImageAds/\(uid)/\(adId)")
-        
         guard let imageData = UIImageJPEGRepresentation(image, 60) else {return}
         
         let metaData = StorageMetadata()
@@ -245,7 +244,6 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        
         return 1
     }
     
@@ -255,7 +253,6 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myNewAdCell", for: indexPath) as! MyNewAdCell
         
         cell.btnTypeOfProperty.setTitle(appDelegate.arrayTypeOfProperty[appDelegate.selectedRow], for: .normal)
-        
         cell.delegate = self
         
         return cell
