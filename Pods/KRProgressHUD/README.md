@@ -1,6 +1,6 @@
 [日本語](./README_Ja.md)
 
-# KRProgressHUD
+<img src="https://github.com/krimpedance/Resources/blob/master/KRProgressHUD/logo.png" width="100%">
 
 [![Version](https://img.shields.io/cocoapods/v/KRProgressHUD.svg?style=flat)](http://cocoapods.org/pods/KRProgressHUD)
 [![License](https://img.shields.io/cocoapods/l/KRProgressHUD.svg?style=flat)](http://cocoapods.org/pods/KRProgressHUD)
@@ -13,8 +13,8 @@
 
 [KRActivityIndicatorView](https://github.com/krimpedance/KRActivityIndicatorView) is used for loading view.
 
-<img src="./Resources/demo.gif" height=400>
-<img src="./Resources/styles.png" width=400>
+<img src="https://github.com/krimpedance/Resources/blob/master/KRProgressHUD/demo.gif" height=400>
+<img src="https://github.com/krimpedance/Resources/blob/master/KRProgressHUD/styles.png" width=400>
 
 ## Features
 - Round indicator
@@ -175,9 +175,17 @@ These `set()` setting can be reset by
 I'm seeking bug reports and feature requests.
 
 ## Release Note
++ 3.2.2 :
+  - Compatible with Swift 4.1.
+
++ 3.2.1 :
+  - Fixed bug of recursion when uses `UINavigationController`. [#34](https://github.com/krimpedance/KRProgressHUD/pull/34)
+  - Fixed bug of HUD layout when uses `showOn(_ viewController:)` method.
+
 + 3.2.0 :
   - Can now customize mask color.
-  - Fixed bug of HUD layout when the screen orientation changes.
+  - HUD size varies dynamically depending on text length.
+  - Fixed bug of HUD layout when the screen orientation changes. [#32](https://github.com/krimpedance/KRProgressHUD/pull/32)
 
 + 3.1.2 :
   - Fixed bug of custom small image.

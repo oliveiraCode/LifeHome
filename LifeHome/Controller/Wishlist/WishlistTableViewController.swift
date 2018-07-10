@@ -76,6 +76,37 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
         } else if (self.appDelegate.wishlistAd[indexPath.row].address?.longitude) != nil {
             cell.lbDistance.text = String(format:"%.2f km ",self.calculateDistanceKm(lat: (self.appDelegate.wishlistAd[indexPath.row].address?.latitude)!, long: (self.appDelegate.wishlistAd[indexPath.row].address?.longitude)!))
         }
+            
+            if self.appDelegate.wishlistAd[indexPath.row].image != nil {
+                cell.imgAd.image = self.appDelegate.wishlistAd[indexPath.row].image
+            } else {
+                cell.imgAd.image = UIImage(named: "ImgPlaceholder")
+                let imageRef = Storage.storage().reference().child("ImageAds").child((Auth.auth().currentUser?.uid)!).child(self.appDelegate.wishlistAd[indexPath.row].imageStorage!)
+                
+                // get the download URL
+                imageRef.downloadURL { url, error in
+                    if let error = error {
+                        print("error downlaoding image :\(error.localizedDescription)")
+                    } else {
+                        //appending it to list
+                        do{
+                            let imageData = try Data(contentsOf: url!)
+                            let image = UIImage(data: imageData)
+                            DispatchQueue.main.async {
+                                cell.imgAd.image = image
+                                self.appDelegate.wishlistAd[indexPath.row].image = image
+                            }
+                            
+                        }
+                        catch{
+                            
+                        }
+                    }
+                }
+            }
+            
+            
+            
         }
         return cell
     }
@@ -142,20 +173,6 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
                     let adObj = Ad()
                     guard let adDict = adId.value as? [String: Any] else { continue }
                     
-                    let storageRef = Storage.storage().reference(forURL: adDict["imageURL"]! as! String)
-                    storageRef.downloadURL(completion: { (urls, error) in
-                        
-                        guard let url = urls else {return}
-                        do {
-                            let data = try Data(contentsOf: url)
-                            adObj.imgUrl = url.absoluteString
-                            adObj.image = UIImage(data: data as Data)
-                            self.tableView.reloadData()
-                        } catch {
-                            print("Error: \(error.localizedDescription)")
-                        }
-                        
-                    })
                     
                     adObj.id = adId.key
                     adObj.bedroom = adDict["bedroom"] as? Int
@@ -165,7 +182,7 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
                     adObj.description = adDict["description"]! as? String
                     adObj.typeOfProperty = adDict["typeOfProperty"]! as? String
                     adObj.creationDate = adDict["creationDate"]! as? String
-                    
+                    adObj.imageStorage = adDict["imageStorage"]! as? String
                     
                     if (adDict["typeOfAd"]! as! String) == "Sell" {
                         adObj.typeOfAd = .Sell

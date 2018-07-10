@@ -68,9 +68,8 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
         
         let indexPath : NSIndexPath = NSIndexPath(row: 0, section: 0) //Create the indexpath to get the cell
         let cell : MyNewAdCell = self.tableView.cellForRow(at: indexPath as IndexPath) as! MyNewAdCell
-        adId = ref.childByAutoId().key //create a new Id
-        
-        self.uploadImage(image:cell.imgAd.image!, adId:adId, uid:uid!) { url in
+        self.adObj.id = ref.childByAutoId().key //create a new Id
+    
             
             self.addressObj.street = cell.tfStreet.text!
             self.addressObj.city = cell.tfCity.text!
@@ -88,7 +87,8 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
             }
             
             self.adObj.creationDate = self.getTodaysDate()
-            self.adObj.imgUrl = url!.absoluteString
+            self.adObj.imageStorage = self.adObj.id
+            self.adObj.image = cell.imgAd.image
             self.adObj.bathroom = Int(cell.lbBathroom.text! as String)
             self.adObj.bedroom = Int(cell.lbBedroom.text! as String)
             self.adObj.garage = Int(cell.lbGarage.text! as String)
@@ -100,13 +100,11 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
             self.contactObj.phone = cell.tfPhone.text!
             
             self.saveData()
-            
+        
             DispatchQueue.main.async {
                 let address = "\(self.addressObj.street!), \(self.addressObj.city!), \(self.addressObj.province!) \(self.addressObj.postalCode!)"
                 self.getCoordinateFromGeoCoder(address: address)
             }
-            
-        }
         
         let alert = UIAlertController(title: "", message: "Saved successfully.", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
@@ -195,11 +193,12 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
             "creationDate": self.adObj.creationDate!,
             "Address": addressData,
             "Contact": contactData,
-            "imageURL": self.adObj.imgUrl!
+            "imageStorage": self.adObj.imageStorage!
             ] as [String:Any]
         
+        self.ref.child("Ad").child(self.uid!).child(self.adObj.id!).setValue(adData)
         
-        self.ref.child("Ad").child(self.uid!).child(self.adId).setValue(adData)
+        self.saveImageToDatabase()
        
     }
     
@@ -210,27 +209,23 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
     }
     
     
-    func uploadImage(image:UIImage, adId:String, uid:String, completion: @escaping ((_ url:URL?)->())) {
+    func saveImageToDatabase() {
         
-        let storageRef = Storage.storage().reference().child("ImageAds/\(uid)/\(adId)")
-        guard let imageData = UIImageJPEGRepresentation(image, 60) else {return}
+        guard let imageData = UIImageJPEGRepresentation(self.adObj.image!, 60) else {return}
+        let storageRef = Storage.storage().reference().child("ImageAds").child(self.uid!).child(self.adObj.imageStorage!)
         
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
         
-        storageRef.putData(imageData, metadata: metaData) { metaData, error in
-            if error == nil, metaData != nil {
-                if let url = metaData?.downloadURL() {
-                    completion(url)
-                } else {
-                    completion(nil)
-                }
-                // success!
-            } else {
-                // failed
-                completion(nil)
+        storageRef.putData(imageData, metadata: metaData) { (strMetaData, error) in
+            if error == nil{
+                print("Image Uploaded successfully")
+            }
+            else{
+                print("Error Uploading image: \(String(describing: error?.localizedDescription))")
             }
         }
+        
     }
     
     

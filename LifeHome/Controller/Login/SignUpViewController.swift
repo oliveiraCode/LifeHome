@@ -107,7 +107,7 @@ class SignUpViewController: UIViewController {
     }
     
     
-    func uploadProfileImage(_ image:UIImage, completion: @escaping ((_ url:URL?)->())) {
+    func saveImageToDatabase(_ image:UIImage, completion: @escaping ((_ url:URL?)->())) {
         let storageRef = Storage.storage().reference().child("ImageUsers/\(appDelegate.userObj.id)")
         
         guard let imageData = UIImageJPEGRepresentation(image, 60) else {return}
@@ -115,17 +115,12 @@ class SignUpViewController: UIViewController {
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
         
-        storageRef.putData(imageData, metadata: metaData) { metaData, error in
-            if error == nil, metaData != nil {
-                if let url = metaData?.downloadURL() {
-                    completion(url)
-                } else {
-                    completion(nil)
-                }
-                // success!
-            } else {
-                // failed
-                completion(nil)
+        storageRef.putData(imageData, metadata: metaData) { (strMetaData, error) in
+            if error == nil{
+                print("Image Uploaded successfully")
+            }
+            else{
+                print("Error Uploading image: \(String(describing: error?.localizedDescription))")
             }
         }
     }
@@ -146,7 +141,7 @@ class SignUpViewController: UIViewController {
                 
                 // 1. Upload the profile image to Firebase Storage
                 
-                self.uploadProfileImage(self.appDelegate.userObj.image) { url in
+                self.saveImageToDatabase(self.appDelegate.userObj.image) { url in
                     
                     if url != nil {
                         let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()

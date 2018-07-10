@@ -13,7 +13,7 @@
 
 You can add KRActivityIndicatorView from IB and code.
 
-<img src="./Resources/demo.gif" height=400>
+<img src="https://github.com/krimpedance/Resources/blob/master/KRActivityIndicatorView/demo.gif" height=400>
 
 On HUD => https://github.com/krimpedance/KRProgressHUD
 
@@ -22,7 +22,7 @@ On HUD => https://github.com/krimpedance/KRProgressHUD
 - Indicator color can be customized
 
 ## Requirements
-- iOS 10.0+
+- iOS 8.0+
 - Xcode 9.0+
 - Swift 4.0+
 
@@ -96,6 +96,7 @@ activityIndicator.stopAnimating()
 I'm seeking bug reports and feature requests.
 
 ## Release Note
+- 2.1.2 : Compatible with Swift 4.1
 - 2.1.1 : Supported from iOS 8.0.
 - 2.1.0 : Available at CocoaPods and Carthage with Xcode9 and Swift4.
 - 2.0.2 : Fixed bag which don't change `headColor` and 'tailColor'.

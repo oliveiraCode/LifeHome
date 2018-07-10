@@ -11,7 +11,7 @@ import UIKit
 class Ad {
     var id:String?
     var image:UIImage?
-    var imgUrl:String?
+    var imageStorage:String?
     var bathroom:Int?
     var bedroom:Int?
     var description:String?

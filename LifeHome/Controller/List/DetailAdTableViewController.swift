@@ -82,7 +82,7 @@ class DetailAdTableViewController: UITableViewController {
             "creationDate":self.appDelegate.detailAd[0].creationDate!,
             "Address": addressData,
             "Contact": contactData,
-            "imageURL": self.appDelegate.detailAd[0].imgUrl!
+            "imageStorage": self.appDelegate.detailAd[0].imageStorage!
             ] as [String:Any]
         
         

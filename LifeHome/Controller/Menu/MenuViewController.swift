@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import KRProgressHUD
+import FBSDKCoreKit
 
 class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
