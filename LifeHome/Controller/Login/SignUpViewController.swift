@@ -5,14 +5,12 @@
 //  Created by Leandro Oliveira on 2018-05-25.
 //  Copyright © 2018 Leandro Oliveira. All rights reserved.
 //
-
 import UIKit
 import Firebase
 import Photos
 import KRActivityIndicatorView
 
 //A lot of code from this page was inspired from YouTube Channel Replicode https://www.youtube.com/watch?v=UPKCULKi0-A&t=7s
-
 class SignUpViewController: UIViewController {
     
     @IBOutlet weak var usernameField: UITextField!
@@ -30,7 +28,7 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         cornerRadiusButton()
         userRef = Database.database().reference().child("users")
         
@@ -83,7 +81,7 @@ class SignUpViewController: UIViewController {
         view.isUserInteractionEnabled = false
         handleSignUp()
     }
-
+    
     
     
     override func viewDidAppear(_ animated: Bool) {
@@ -107,7 +105,7 @@ class SignUpViewController: UIViewController {
     }
     
     
-    func saveImageToDatabase(_ image:UIImage, completion: @escaping ((_ url:URL?)->())) {
+    func uploadProfileImage(_ image:UIImage, completion: @escaping ((_ url:URL?)->())) {
         let storageRef = Storage.storage().reference().child("ImageUsers/\(appDelegate.userObj.id)")
         
         guard let imageData = UIImageJPEGRepresentation(image, 60) else {return}
@@ -115,12 +113,17 @@ class SignUpViewController: UIViewController {
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
         
-        storageRef.putData(imageData, metadata: metaData) { (strMetaData, error) in
-            if error == nil{
-                print("Image Uploaded successfully")
-            }
-            else{
-                print("Error Uploading image: \(String(describing: error?.localizedDescription))")
+        storageRef.putData(imageData, metadata: metaData) { metaData, error in
+            if error == nil, metaData != nil {
+                if let url = metaData?.downloadURL() {
+                    completion(url)
+                } else {
+                    completion(nil)
+                }
+                // success!
+            } else {
+                // failed
+                completion(nil)
             }
         }
     }
@@ -133,7 +136,7 @@ class SignUpViewController: UIViewController {
         appDelegate.userObj.password = passwordField.text
         appDelegate.userObj.image = profileImageView.image
         
-
+        
         Auth.auth().createUser(withEmail: appDelegate.userObj.email, password: appDelegate.userObj.password) { user, error in
             if error == nil && user != nil {
                 print("User created!")
@@ -141,7 +144,7 @@ class SignUpViewController: UIViewController {
                 
                 // 1. Upload the profile image to Firebase Storage
                 
-                self.saveImageToDatabase(self.appDelegate.userObj.image) { url in
+                self.uploadProfileImage(self.appDelegate.userObj.image) { url in
                     
                     if url != nil {
                         let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
@@ -154,7 +157,7 @@ class SignUpViewController: UIViewController {
                                 self.saveProfile(profileImageURL: url!) { success in
                                     if success {
                                         UserDefaults.standard.set(true, forKey: "ContinueWithoutAnAccount")
-            
+                                        
                                         self.activityIndicator.stopAnimating()
                                         self.view.isUserInteractionEnabled = true
                                         
@@ -182,13 +185,13 @@ class SignUpViewController: UIViewController {
                 }
                 
             } else {
-    
+                
                 self.resetForm()
             }
         }
     }
-        
-
+    
+    
     
     func resetForm() {
         
@@ -206,7 +209,7 @@ class SignUpViewController: UIViewController {
     
     
     func saveProfile(profileImageURL:URL, completion: @escaping ((_ success:Bool)->())) {
- 
+        
         let userData = [
             "username": appDelegate.userObj.username,
             "email":appDelegate.userObj.email,
@@ -226,8 +229,8 @@ class SignUpViewController: UIViewController {
         btnCreateAccount.layer.cornerRadius = 25
         btnCreateAccount.layer.masksToBounds = true
     }
-
-
+    
+    
     @IBAction func btnCancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -247,7 +250,7 @@ class SignUpViewController: UIViewController {
 
 extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-   @objc func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    @objc func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true)
     }
     @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -261,5 +264,3 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
     
     
 }
-
-

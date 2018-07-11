@@ -6,16 +6,15 @@ target 'LifeHome' do
   use_frameworks!
 
   # Pods for LifeHome
-  pod 'Firebase/Core'
+  pod 'Firebase/Core', '~> 4.9.0'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
-
   pod 'KRActivityIndicatorView'
 
   pod 'SWRevealViewController'
 
-  pod "KRProgressHUD"
+  pod 'KRProgressHUD'
 
   pod 'FBSDKLoginKit'
 

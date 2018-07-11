@@ -5,7 +5,6 @@
 //  Created by Leandro Oliveira on 2018-05-25.
 //  Copyright © 2018 Leandro Oliveira. All rights reserved.
 //
-
 import UIKit
 import Firebase
 import FBSDKCoreKit
@@ -87,7 +86,7 @@ class LoginViewController: UIViewController {
             if error == nil{
                 self.appDelegate.userObj.email = result?.user.email!
                 self.appDelegate.userObj.username = result?.user.displayName
-                self.appDelegate.userObj.id = Auth.auth().currentUser?.uid
+                self.appDelegate.userObj.id = result?.user.uid
                 self.appDelegate.userObj.phone = result?.user.phoneNumber ?? "000-0000"
                 
                 self.getImage(url: (result?.user.photoURL)!)
@@ -121,7 +120,7 @@ class LoginViewController: UIViewController {
                 if(image != nil){
                     self.appDelegate.userObj.image = image
                     
-                    self.saveImageToDatabase(self.appDelegate.userObj.image) { url in
+                    self.uploadProfileImage(self.appDelegate.userObj.image) { url in
                         if url != nil {
                             let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
                             changeRequest?.photoURL = url
@@ -157,7 +156,7 @@ class LoginViewController: UIViewController {
     }
     
     
-    func saveImageToDatabase(_ image:UIImage, completion: @escaping ((_ url:URL?)->())) {
+    func uploadProfileImage(_ image:UIImage, completion: @escaping ((_ url:URL?)->())) {
         let storageRef = Storage.storage().reference().child("ImageUsers/\(appDelegate.userObj.id)")
         
         guard let imageData = UIImageJPEGRepresentation(image, 60) else {return}
@@ -165,15 +164,20 @@ class LoginViewController: UIViewController {
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
         
-        storageRef.putData(imageData, metadata: metaData) { (strMetaData, error) in
-            if error == nil{
-                print("Image Uploaded successfully")
-            }
-            else{
-                print("Error Uploading image: \(String(describing: error?.localizedDescription))")
+        storageRef.putData(imageData, metadata: metaData) { metaData, error in
+            if error == nil, metaData != nil {
+                
+                if let url = metaData?.downloadURL() {
+                    completion(url)
+                } else {
+                    completion(nil)
+                }
+                // success!
+            } else {
+                // failed
+                completion(nil)
             }
         }
-        
     }
     
     func saveProfile(profileImageURL:URL, completion: @escaping ((_ success:Bool)->())) {
@@ -218,5 +222,3 @@ class LoginViewController: UIViewController {
         view.addSubview(activityIndicator)
     }
 }
-
-
