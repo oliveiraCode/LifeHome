@@ -135,7 +135,8 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
             cell.imgAd.image = self.appDelegate.currentListAds[indexPath.row].image
         } else {
             cell.imgAd.image = UIImage(named: "ImgPlaceholder")
-            let imageRef = Storage.storage().reference().child("ImageAds").child((Auth.auth().currentUser?.uid)!).child(self.appDelegate.currentListAds[indexPath.row].imageStorage!)
+            
+            let imageRef = Storage.storage().reference().child("ImageAds").child(self.appDelegate.currentListAds[indexPath.row].imageStorage!)
             
             // get the download URL
             imageRef.downloadURL { url, error in

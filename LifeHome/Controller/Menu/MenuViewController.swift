@@ -23,8 +23,15 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     let ref = Database.database().reference()
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    let nameMenu:[String] = ["Home","Profile","Settings","About"]
-    let imgMenu:[String] = ["home","profile","settings","about"]
+    let nameMenu:[String] = [NSLocalizedString("Home", comment: "Home"),
+                             NSLocalizedString("Profile", comment: "Profile"),
+                             NSLocalizedString("Settings", comment: "Settings"),
+                             NSLocalizedString("About", comment: "About")]
+    
+    let imgMenu:[String] = [NSLocalizedString("home", comment: "home"),
+                            NSLocalizedString("profile", comment: "profile"),
+                            NSLocalizedString("settings", comment: "settings"),
+                            NSLocalizedString("about", comment: "about")]
     
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

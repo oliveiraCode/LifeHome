@@ -81,7 +81,7 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
                 cell.imgAd.image = self.appDelegate.wishlistAd[indexPath.row].image
             } else {
                 cell.imgAd.image = UIImage(named: "ImgPlaceholder")
-                let imageRef = Storage.storage().reference().child("ImageAds").child((Auth.auth().currentUser?.uid)!).child(self.appDelegate.wishlistAd[indexPath.row].imageStorage!)
+                let imageRef = Storage.storage().reference().child("ImageAds").child(self.appDelegate.wishlistAd[indexPath.row].imageStorage!)
                 
                 // get the download URL
                 imageRef.downloadURL { url, error in

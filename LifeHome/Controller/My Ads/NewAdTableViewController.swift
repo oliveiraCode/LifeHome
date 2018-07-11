@@ -212,7 +212,7 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
     func saveImageToDatabase() {
         
         guard let imageData = UIImageJPEGRepresentation(self.adObj.image!, 60) else {return}
-        let storageRef = Storage.storage().reference().child("ImageAds").child(self.uid!).child(self.adObj.imageStorage!)
+        let storageRef = Storage.storage().reference().child("ImageAds").child(self.adObj.imageStorage!)
         
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
