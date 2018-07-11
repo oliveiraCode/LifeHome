@@ -35,11 +35,7 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         changeTitleNavigatorBar()
         isLogged()
-        
-        imgProfile.layer.cornerRadius = imgProfile.bounds.height / 2
-        imgProfile.layer.borderWidth = 1
-        imgProfile.layer.borderColor = UIColor.white.cgColor
-        imgProfile.clipsToBounds = true
+        setupImgProfile()
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -48,8 +44,26 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
         NotificationCenter.default.addObserver(self, selector: #selector(updateInfoUser), name: NSNotification.Name(rawValue: "updateInfoUser"), object: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        isLogged()
+    }
     
-    // MARK: - Table view data source
+    // MARK: - Setup ViewController
+    func setupImgProfile(){
+        imgProfile.layer.cornerRadius = imgProfile.bounds.height / 2
+        imgProfile.layer.borderWidth = 1
+        imgProfile.layer.borderColor = UIColor.white.cgColor
+        imgProfile.clipsToBounds = true
+    }
+    
+    func changeTitleNavigatorBar(){
+        let logo = UIImage(named: "logoTitle")
+        let imageView = UIImageView(image:logo)
+        self.navigationItem.titleView = imageView
+    }
+    
+    // MARK: - TableView Methods
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -72,7 +86,6 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         return cell
     }
-    
     
     
     // Override to support conditional editing of the table view.
@@ -116,14 +129,7 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
-    
-    func changeTitleNavigatorBar(){
-        let logo = UIImage(named: "logoTitle")
-        let imageView = UIImageView(image:logo)
-        self.navigationItem.titleView = imageView
-    }
-    
-    
+    // MARK: - Account Methods
     @IBAction func btnSignInOut(_ sender: Any) {
         if Auth.auth().currentUser?.uid == nil{
             performSegue(withIdentifier: "showLoginVC", sender: nil)
@@ -143,12 +149,7 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        isLogged()
-        
-    }
-    
+
     func isLogged(){
         if Auth.auth().currentUser?.uid != nil {
             appDelegate.getDataFromUser()
@@ -157,7 +158,6 @@ class  MenuViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
         }
     }
-    
     
     //update info user got from firebase
     @objc func updateInfoUser(){

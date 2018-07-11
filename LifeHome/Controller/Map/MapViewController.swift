@@ -74,7 +74,6 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDel
     }
     
     
-    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         let annotation = view.annotation
         self.map.selectAnnotation(annotation!, animated: true)

@@ -238,7 +238,6 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
                         
 
                         //Call the copmletion handler that was passed to us
-                        
                         self.listMyAds.append(adObj)
                         self.tableView.reloadData()
 

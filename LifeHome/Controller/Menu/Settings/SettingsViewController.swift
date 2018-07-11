@@ -11,7 +11,6 @@ import SWRevealViewController
 
 class SettingsViewController: UIViewController {
     
-    
     @IBOutlet weak var imgWishlist: UIImageView!
     @IBOutlet weak var imgMiles: UIImageView!
     @IBOutlet weak var imgKilometers: UIImageView!
@@ -29,6 +28,7 @@ class SettingsViewController: UIViewController {
         
     }
     
+    //MARK - Options Methods
     @IBAction func btnWishlist(_ sender: UIButton) {
         changeImage(whichTag: sender.tag)
     }
@@ -87,6 +87,7 @@ class SettingsViewController: UIViewController {
         
     }
     
+    //MARK - Setup ViewController
     func setupLayout(){
         let logo = UIImage(named: "logoTitle")
         let imageView = UIImageView(image:logo)
@@ -101,6 +102,7 @@ class SettingsViewController: UIViewController {
         
     }
     
+    //MARK - SIDE MENU
     func sideMenus() {
         if revealViewController() != nil {
             
@@ -114,9 +116,9 @@ class SettingsViewController: UIViewController {
     
 }
 
+
 //the code was inspired from https://stackoverflow.com/questions/47581644/swift-how-to-check-if-userdefaults-exists-and-if-not-save-a-chosen-standard-val
 extension UserDefaults {
-    
     static func exists(key: String) -> Bool {
         return UserDefaults.standard.object(forKey: key) != nil
     }
