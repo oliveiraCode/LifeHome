@@ -53,6 +53,7 @@ PODS:
     - "GoogleToolboxForMac/NSString+URLArguments (= 2.1.4)"
   - "GoogleToolboxForMac/NSString+URLArguments (2.1.4)"
   - GTMSessionFetcher/Core (1.1.15)
+  - Kingfisher (4.8.0)
   - KRActivityIndicatorView (2.1.2)
   - KRProgressHUD (3.2.2):
     - KRActivityIndicatorView (= 2.1.2)
@@ -70,6 +71,7 @@ DEPENDENCIES:
   - Firebase/Core (~> 4.9.0)
   - Firebase/Database
   - Firebase/Storage
+  - Kingfisher
   - KRActivityIndicatorView
   - KRProgressHUD
   - SWRevealViewController
@@ -88,6 +90,7 @@ SPEC REPOS:
     - FirebaseStorage
     - GoogleToolboxForMac
     - GTMSessionFetcher
+    - Kingfisher
     - KRActivityIndicatorView
     - KRProgressHUD
     - leveldb-library
@@ -107,12 +110,13 @@ SPEC CHECKSUMS:
   FirebaseStorage: 181bb543d39ee3c53e0558de7ba86b1286a0427f
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
+  Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
   KRActivityIndicatorView: 27e7a7e3da7fbc8e5405fbc4088b51cc2095a410
   KRProgressHUD: 8872da74b1c462e15c82a8fff250a2d34ee82ea2
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
 
-PODFILE CHECKSUM: 7572062cd5803f87b7853b41217a8d2238941ee3
+PODFILE CHECKSUM: a985c95484d0f9265b2a234065c480cb028979a5
 
 COCOAPODS: 1.5.3

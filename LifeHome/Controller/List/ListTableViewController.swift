@@ -11,6 +11,7 @@ import Firebase
 import SWRevealViewController
 import CoreLocation
 import KRActivityIndicatorView
+import Kingfisher
 
 
 class ListTableViewController: UITableViewController,CLLocationManagerDelegate,UISearchBarDelegate,UIPickerViewDelegate,UIPickerViewDataSource {
@@ -70,10 +71,10 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
         self.searchBar(searchBar, textDidChange: "")
     }
     
-
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-       print(searchBar.selectedScopeButtonIndex)
+        print(searchBar.selectedScopeButtonIndex)
         appDelegate.currentListAds = listAds.filter({ Ads -> Bool in
             if searchText.isEmpty { return true }
             return (Ads.address?.city!.lowercased().contains(searchText.lowercased()))!
@@ -111,7 +112,7 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyAdCell
-    
+        
         cell.lbAddress.text = self.appDelegate.currentListAds[indexPath.row].address?.street
         cell.lbCity.text = self.appDelegate.currentListAds[indexPath.row].address?.city
         cell.imgAd.image = self.appDelegate.currentListAds[indexPath.row].image
@@ -144,18 +145,8 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
                     print("error downlaoding image :\(error.localizedDescription)")
                 } else {
                     //appending it to list
-                    do{
-                        let imageData = try Data(contentsOf: url!)
-                        let image = UIImage(data: imageData)
-                        DispatchQueue.main.async {
-                            cell.imgAd.image = image
-                            self.appDelegate.currentListAds[indexPath.row].image = image
-                        }
-                        
-                    }
-                    catch{
-                        
-                    }
+                        cell.imgAd.kf.setImage(with: url!)
+                        self.appDelegate.currentListAds[indexPath.row].image = cell.imgAd.image
                 }
             }
         }
@@ -299,7 +290,7 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
         let alert = UIAlertController(title: "Sort Type", message: nil, preferredStyle: .alert)
         alert.setValue(vc, forKey: "contentViewController")
         alert.addAction(UIAlertAction(title: "Apply", style: .default, handler: { action in
-
+            
             switch self.selectedRow {
             case 1 :
                 self.sortByDate()
@@ -326,7 +317,7 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
         
     }
     
-
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -340,7 +331,7 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-       selectedRow = row
+        selectedRow = row
     }
     
     func sortByDistance(){

@@ -100,18 +100,8 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
                         print("error downlaoding image :\(error.localizedDescription)")
                     } else {
                         //appending it to list
-                        do{
-                            let imageData = try Data(contentsOf: url!)
-                            let image = UIImage(data: imageData)
-                            DispatchQueue.main.async {
-                                cell.imgAd.image = image
-                                self.listMyAds[indexPath.row].image = image
-                            }
-                            
-                        }
-                        catch{
-                            
-                        }
+                        cell.imgAd.kf.setImage(with: url!)
+                        self.appDelegate.currentListAds[indexPath.row].image = cell.imgAd.image
                     }
                 }
             }

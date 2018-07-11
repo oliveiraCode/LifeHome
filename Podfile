@@ -10,6 +10,7 @@ target 'LifeHome' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
+  
   pod 'KRActivityIndicatorView'
 
   pod 'SWRevealViewController'
@@ -17,5 +18,7 @@ target 'LifeHome' do
   pod 'KRProgressHUD'
 
   pod 'FBSDKLoginKit'
+  
+  pod 'Kingfisher'
 
 end
