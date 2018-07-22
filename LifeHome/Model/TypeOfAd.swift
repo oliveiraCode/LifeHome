@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum TypeOfAd {
-    case Rent
-    case Sell
+enum TypeOfAd:String {
+    case Rent = "Rent"
+    case Sell = "Sell"
 }

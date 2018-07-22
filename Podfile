@@ -20,5 +20,7 @@ target 'LifeHome' do
   pod 'FBSDKLoginKit'
   
   pod 'Kingfisher'
+  
+  pod 'SDWebImage'
 
 end

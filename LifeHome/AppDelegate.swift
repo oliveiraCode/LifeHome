@@ -20,8 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var listAds:[Ad]=[]
     var wishlistAd:[Ad] = []
     var selectedRow : Int = 0
-    let arrayTypeOfProperty:[String] =
-        ["Select...","House","Townhouse","Apartment","Duplex","Triplex","Fourplex","Other"]
+    let arrayTypeOfProperty:[TypeOfProperty] = [.House,.Townhouse,.Apartment,.Duplex,.Triplex,.Fourplex,.Other]
     var myCurrentLocation:CLLocation!
     let userObj = User()
     

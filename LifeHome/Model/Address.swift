@@ -16,7 +16,6 @@ class Address {
     var postalCode:String?
     var latitude:Double?
     var longitude:Double?
-    var distance:Double?
     
     func addressGeoCode () -> String{
         return "\(self.street!), \(self.city!), \(self.province!) \(self.postalCode!)"

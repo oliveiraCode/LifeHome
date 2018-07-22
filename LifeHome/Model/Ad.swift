@@ -19,8 +19,9 @@ class Ad {
     var price:Float?
     var address:Address?
     var typeOfAd: TypeOfAd?
-    var typeOfProperty: String?
+    var typeOfProperty: TypeOfProperty?
     var contact:Contact?
     var creationDate:String?
+    var distance:Double?
 
 }

@@ -51,7 +51,7 @@ class TypeOfPropertyTableViewController: UITableViewController {
             cell.accessoryType = .none
         }
  
-        cell.textLabel?.text = self.appDelegate.arrayTypeOfProperty[indexPath.row]
+        cell.textLabel?.text = self.appDelegate.arrayTypeOfProperty[indexPath.row].rawValue
 
         return cell
     }

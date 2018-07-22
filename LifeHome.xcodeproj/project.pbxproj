@@ -33,6 +33,7 @@
 		9C94724120C7173100665DA7 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C94724020C7173100665DA7 /* Address.swift */; };
 		9C94724320C7188A00665DA7 /* TypeOfAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C94724220C7188A00665DA7 /* TypeOfAd.swift */; };
 		9CA2992420CAD2B000A8E500 /* AdAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA2992320CAD2B000A8E500 /* AdAnnotation.swift */; };
+		9CDC2E1A2100E52E0078849C /* TypeOfProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDC2E192100E52E0078849C /* TypeOfProperty.swift */; };
 		9CE4CCC120C18ABC00CC7007 /* MyAdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE4CCBF20C18ABC00CC7007 /* MyAdCell.swift */; };
 		9CE4CCC220C18ABC00CC7007 /* MyAdCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CE4CCC020C18ABC00CC7007 /* MyAdCell.xib */; };
 		9CE4CCCB20C2087400CC7007 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE4CCCA20C2087400CC7007 /* MenuViewController.swift */; };
@@ -72,6 +73,7 @@
 		9C94724220C7188A00665DA7 /* TypeOfAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeOfAd.swift; sourceTree = "<group>"; };
 		9CA2992320CAD2B000A8E500 /* AdAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdAnnotation.swift; sourceTree = "<group>"; };
 		9CA2992520CAD4A900A8E500 /* Montreal.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Montreal.gpx; sourceTree = "<group>"; };
+		9CDC2E192100E52E0078849C /* TypeOfProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeOfProperty.swift; sourceTree = "<group>"; };
 		9CE4CCBF20C18ABC00CC7007 /* MyAdCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAdCell.swift; sourceTree = "<group>"; };
 		9CE4CCC020C18ABC00CC7007 /* MyAdCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyAdCell.xib; sourceTree = "<group>"; };
 		9CE4CCC320C1E91A00CC7007 /* LifeHome-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LifeHome-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				9C94724020C7173100665DA7 /* Address.swift */,
 				9C94724220C7188A00665DA7 /* TypeOfAd.swift */,
 				9C14CCE720D3F72D002B2621 /* Contact.swift */,
+				9CDC2E192100E52E0078849C /* TypeOfProperty.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				"${BUILT_PRODUCTS_DIR}/KRActivityIndicatorView/KRActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/KRProgressHUD/KRProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SWRevealViewController/SWRevealViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -376,6 +380,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KRActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KRProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWRevealViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -410,6 +415,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CDC2E1A2100E52E0078849C /* TypeOfProperty.swift in Sources */,
 				9C4B292C20B856F900EE8A1B /* LoginViewController.swift in Sources */,
 				9C4B292920B71ACB00EE8A1B /* ListTableViewController.swift in Sources */,
 				9CE4CCC120C18ABC00CC7007 /* MyAdCell.swift in Sources */,

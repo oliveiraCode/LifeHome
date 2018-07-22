@@ -28,6 +28,21 @@ class SettingsViewController: UIViewController {
         
     }
     
+    //MARK - Setup ViewController
+    func setupLayout(){
+        let logo = UIImage(named: "logoTitle")
+        let imageView = UIImageView(image:logo)
+        self.navigationItem.titleView = imageView
+        
+        viewDistance.layer.borderWidth = 0.5
+        viewDistance.layer.borderColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255, alpha: 100).cgColor
+        viewNotification.layer.borderColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255, alpha: 100).cgColor
+        viewNotification.layer.borderWidth = 0.5
+        
+        changeImage(whichTag: 1)
+        
+    }
+    
     //MARK - Options Methods
     @IBAction func btnWishlist(_ sender: UIButton) {
         changeImage(whichTag: sender.tag)
@@ -87,20 +102,7 @@ class SettingsViewController: UIViewController {
         
     }
     
-    //MARK - Setup ViewController
-    func setupLayout(){
-        let logo = UIImage(named: "logoTitle")
-        let imageView = UIImageView(image:logo)
-        self.navigationItem.titleView = imageView
-        
-        viewDistance.layer.borderWidth = 0.5
-        viewDistance.layer.borderColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255, alpha: 100).cgColor
-        viewNotification.layer.borderColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255, alpha: 100).cgColor
-        viewNotification.layer.borderWidth = 0.5
-        
-        changeImage(whichTag: 1)
-        
-    }
+
     
     //MARK - SIDE MENU
     func sideMenus() {

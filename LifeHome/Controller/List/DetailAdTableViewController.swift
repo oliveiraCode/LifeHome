@@ -34,23 +34,24 @@ class DetailAdTableViewController: UITableViewController {
     
     @objc func saveWishlist(){
         
-        self.tableView.reloadData() //to change the heart picture
+        if Auth.auth().currentUser?.uid == nil { return }
+        
+       // self.tableView.reloadData() //to change the heart picture
         
         if isWishlist {
             saveData()
         } else {
             deleteData()
         }
-        
     }
     
     func deleteData(){
         self.ref.child("Wishlist").child(self.uid!).child(self.appDelegate.detailAd[0].id!).setValue(nil)
+        self.tableView.reloadData() //to change the heart picture
     }
     
     func saveData(){
-        var typeOfAd:String?
-        
+  
         let addressData = [
             "city": self.appDelegate.detailAd[0].address!.city!,
             "postal code": self.appDelegate.detailAd[0].address!.postalCode!,
@@ -65,20 +66,14 @@ class DetailAdTableViewController: UITableViewController {
             "phone":self.appDelegate.detailAd[0].contact!.phone!
             ] as [String:Any]
         
-        if self.appDelegate.detailAd[0].typeOfAd == TypeOfAd.Rent{
-            typeOfAd = "Rent"
-        } else {
-            typeOfAd = "Sell"
-        }
-        
         let adData = [
             "bathroom": self.appDelegate.detailAd[0].bathroom!,
             "bedroom": self.appDelegate.detailAd[0].bedroom!,
             "garage": self.appDelegate.detailAd[0].garage!,
             "description": self.appDelegate.detailAd[0].description!,
             "price": self.appDelegate.detailAd[0].price!,
-            "typeOfAd": typeOfAd!,
-            "typeOfProperty": self.appDelegate.detailAd[0].typeOfProperty!,
+            "typeOfAd": self.appDelegate.detailAd[0].typeOfAd!.rawValue,
+            "typeOfProperty": self.appDelegate.detailAd[0].typeOfProperty!.rawValue,
             "creationDate":self.appDelegate.detailAd[0].creationDate!,
             "Address": addressData,
             "Contact": contactData,
@@ -87,18 +82,22 @@ class DetailAdTableViewController: UITableViewController {
         
         
         self.ref.child("Wishlist").child(self.uid!).child(self.appDelegate.detailAd[0].id!).setValue(adData)
+        self.tableView.reloadData() //to change the heart picture
         
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
-        tableView.reloadData()
+        //tableView.reloadData()
     }
     
     
     func checkIfWishlistExist () -> Bool{
         var existFlag = false
+        
+        if Auth.auth().currentUser?.uid == nil { return existFlag }
+        
         ref.child("Wishlist").child(self.uid!).observe(.value) { (snapshot) in
             
             for adId in snapshot.children.allObjects as! [DataSnapshot] {
@@ -112,7 +111,7 @@ class DetailAdTableViewController: UITableViewController {
         }
         return existFlag
     }
-
+    
     
     // MARK: - Table view data source
     
@@ -143,14 +142,12 @@ class DetailAdTableViewController: UITableViewController {
         let address = "\((self.appDelegate.detailAd[indexPath.row].address?.city)!), \((self.appDelegate.detailAd[indexPath.row].address?.province)!), \((self.appDelegate.detailAd[indexPath.row].address?.postalCode)!.uppercased())"
         cell.lbAddress2.text = address
         
-        if self.appDelegate.detailAd[indexPath.row].typeOfAd == TypeOfAd.Sell {
-            cell.lbTypeOfAd.text = "For Sell"
-        } else {
-            cell.lbTypeOfAd.text = "For Rent"
-        }
-        cell.lbTypeOfProperty.text = String(self.appDelegate.detailAd[indexPath.row].typeOfProperty!)
+        cell.lbTypeOfAd.text = "For \((self.appDelegate.detailAd[indexPath.row].typeOfAd?.rawValue)!)"
+        
+        cell.lbTypeOfProperty.text = self.appDelegate.detailAd[indexPath.row].typeOfProperty?.rawValue
         cell.lbPrice.text = String(format: "CAD %.2f",self.appDelegate.detailAd[indexPath.row].price!)
         
+
         if isWishlist || checkIfWishlistExist(){
             cell.btnWishlist.setImage(UIImage(named: "wishlist_saved"), for: .normal)
             isWishlist = false
@@ -158,6 +155,23 @@ class DetailAdTableViewController: UITableViewController {
             cell.btnWishlist.setImage(UIImage(named: "wishlist_unsaved"), for: .normal)
             isWishlist = true
         }
+        
+        let imageRef = Storage.storage().reference().child("ImageAds").child(self.appDelegate.detailAd[indexPath.row].imageStorage!)
+        
+        // get the download URL
+        imageRef.downloadURL { url, error in
+            if let error = error {
+                print("error downlaoding image :\(error.localizedDescription)")
+            } else {
+                //appending it to list
+                
+                DispatchQueue.main.async {
+                    cell.imageAd.kf.setImage(with: url!, placeholder: UIImage(named: "ImgPlaceholder"))
+                }
+                
+            }
+        }
+        
         
         cell.displayAnnotations()
         

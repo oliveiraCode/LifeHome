@@ -12,6 +12,7 @@ import SWRevealViewController
 import CoreLocation
 import KRActivityIndicatorView
 import Kingfisher
+import SDWebImage
 
 
 class ListTableViewController: UITableViewController,CLLocationManagerDelegate,UISearchBarDelegate,UIPickerViewDelegate,UIPickerViewDataSource {
@@ -74,7 +75,6 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        print(searchBar.selectedScopeButtonIndex)
         appDelegate.currentListAds = listAds.filter({ Ads -> Bool in
             if searchText.isEmpty { return true }
             return (Ads.address?.city!.lowercased().contains(searchText.lowercased()))!
@@ -87,7 +87,6 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         determineMyCurrentLocation()
-        
         
     }
     
@@ -118,26 +117,25 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
         cell.imgAd.image = self.appDelegate.currentListAds[indexPath.row].image
         cell.lbBedroom.text = String(self.appDelegate.currentListAds[indexPath.row].bedroom!)
         cell.lbBathroom.text = String(self.appDelegate.currentListAds[indexPath.row].bathroom!)
-        cell.lbTypeOfProperty.text = String(self.appDelegate.currentListAds[indexPath.row].typeOfProperty!)
+        cell.lbTypeOfProperty.text = self.appDelegate.currentListAds[indexPath.row].typeOfProperty?.rawValue
         cell.lbGarage.text = String(self.appDelegate.currentListAds[indexPath.row].garage!)
         cell.lbPrice.text = String(format: "CAD %.2f",self.appDelegate.currentListAds[indexPath.row].price!)
         
         if UserDefaults.standard.bool(forKey: "miles"){
             if (self.appDelegate.currentListAds[indexPath.row].address?.longitude) != nil {
-                self.appDelegate.currentListAds[indexPath.row].address?.distance = self.calculateDistanceMi(lat: (self.appDelegate.currentListAds[indexPath.row].address?.latitude)!, long: (self.appDelegate.currentListAds[indexPath.row].address?.longitude)!)
-                cell.lbDistance.text = String(format:"%.2f mi ",(self.appDelegate.currentListAds[indexPath.row].address?.distance)!)
+                self.appDelegate.currentListAds[indexPath.row].distance = self.calculateDistanceMi(lat: (self.appDelegate.currentListAds[indexPath.row].address?.latitude)!, long: (self.appDelegate.currentListAds[indexPath.row].address?.longitude)!)
+                cell.lbDistance.text = String(format:"%.2f mi ",self.appDelegate.currentListAds[indexPath.row].distance!)
             }
         } else if (self.appDelegate.currentListAds[indexPath.row].address?.longitude) != nil {
-            self.appDelegate.currentListAds[indexPath.row].address?.distance = self.calculateDistanceKm(lat: (self.appDelegate.currentListAds[indexPath.row].address?.latitude)!, long: (self.appDelegate.currentListAds[indexPath.row].address?.longitude)!)
-            cell.lbDistance.text = String(format:"%.2f km ",(self.appDelegate.currentListAds[indexPath.row].address?.distance)!)
+            self.appDelegate.currentListAds[indexPath.row].distance = self.calculateDistanceKm(lat: (self.appDelegate.currentListAds[indexPath.row].address?.latitude)!, long: (self.appDelegate.currentListAds[indexPath.row].address?.longitude)!)
+            cell.lbDistance.text = String(format:"%.2f km ",self.appDelegate.currentListAds[indexPath.row].distance!)
         }
         
         if self.appDelegate.currentListAds[indexPath.row].image != nil {
             cell.imgAd.image = self.appDelegate.currentListAds[indexPath.row].image
         } else {
             cell.imgAd.image = UIImage(named: "ImgPlaceholder")
-            
-            let imageRef = Storage.storage().reference().child("ImageAds").child(self.appDelegate.currentListAds[indexPath.row].imageStorage!)
+           let imageRef = Storage.storage().reference().child("ImageAds").child(self.appDelegate.currentListAds[indexPath.row].imageStorage!)
             
             // get the download URL
             imageRef.downloadURL { url, error in
@@ -145,8 +143,11 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
                     print("error downlaoding image :\(error.localizedDescription)")
                 } else {
                     //appending it to list
+                   
+                    DispatchQueue.main.async {
                         cell.imgAd.kf.setImage(with: url!)
                         self.appDelegate.currentListAds[indexPath.row].image = cell.imgAd.image
+                    }
                 }
             }
         }
@@ -208,7 +209,33 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
                     adObj.bathroom = adDict["bathroom"] as? Int
                     adObj.price = adDict["price"] as? Float
                     adObj.description = adDict["description"]! as? String
-                    adObj.typeOfProperty = adDict["typeOfProperty"]! as? String
+                    
+                    switch adDict["typeOfProperty"]! as! String{
+                    case "House":
+                        adObj.typeOfProperty = .House
+                        break
+                    case "Townhouse":
+                        adObj.typeOfProperty = .Townhouse
+                        break
+                    case "Apartment":
+                        adObj.typeOfProperty = .Apartment
+                        break
+                    case "Duplex":
+                        adObj.typeOfProperty = .Duplex
+                        break
+                    case "Triplex":
+                        adObj.typeOfProperty = .Triplex
+                        break
+                    case "Fourplex":
+                        adObj.typeOfProperty = .Fourplex
+                        break
+                    case "Other":
+                        adObj.typeOfProperty = .Other
+                        break
+                    default:
+                        print("default")
+                    }
+                    
                     adObj.creationDate = adDict["creationDate"]! as? String
                     adObj.imageStorage = adDict["imageStorage"]! as? String
                     
@@ -336,7 +363,7 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
     
     func sortByDistance(){
         self.appDelegate.currentListAds = self.appDelegate.currentListAds.sorted{
-            $0.address!.distance! < $1.address!.distance!
+            $0.distance! < $1.distance!
         }
     }
     
@@ -361,3 +388,5 @@ class ListTableViewController: UITableViewController,CLLocationManagerDelegate,U
     
     
 }
+
+

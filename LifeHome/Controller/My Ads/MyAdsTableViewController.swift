@@ -38,7 +38,6 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
         super.viewWillAppear(animated)
         determineMyCurrentLocation()
         tableView.reloadData()
-
     }
     
 
@@ -76,7 +75,7 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
             cell.imgAd.image = listMyAds[indexPath.row].image
             cell.lbBedroom.text = String(listMyAds[indexPath.row].bedroom!)
             cell.lbBathroom.text = String(listMyAds[indexPath.row].bathroom!)
-            cell.lbTypeOfProperty.text = String(listMyAds[indexPath.row].typeOfProperty!)
+            cell.lbTypeOfProperty.text = listMyAds[indexPath.row].typeOfProperty?.rawValue
             cell.lbGarage.text = String(listMyAds[indexPath.row].garage!)
             cell.lbPrice.text = String(format: "CAD %.2f",listMyAds[indexPath.row].price!)
             
@@ -100,7 +99,9 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
                         print("error downlaoding image :\(error.localizedDescription)")
                     } else {
                         //appending it to list
-                        cell.imgAd.kf.setImage(with: url!)
+                        DispatchQueue.main.async {
+                            cell.imgAd.kf.setImage(with: url!)
+                        }
                         self.appDelegate.currentListAds[indexPath.row].image = cell.imgAd.image
                     }
                 }
@@ -111,7 +112,7 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
         return cell
     }
 
-
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
@@ -137,8 +138,6 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
         }))
         
         self.present(alert, animated: true)
-        
-
         
     }
 
@@ -184,14 +183,15 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
     
     
     func loadDataMyAds (){
+        
+        self.listMyAds.removeAll() //remove all values before get more from firebase
+        
         let ref: DatabaseReference = Database.database().reference()
         
         guard let uid = Auth.auth().currentUser?.uid else {return}
         
         ref.child("Ad").child(uid).observe(.value, with:
             { (snapshot) in
-                
-                self.listMyAds.removeAll() //remove all values before get more from firebase
                 
                     for adId in snapshot.children.allObjects as! [DataSnapshot] {
                         
@@ -206,7 +206,33 @@ class MyAdsTableViewController: UITableViewController,CLLocationManagerDelegate 
                         adObj.bathroom = adDict["bathroom"] as? Int
                         adObj.price = adDict["price"] as? Float
                         adObj.description = adDict["description"]! as? String
-                        adObj.typeOfProperty = adDict["typeOfProperty"]! as? String
+                        
+                        switch adDict["typeOfProperty"]! as? String {
+                        case "House":
+                            adObj.typeOfProperty = .House
+                            break
+                        case "Townhouse":
+                            adObj.typeOfProperty = .Townhouse
+                            break
+                        case "Apartment":
+                            adObj.typeOfProperty = .Apartment
+                            break
+                        case "Duplex":
+                            adObj.typeOfProperty = .Duplex
+                            break
+                        case "Triplex":
+                            adObj.typeOfProperty = .Triplex
+                            break
+                        case "Fourplex":
+                            adObj.typeOfProperty = .Fourplex
+                            break
+                        case "Other":
+                            adObj.typeOfProperty = .Other
+                            break
+                        default:
+                            print("default")
+                        }
+          
                         adObj.creationDate = adDict["creationDate"]! as? String
                         adObj.imageStorage = adDict["imageStorage"]! as? String
                         

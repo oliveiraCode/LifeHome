@@ -94,8 +94,33 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
             self.adObj.garage = Int(cell.lbGarage.text! as String)
             self.adObj.description = cell.tvDescription.text
             self.adObj.price = Float(cell.tfPrice.text! as String)
-            self.adObj.typeOfProperty = cell.btnTypeOfProperty.titleLabel?.text
-            
+        
+        switch cell.btnTypeOfProperty.titleLabel?.text {
+        case "House":
+            self.adObj.typeOfProperty = .House
+            break
+        case "Townhouse":
+            self.adObj.typeOfProperty = .Townhouse
+            break
+        case "Apartment":
+            self.adObj.typeOfProperty = .Apartment
+            break
+        case "Duplex":
+            self.adObj.typeOfProperty = .Duplex
+            break
+        case "Triplex":
+            self.adObj.typeOfProperty = .Triplex
+            break
+        case "Fourplex":
+            self.adObj.typeOfProperty = .Fourplex
+            break
+        case "Other":
+            self.adObj.typeOfProperty = .Other
+            break
+        default:
+            print("default")
+        }
+        
             self.contactObj.email = cell.tfEmail.text!
             self.contactObj.phone = cell.tfPhone.text!
             
@@ -158,9 +183,6 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
         self.addressObj.latitude = locationCoordinate.coordinate.latitude
         self.addressObj.longitude = locationCoordinate.coordinate.longitude
 
-        var typeOfAd:String?
-        
-        
         let addressData = [
             "city": self.addressObj.city!,
             "postal code": self.addressObj.postalCode!,
@@ -175,21 +197,14 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
             "phone":self.contactObj.phone!
         ] as [String:Any]
         
-        switch adObj.typeOfAd {
-        case .Rent?:
-            typeOfAd = "Rent"
-        default:
-            typeOfAd = "Sell"
-        }
-        
         let adData = [
             "bathroom": self.adObj.bathroom!,
             "bedroom": self.adObj.bedroom!,
             "garage": self.adObj.garage!,
             "description": self.adObj.description!,
             "price": self.adObj.price!,
-            "typeOfAd": typeOfAd!,
-            "typeOfProperty": self.adObj.typeOfProperty!,
+            "typeOfAd": self.adObj.typeOfAd!.rawValue,
+            "typeOfProperty": self.adObj.typeOfProperty!.rawValue,
             "creationDate": self.adObj.creationDate!,
             "Address": addressData,
             "Contact": contactData,
@@ -247,7 +262,31 @@ class NewAdTableViewController: UITableViewController,ImagePickerDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myNewAdCell", for: indexPath) as! MyNewAdCell
         
-        cell.btnTypeOfProperty.setTitle(appDelegate.arrayTypeOfProperty[appDelegate.selectedRow], for: .normal)
+        
+        switch appDelegate.arrayTypeOfProperty[appDelegate.selectedRow] {
+        case .House:
+            cell.btnTypeOfProperty.setTitle("House", for: .normal)
+            break
+        case .Townhouse:
+            cell.btnTypeOfProperty.setTitle("Townhouse", for: .normal)
+            break
+        case .Apartment:
+            cell.btnTypeOfProperty.setTitle("Apartment", for: .normal)
+            break
+        case .Duplex:
+            cell.btnTypeOfProperty.setTitle("Duplex", for: .normal)
+            break
+        case .Triplex:
+            cell.btnTypeOfProperty.setTitle("Triplex", for: .normal)
+            break
+        case .Fourplex:
+            cell.btnTypeOfProperty.setTitle("Fourplex", for: .normal)
+            break
+        case .Other:
+            cell.btnTypeOfProperty.setTitle("Other", for: .normal)
+            break
+        }
+        
         cell.delegate = self
         
         return cell

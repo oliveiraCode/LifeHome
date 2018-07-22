@@ -16,7 +16,6 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
     @IBOutlet weak var btnMenu: UIBarButtonItem!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var ref: DatabaseReference = Database.database().reference()
-    var uid = Auth.auth().currentUser?.uid //get the current uid
     var locationManager:CLLocationManager!
     
     override func viewDidLoad() {
@@ -29,13 +28,12 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
         
         loadDataWishList()
  
-        // Uncomment the following line to preserve selection between presentations
-        self.clearsSelectionOnViewWillAppear = false
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateBadgeValue()
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -65,7 +63,7 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
         cell.imgAd.image = self.appDelegate.wishlistAd[indexPath.row].image
         cell.lbBedroom.text = String(self.appDelegate.wishlistAd[indexPath.row].bedroom!)
         cell.lbBathroom.text = String(self.appDelegate.wishlistAd[indexPath.row].bathroom!)
-        cell.lbTypeOfProperty.text = String(self.appDelegate.wishlistAd[indexPath.row].typeOfProperty!)
+        cell.lbTypeOfProperty.text = self.appDelegate.wishlistAd[indexPath.row].typeOfProperty?.rawValue
         cell.lbGarage.text = String(self.appDelegate.wishlistAd[indexPath.row].garage!)
         cell.lbPrice.text = String(format: "CAD %.2f",self.appDelegate.wishlistAd[indexPath.row].price!)
         
@@ -86,10 +84,12 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
                 // get the download URL
                 imageRef.downloadURL { url, error in
                     if let error = error {
-                        print("error downlaoding image :\(error.localizedDescription)")
+                        print("error download image :\(error.localizedDescription)")
                     } else {
                         //appending it to list
-                        cell.imgAd.kf.setImage(with: url!)
+                        DispatchQueue.main.async {
+                            cell.imgAd.kf.setImage(with: url!)
+                        }
                         self.appDelegate.currentListAds[indexPath.row].image = cell.imgAd.image
                     }
                 }
@@ -123,6 +123,8 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
@@ -133,7 +135,7 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
                 // Delete the row from the data source
                 self.tableView.beginUpdates()
                 tableView.deleteRows(at: [indexPath], with: .fade)
-                self.ref.child("Wishlist").child(self.uid!).child(self.appDelegate.wishlistAd[indexPath.row].id!).setValue(nil)
+                self.ref.child("Wishlist").child(uid).child(self.appDelegate.wishlistAd[indexPath.row].id!).setValue(nil)
                 
                 self.appDelegate.wishlistAd.remove(at: indexPath.row)
                 
@@ -153,11 +155,18 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
     
     func loadDataWishList (){
         
+        
+        
         let ref: DatabaseReference = Database.database().reference()
-        guard let uid = appDelegate.userObj.id else {return}
+        
+        guard let uid = Auth.auth().currentUser?.uid else {
+            self.appDelegate.wishlistAd.removeAll() //remove all values before get more from firebase
+            return}
         
         ref.child("Wishlist").child(uid).observe(.value) { (snapshot) in
+            
             self.appDelegate.wishlistAd.removeAll() //remove all values before get more from firebase
+            
                 for adId in snapshot.children.allObjects as! [DataSnapshot] {
                     
                     let adObj = Ad()
@@ -170,7 +179,33 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
                     adObj.bathroom = adDict["bathroom"] as? Int
                     adObj.price = adDict["price"] as? Float
                     adObj.description = adDict["description"]! as? String
-                    adObj.typeOfProperty = adDict["typeOfProperty"]! as? String
+                    
+                    switch adDict["typeOfProperty"]! as? String {
+                    case "House":
+                        adObj.typeOfProperty = .House
+                        break
+                    case "Townhouse":
+                        adObj.typeOfProperty = .Townhouse
+                        break
+                    case "Apartment":
+                        adObj.typeOfProperty = .Apartment
+                        break
+                    case "Duplex":
+                        adObj.typeOfProperty = .Duplex
+                        break
+                    case "Triplex":
+                        adObj.typeOfProperty = .Triplex
+                        break
+                    case "Fourplex":
+                        adObj.typeOfProperty = .Fourplex
+                        break
+                    case "Other":
+                        adObj.typeOfProperty = .Other
+                        break
+                    default:
+                        print("default")
+                    }
+                    
                     adObj.creationDate = adDict["creationDate"]! as? String
                     adObj.imageStorage = adDict["imageStorage"]! as? String
                     
@@ -198,11 +233,10 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
                     
                     adObj.contact = contactObj
                     
+                    
                     //Call the copmletion handler that was passed to us
                     self.appDelegate.wishlistAd.append(adObj)
-                    DispatchQueue.main.async {
-                        self.updateBadgeValue()
-                    }
+                    self.updateBadgeValue()
                     
                 }
             }
@@ -211,11 +245,18 @@ class WishlistTableViewController: UITableViewController,CLLocationManagerDelega
     
     
     func updateBadgeValue(){
-        if UserDefaults.standard.bool(forKey: "wishlistNotification") {
-            //to put the badgeValue count from wishlist array
-            tabBarController?.tabBar.items?.last?.badgeValue = "\(self.appDelegate.wishlistAd.count)"
+        
+        DispatchQueue.main.async {
+            
+            if UserDefaults.standard.bool(forKey: "wishlistNotification") {
+                //to put the badgeValue count from wishlist array
+                self.tabBarController?.tabBar.items?.last?.badgeValue = "\(self.appDelegate.wishlistAd.count)"
+            }
+            
+            self.tableView.reloadData()
         }
-        tableView.reloadData()
+        
+        
     }
     
     

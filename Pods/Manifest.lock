@@ -63,6 +63,9 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - SDWebImage (4.4.1):
+    - SDWebImage/Core (= 4.4.1)
+  - SDWebImage/Core (4.4.1)
   - SWRevealViewController (2.3.0)
 
 DEPENDENCIES:
@@ -74,6 +77,7 @@ DEPENDENCIES:
   - Kingfisher
   - KRActivityIndicatorView
   - KRProgressHUD
+  - SDWebImage
   - SWRevealViewController
 
 SPEC REPOS:
@@ -95,6 +99,7 @@ SPEC REPOS:
     - KRProgressHUD
     - leveldb-library
     - nanopb
+    - SDWebImage
     - SWRevealViewController
 
 SPEC CHECKSUMS:
@@ -115,8 +120,9 @@ SPEC CHECKSUMS:
   KRProgressHUD: 8872da74b1c462e15c82a8fff250a2d34ee82ea2
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
   SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
 
-PODFILE CHECKSUM: a985c95484d0f9265b2a234065c480cb028979a5
+PODFILE CHECKSUM: ef2d677684f55fd5dae592585516993f0954fb8d
 
 COCOAPODS: 1.5.3
