@@ -878,6 +878,9 @@ leandro.oliveira@live.com</string>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="DetailAd" id="7Bz-kR-0y6"/>
+                    <connections>
+                        <segue destination="ZgZ-z5-zG7" kind="presentation" identifier="showLoginVC" id="rub-AB-Lzw"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W3q-iq-SqJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1115,6 +1118,6 @@ leandro.oliveira@live.com</string>
     <inferredMetricsTieBreakers>
         <segue reference="zqV-Rn-GP9"/>
         <segue reference="yqK-PV-dns"/>
-        <segue reference="wiV-RE-84V"/>
+        <segue reference="rub-AB-Lzw"/>
     </inferredMetricsTieBreakers>
 </document>

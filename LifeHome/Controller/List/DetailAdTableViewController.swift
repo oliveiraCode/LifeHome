@@ -13,7 +13,7 @@ class DetailAdTableViewController: UITableViewController {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var ref: DatabaseReference = Database.database().reference()
-    let uid = Auth.auth().currentUser?.uid //get the current uid
+    var uid = Auth.auth().currentUser?.uid //get the current uid
     var isWishlist = false
     var imgURL:String?
     
@@ -31,18 +31,30 @@ class DetailAdTableViewController: UITableViewController {
         
     }
     
+
     
     @objc func saveWishlist(){
         
-        if Auth.auth().currentUser?.uid == nil { return }
         
-       // self.tableView.reloadData() //to change the heart picture
-        
-        if isWishlist {
-            saveData()
+        //Check if the user is logged before to show a new ad view controller
+        if Auth.auth().currentUser?.uid == nil {
+            let alert = UIAlertController(title: "Sign In", message: "You must sign in to save an annonce.", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            
+            alert.addAction(UIAlertAction(title: "Sign In", style: .default, handler: { action in
+                self.performSegue(withIdentifier: "showLoginVC", sender: nil)
+            }))
+            
+            self.present(alert, animated: true, completion: nil)
         } else {
-            deleteData()
+            if isWishlist {
+                saveData()
+            } else {
+                deleteData()
+            }
         }
+        
+        
     }
     
     func deleteData(){
@@ -51,7 +63,7 @@ class DetailAdTableViewController: UITableViewController {
     }
     
     func saveData(){
-  
+        
         let addressData = [
             "city": self.appDelegate.detailAd[0].address!.city!,
             "postal code": self.appDelegate.detailAd[0].address!.postalCode!,
@@ -89,6 +101,7 @@ class DetailAdTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
+        uid = Auth.auth().currentUser?.uid //get the current uid
         //tableView.reloadData()
     }
     
@@ -147,7 +160,7 @@ class DetailAdTableViewController: UITableViewController {
         cell.lbTypeOfProperty.text = self.appDelegate.detailAd[indexPath.row].typeOfProperty?.rawValue
         cell.lbPrice.text = String(format: "CAD %.2f",self.appDelegate.detailAd[indexPath.row].price!)
         
-
+        
         if isWishlist || checkIfWishlistExist(){
             cell.btnWishlist.setImage(UIImage(named: "wishlist_saved"), for: .normal)
             isWishlist = false
